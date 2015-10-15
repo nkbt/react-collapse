@@ -1,4 +1,4 @@
-import Component from './Component';
+import Collapse from './Collapse';
 
 
-export default Component;
+export default Collapse;

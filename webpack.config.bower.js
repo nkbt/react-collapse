@@ -11,7 +11,7 @@ module.exports = {
   output: {
     filename: require('./package.json').name + '.js',
     path: path.resolve('build'),
-    library: 'Component',
+    library: 'ReactCollapse',
     libraryTarget: 'umd'
   },
   plugins: [

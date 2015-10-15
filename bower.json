@@ -1,24 +1,29 @@
 {
-  "name": "react-component-template",
+  "name": "react-collapse",
   "version": "1.0.0",
-  "description": "React component",
-  "main": "react-component-template.js",
+  "description": "React react-collapse",
+  "main": "react-collapse.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bower-registry/react-component-template.git"
+    "url": "https://github.com/bower-registry/react-collapse.git"
   },
   "keywords": [
     "component",
     "react-component",
-    "react"
+    "react-motion",
+    "react",
+    "collapse",
+    "slide-down",
+    "slide-up"
   ],
   "authors": [
     "Nik Butenko <nik@butenko.me> (http://butenko.me/)"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/nkbt/react-component-template",
+  "homepage": "https://github.com/nkbt/react-collapse",
   "dependencies": {
-    "react": "^0.13.3"
+    "react": "^0.14",
+    "react-motion": "^0.3.1"
   },
   "ignore": [
     "**/.*",

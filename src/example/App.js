@@ -1,12 +1,12 @@
 import React from 'react';
-import Component from '..';
+import Collapse from '..';
 
 
 const App = React.createClass({
   render() {
     return (
       <div>
-        <Component />
+        <Collapse />
       </div>
     );
   }
