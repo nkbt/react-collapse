@@ -14,7 +14,7 @@ pids
 /node_modules/
 
 /lib/
-/example/
+#/example/
 /.coveralls.yml
 /reports/
 
