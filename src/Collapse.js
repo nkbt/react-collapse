@@ -28,8 +28,10 @@ const Collapse = React.createClass({
   },
 
 
-  componentWillReceiveProps() {
-    this.setState({dirty: true});
+  componentWillReceiveProps({children}) {
+    if (children !== this.props.children) {
+      this.setState({dirty: true});
+    }
   },
 
 
@@ -50,17 +52,16 @@ const Collapse = React.createClass({
     if (!this.state.dirty && this.state.height) {
       return null;
     }
+    const {isOpened, ...props} = this.props;
 
     return (
-      <HeightReporter onHeightReady={this.onHeightReady}>
-        {this.props.children}
-      </HeightReporter>
+      <HeightReporter onHeightReady={this.onHeightReady} {...props} />
     );
   },
 
 
   render() {
-    const {isOpened, style, ...props} = this.props;
+    const {isOpened, style, children, ...props} = this.props;
     const {height} = this.state;
 
     return (
@@ -80,7 +81,9 @@ const Collapse = React.createClass({
             } : {height: 'auto'};
 
             return (
-              <div style={{...style, ...newStyle}} {...props}></div>
+              <div style={{...style, ...newStyle}} {...props}>
+                {children}
+              </div>
             );
           }}
         </Motion>
