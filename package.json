@@ -71,6 +71,7 @@
     "inject-loader": "^2.0.1",
     "isparta-loader": "^1.0.0",
     "jasmine-core": "^2.3.4",
+    "json-loader": "^0.5.3",
     "karma": "^0.13.10",
     "karma-coverage": "^0.5.2",
     "karma-jasmine": "^0.3.6",

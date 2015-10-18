@@ -21,6 +21,7 @@ module.exports = {
 
   module: {
     loaders: [
+      {test: /\.json$/, loader: 'json', include: [path.resolve('src')]},
       {test: /\.js$/, loader: 'babel', include: [path.resolve('src')]}
     ]
   },

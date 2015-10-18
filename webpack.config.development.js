@@ -26,6 +26,7 @@ module.exports = {
   ],
   module: {
     loaders: [
+      {test: /\.json$/, loader: 'json', include: [path.resolve('src')]},
       {test: /\.js$/, loaders: ['react-hot', 'babel'], include: [path.resolve('src')]}
     ],
     preLoaders: [
