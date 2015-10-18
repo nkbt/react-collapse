@@ -10,7 +10,7 @@ const HeightReporter = React.createClass({
 
 
   componentDidMount() {
-    this.height = this.refs.wrapper.offsetHeight;
+    this.height = this.refs.wrapper.clientHeight;
     if (this.height > 0) {
       return this.props.onHeightReady(this.height);
     }
@@ -21,18 +21,20 @@ const HeightReporter = React.createClass({
 
 
   componentDidUpdate() {
-    if (this.refs.wrapper.offsetHeight > 0 && this.refs.wrapper.offsetHeight !== this.height) {
-      this.height = this.refs.wrapper.offsetHeight;
+    if (this.refs.wrapper.clientHeight > 0 && this.refs.wrapper.clientHeight !== this.height) {
+      this.height = this.refs.wrapper.clientHeight;
       return this.props.onHeightReady(this.height);
     }
   },
 
 
   render() {
+    const {onHeightReady, children, ...props} = this.props;
+
     return (
       <div style={{height: 0, overflow: 'hidden'}}>
-        <div ref="wrapper">
-          {this.props.children}
+        <div ref="wrapper" {...props}>
+          {children}
         </div>
       </div>
     );
