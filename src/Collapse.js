@@ -10,12 +10,13 @@ const Collapse = React.createClass({
   propTypes: {
     isOpened: React.PropTypes.bool.isRequired,
     children: React.PropTypes.node.isRequired,
+    fixedHeight: React.PropTypes.number,
     style: React.PropTypes.object
   },
 
 
   getDefaultProps() {
-    return {style: {}};
+    return {fixedHeight: -1, style: {}};
   },
 
 
@@ -28,19 +29,14 @@ const Collapse = React.createClass({
   },
 
 
-  componentWillReceiveProps({children}) {
-    if (children !== this.props.children) {
+  componentWillReceiveProps({children, fixedHeight}) {
+    if (!fixedHeight && children !== this.props.children) {
       this.setState({dirty: true});
     }
   },
 
 
   shouldComponentUpdate,
-
-
-  onUpdate() {
-    this.setState({dirty: true});
-  },
 
 
   onHeightReady(height) {
@@ -52,7 +48,7 @@ const Collapse = React.createClass({
     if (!this.state.dirty && this.state.height) {
       return null;
     }
-    const {isOpened, ...props} = this.props;
+    const {isOpened, fixedHeight, ...props} = this.props;
 
     return (
       <HeightReporter onHeightReady={this.onHeightReady} {...props} />
@@ -60,8 +56,28 @@ const Collapse = React.createClass({
   },
 
 
+  renderFixed() {
+    const {isOpened, style, children, fixedHeight, ...props} = this.props;
+
+    return (
+      <Motion defaultStyle={{height: 0}} style={{height: spring(isOpened ? fixedHeight : 0)}}>
+        {({height}) => (!isOpened && !height) ? null : (
+          <div style={{...style, height, overflow: 'hidden'}} {...props}>
+            {children}
+          </div>
+        )}
+      </Motion>
+    );
+  },
+
+
   render() {
-    const {isOpened, style, children, ...props} = this.props;
+    const {isOpened, style, children, fixedHeight, ...props} = this.props;
+
+    if (fixedHeight > -1) {
+      return this.renderFixed();
+    }
+
     const {height} = this.state;
 
     return (

@@ -51,17 +51,49 @@ npm install --save react-collapse
 
 #### `isOpened`: PropTypes.boolean.isRequired
 
-Expands or collapses content
+Expands or collapses content.
 
 
 #### `children`: PropTypes.node.isRequired
 
-One or multiple children with static, variable or dynamic height
+One or multiple children with static, variable or dynamic height.
 
+```js
+<Collapse isOpened={true}>
+  <p>Paragraph of text</p>
+  <p>Another paragraph is also OK</p>
+  <p>Images and any other content are ok too</p>
+  <img src="nyancat.gif">
+</Collapse>
+```
+
+
+#### `fixedHeight`: PropTypes.number
+
+If content's height is known ahead it is possible to bypass the process of content height calculation by passing optional `fixedHeight` prop with number of pixels.
+
+```js
+<Collapse isOpened={true} fixedHeight={100}>
+  <div>Animated container will always expand to 100px height</div>
+</Collapse>
+```
 
 #### Pass-through props
 
 All other props are applied to a container that is being resized. So it is possible to pass `style` or `className`, for example.
+
+```js
+<Collapse isOpened={true}
+  style={{width: 200, border: '1px solid red'}}
+  className="collapse">
+
+  <div>
+    Animated container has red border, 200px width
+    and has `class="collapse"`
+  </div>
+</Collapse>
+```
+
 
 
 ## Development and testing
