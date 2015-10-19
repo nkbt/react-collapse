@@ -1,59 +1,37 @@
 import React from 'react';
 import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
-import Collapse from '..';
-import paragraphs from './text.json';
+import VariableText from './VariableText';
+import VariableHeight from './VariableHeight';
 
 
-const style = height => ({
+const style = {
   container: {
-    margin: 10,
-    maxWidth: 800,
-    border: '3px solid green',
-    borderRadius: height / 8
+    margin: 20
   },
-
-  content: {
-    height,
-    background: 'rgba(0,0,0,0.2)',
-    borderRadius: height / 2
+  section: {
+    marginTop: 50
   }
-});
-
-
-const randomHeight = () => 100 + Math.round(Math.random() * 10) * 20;
-const randomText = num => (num + 1) % 5;
-const getText = num => paragraphs.slice(0, num).map((p, i) => <div key={i}>{p}</div>);
+};
 
 
 const App = React.createClass({
-  getInitialState() {
-    return {isOpened: false, height: 100, text: 0};
-  },
-
   shouldComponentUpdate,
 
 
   render() {
-    const {isOpened, height, text} = this.state;
-
     return (
-      <div>
-        <div>
-          <button onClick={() => this.setState({isOpened: !isOpened})}>Toggle</button>
-          &nbsp;
-          <button onClick={() => this.setState({height: randomHeight()})}>
-            Change height {this.state.height}
-          </button>
-          &nbsp;
-          <button onClick={() => this.setState({text: randomText(text)})}>
-            Change text {text}
-          </button>
-        </div>
+      <div style={style.container}>
 
-        <Collapse isOpened={isOpened} style={style(height).container}>
-          <div style={{...style(height).content, height}}></div>
-          {text ? <div style={{padding: 10}}>{getText(text)}</div> : null}
-        </Collapse>
+        <section style={style.section}>
+          <h2>Example 1. Variable text</h2>
+          <VariableText />
+        </section>
+
+        <section style={style.section}>
+          <h2>Example 2. Variable height content</h2>
+          <VariableHeight />
+        </section>
+
       </div>
     );
   }
