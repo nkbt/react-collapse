@@ -18,6 +18,7 @@ const VariableHeight = React.createClass({
     return {isOpened: false, height: 100};
   },
 
+
   shouldComponentUpdate,
 
 

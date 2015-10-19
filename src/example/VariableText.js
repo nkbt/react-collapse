@@ -14,6 +14,7 @@ const VariableText = React.createClass({
     return {isOpened: false, paragraphs: 0};
   },
 
+
   shouldComponentUpdate,
 
 
