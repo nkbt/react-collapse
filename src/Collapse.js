@@ -30,7 +30,7 @@ const Collapse = React.createClass({
 
 
   componentWillReceiveProps({children, fixedHeight}) {
-    if (!fixedHeight && children !== this.props.children) {
+    if (fixedHeight < 0 && children !== this.props.children) {
       this.setState({dirty: true});
     }
   },
