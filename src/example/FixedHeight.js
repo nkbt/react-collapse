@@ -22,13 +22,13 @@ const FixedHeight = React.createClass({
   shouldComponentUpdate,
 
 
-  onChangeContent({target: {value: content}}) {
-    this.setState({content});
+  onChangeContent({target: {value}}) {
+    this.setState({content: parseInt(value, 10)});
   },
 
 
-  onChangeCollapse({target: {value: collapse}}) {
-    this.setState({collapse});
+  onChangeCollapse({target: {value}}) {
+    this.setState({collapse: parseInt(value, 10)});
   },
 
 
@@ -52,7 +52,7 @@ const FixedHeight = React.createClass({
             value={collapse} onChange={this.onChangeCollapse} />
         </div>
 
-        <Collapse isOpened={isOpened} style={container}>
+        <Collapse isOpened={isOpened} style={container} fixedHeight={collapse}>
           <div style={{...style(content).content, height: content}}></div>
         </Collapse>
 
