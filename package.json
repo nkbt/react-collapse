@@ -55,7 +55,7 @@
   "homepage": "https://github.com/nkbt/react-collapse",
   "peerDependencies": {
     "react": "^0.14",
-    "react-motion": "^0.3.1"
+    "react-motion": "^0.3"
   },
   "dependencies": {
     "react-addons-pure-render-mixin": "^0.14.0"
