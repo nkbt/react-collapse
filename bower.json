@@ -1,7 +1,7 @@
 {
   "name": "react-collapse",
   "version": "1.0.0",
-  "description": "React react-collapse",
+  "description": "Component-wrapper for collapse animation with react-motion for elements with variable (and dynamic) height",
   "main": "react-collapse.js",
   "repository": {
     "type": "git",
