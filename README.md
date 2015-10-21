@@ -24,7 +24,7 @@ npm install --save react-collapse
 ### bower
 
 ```js
-// TODO
+bower install --save react-collapse
 ```
 
 ## Demo
@@ -33,9 +33,7 @@ npm install --save react-collapse
 
 ## Codepen demo
 
-```js
-// TODO
-```
+[http://codepen.io/nkbt/pen/MarzEg](http://codepen.io/nkbt/pen/MarzEg?editors=101)
 
 ## Usage
 
