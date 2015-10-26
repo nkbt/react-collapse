@@ -76,6 +76,23 @@ If content's height is known ahead it is possible to bypass the process of conte
 </Collapse>
 ```
 
+
+#### `springConfig`: React.PropTypes.arrayOf(React.PropTypes.number)
+
+Custom config `[stiffness, damping]` passed to the spring function (see https://github.com/chenglou/react-motion#spring-number---stiffness-damping---configurationobject)
+
+```js
+import {presets} from 'react-motion';
+
+<Collapse isOpened={true} springConfig={presets.wobbly}>
+  <div>Wobbly animated container</div>
+</Collapse>
+
+<Collapse isOpened={true} springConfig={[100, 20]}>
+  <div>Customly animated container</div>
+</Collapse>
+```
+
 #### Pass-through props
 
 All other props are applied to a container that is being resized. So it is possible to pass `style` or `className`, for example.
