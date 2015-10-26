@@ -3,6 +3,7 @@ import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
 import VariableText from './VariableText';
 import VariableHeight from './VariableHeight';
 import FixedHeight from './FixedHeight';
+import SpringConfig from './SpringConfig';
 
 
 const style = {
@@ -36,6 +37,11 @@ const App = React.createClass({
         <section style={style.section}>
           <h2>Example 3. Fixed Collapse height</h2>
           <FixedHeight />
+        </section>
+
+        <section style={style.section}>
+          <h2>Example 4. Custom spring configuration</h2>
+          <SpringConfig />
         </section>
 
       </div>
