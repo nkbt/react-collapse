@@ -1,19 +1,7 @@
-describe('Collapse', () => {
-  const CollapseInjector = require('inject!../src/Collapse');
-  let mock, Collapse;
+import test from 'tape';
+import Collapse from '../src/Collapse';
 
-
-  beforeEach(() => {
-    mock = jasmine.createSpyObj('mock', ['']);
-  });
-
-
-  beforeEach(() => Collapse = CollapseInjector({
-    mock
-  }));
-
-
-  it('should be ok', () => {
-    expect(Collapse).toBeTruthy();
-  });
+test('Collapse', t => {
+  t.ok(Collapse instanceof Function, 'should be function');
+  t.end();
 });
