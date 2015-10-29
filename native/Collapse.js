@@ -1,5 +1,6 @@
 import React, {View} from 'react-native';
 import {Motion, spring} from 'react-motion';
+import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
 
 
 import HeightReporter from './HeightReporter';
@@ -24,6 +25,7 @@ const Collapse = React.createClass({
     return {height: 0, dirty: true};
   },
 
+
   componentWillMount() {
     this.height = '0.00';
   },
@@ -36,9 +38,7 @@ const Collapse = React.createClass({
   },
 
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.children !== this.props.children || nextState !== this.state;
-  },
+  shouldComponentUpdate,
 
 
   onHeightReady(height) {

@@ -1,5 +1,5 @@
 import React, {View} from 'react-native';
-
+import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
 
 const HeightReporter = React.createClass({
   propTypes: {
@@ -7,9 +7,9 @@ const HeightReporter = React.createClass({
     onHeightReady: React.PropTypes.func.isRequired
   },
 
-  shouldComponentUpdate(nextProps) {
-    return nextProps.children !== this.props.children;
-  },
+
+  shouldComponentUpdate,
+
 
   render() {
     const {
