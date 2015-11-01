@@ -3,7 +3,7 @@ import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
 import {Motion, spring} from 'react-motion';
 
 
-import HeightReporter from './HeightReporter';
+import HeightReporter from 'react-height';
 
 
 const Collapse = React.createClass({
@@ -22,7 +22,7 @@ const Collapse = React.createClass({
 
 
   getInitialState() {
-    return {height: 0, dirty: true};
+    return {height: -1};
   },
 
   componentWillMount() {
@@ -30,30 +30,11 @@ const Collapse = React.createClass({
   },
 
 
-  componentWillReceiveProps({children, fixedHeight}) {
-    if (fixedHeight < 0 && children !== this.props.children) {
-      this.setState({dirty: true});
-    }
-  },
-
-
   shouldComponentUpdate,
 
 
   onHeightReady(height) {
-    this.setState({height, dirty: false});
-  },
-
-
-  renderHeightReporter() {
-    if (!this.state.dirty && this.state.height) {
-      return null;
-    }
-    const {isOpened, fixedHeight, ...props} = this.props;
-
-    return (
-      <HeightReporter onHeightReady={this.onHeightReady} {...props} />
-    );
+    this.setState({height});
   },
 
 
@@ -85,7 +66,9 @@ const Collapse = React.createClass({
 
     return (
       <div>
-        {this.renderHeightReporter()}
+        <HeightReporter style={style} hidden={true} onHeightReady={this.onHeightReady} {...props}>
+          {children}
+        </HeightReporter>
 
         <Motion
           defaultStyle={{height: 0}}

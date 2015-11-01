@@ -23,7 +23,8 @@
   "homepage": "https://github.com/nkbt/react-collapse",
   "dependencies": {
     "react": "^0.14",
-    "react-motion": "^0.3"
+    "react-motion": "^0.3",
+    "react-height": "^1.0.0"
   },
   "ignore": [
     "**/.*",
