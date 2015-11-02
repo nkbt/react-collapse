@@ -1,13 +1,13 @@
 import React from 'react';
 import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
 import Collapse from '..';
-import {container} from './style';
+import * as style from './style';
 
 
-const style = height => ({
+const localStyle = height => ({
   content: {
     height,
-    background: 'rgba(0,0,0,0.2)',
+    background: 'rgba(96, 125, 139, 0.6)',
     borderRadius: height / 2
   }
 });
@@ -38,7 +38,7 @@ const FixedHeight = React.createClass({
     return (
       <div>
 
-        <div>
+        <div style={style.config}>
           <button onClick={() => this.setState({isOpened: !isOpened})}>Toggle</button>
           &nbsp;
           Content height:
@@ -52,8 +52,8 @@ const FixedHeight = React.createClass({
             value={collapse} onChange={this.onChangeCollapse} />
         </div>
 
-        <Collapse isOpened={isOpened} style={container} fixedHeight={collapse}>
-          <div style={{...style(content).content, height: content}}></div>
+        <Collapse isOpened={isOpened} style={style.container} fixedHeight={collapse}>
+          <div style={{...localStyle(content).content, height: content}}></div>
         </Collapse>
 
       </div>

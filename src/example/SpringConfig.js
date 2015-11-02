@@ -2,13 +2,13 @@ import React from 'react';
 import {presets} from 'react-motion';
 import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
 import Collapse from '..';
-import {container} from './style';
+import * as style from './style';
 
 
-const style = height => ({
+const localStyle = height => ({
   content: {
     height,
-    background: 'rgba(0,0,0,0.2)',
+    background: 'rgba(96, 125, 139, 0.6)',
     borderRadius: height / 2
   }
 });
@@ -36,7 +36,7 @@ const VariableHeight = React.createClass({
     return (
       <div>
 
-        <div>
+        <div style={style.config}>
           <button onClick={() => this.setState({isOpened: !isOpened})}>Toggle</button>
           &nbsp;
           Content height:
@@ -55,8 +55,8 @@ const VariableHeight = React.createClass({
             value={damping} onChange={this.onChange('damping')} />
         </div>
 
-        <Collapse isOpened={isOpened} style={container} springConfig={[stiffness, damping]}>
-          <div style={{...style(height).content, height}}></div>
+        <Collapse isOpened={isOpened} style={style.container} springConfig={[stiffness, damping]}>
+          <div style={{...localStyle(height).content, height}}></div>
         </Collapse>
 
       </div>

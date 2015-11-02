@@ -2,7 +2,7 @@ import React from 'react';
 import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
 import Collapse from '..';
 import text from './text.json';
-import {container} from './style';
+import * as style from './style';
 
 
 const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
@@ -27,7 +27,7 @@ const VariableText = React.createClass({
 
     return (
       <div>
-        <div>
+        <div style={style.config}>
           <button onClick={() => this.setState({isOpened: !isOpened})}>Toggle</button>
           &nbsp;
           Paragraphs:
@@ -36,7 +36,7 @@ const VariableText = React.createClass({
             value={paragraphs} onChange={this.onChange} />
         </div>
 
-        <Collapse isOpened={isOpened} style={container}>
+        <Collapse isOpened={isOpened} style={style.container}>
           <div style={{padding: 10}}>
             {paragraphs ? getText(paragraphs) : <p>No text</p>}
           </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
 import Collapse from '..';
-import {container} from './style';
+import * as style from './style';
 import VariableHeight from './VariableHeight';
 
 
@@ -24,11 +24,11 @@ const Nested = React.createClass({
 
     return (
       <div>
-        <div>
+        <div style={style.config}>
           <button onClick={() => this.setState({isOpened: !isOpened})}>Toggle</button>
         </div>
 
-        <Collapse isOpened={isOpened} style={container}>
+        <Collapse isOpened={isOpened} style={style.container}>
           <div style={{padding: 20}}>
             <VariableHeight />
           </div>
