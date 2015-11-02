@@ -43,12 +43,12 @@ const FixedHeight = React.createClass({
           &nbsp;
           Content height:
           &nbsp;
-          <input type="number" step={50} min={100} max={500}
+          <input type="range" step={50} min={0} max={500}
             value={content} onChange={this.onChangeContent} />
           &nbsp;
           Collapse fixed height:
           &nbsp;
-          <input type="number" step={50} min={100} max={500}
+          <input type="range" step={50} min={0} max={500}
             value={collapse} onChange={this.onChangeCollapse} />
         </div>
 

@@ -5,7 +5,6 @@ import text from './text.json';
 import {container} from './style';
 
 
-const addText = num => (num + 1) % 5;
 const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
 
 
@@ -18,6 +17,11 @@ const VariableText = React.createClass({
   shouldComponentUpdate,
 
 
+  onChange({target: {value}}) {
+    this.setState({paragraphs: parseInt(value, 10)});
+  },
+
+
   render() {
     const {isOpened, paragraphs} = this.state;
 
@@ -26,9 +30,10 @@ const VariableText = React.createClass({
         <div>
           <button onClick={() => this.setState({isOpened: !isOpened})}>Toggle</button>
           &nbsp;
-          <button onClick={() => this.setState({paragraphs: addText(paragraphs)})}>
-            {paragraphs === 4 ? 'Remove text' : 'Add paragraph'} [{paragraphs}]
-          </button>
+          Paragraphs:
+          &nbsp;
+          <input type="range" step={1} min={0} max={4}
+            value={paragraphs} onChange={this.onChange} />
         </div>
 
         <Collapse isOpened={isOpened} style={container}>
