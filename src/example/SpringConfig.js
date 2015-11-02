@@ -16,7 +16,7 @@ const style = height => ({
 
 const VariableHeight = React.createClass({
   getInitialState() {
-    const [stiffness, damping] = presets.wobbly;
+    const [stiffness, damping] = presets.stiff;
 
     return {isOpened: false, height: 100, stiffness, damping};
   },
