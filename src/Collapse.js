@@ -26,7 +26,7 @@ const Collapse = React.createClass({
   },
 
   componentWillMount() {
-    this.height = '0.00';
+    this.height = '0.0';
   },
 
 
@@ -45,7 +45,7 @@ const Collapse = React.createClass({
       <Motion
         defaultStyle={{height: 0}}
         style={{height: spring(isOpened ? fixedHeight : 0, springConfig)}}>
-        {({height}) => (!isOpened && !height) ? null : (
+        {({height}) => (!isOpened && parseFloat(height).toFixed(1) === '0.0') ? null : (
           <div style={{...style, height, overflow: 'hidden'}} {...props}>
             {children}
           </div>
@@ -63,6 +63,7 @@ const Collapse = React.createClass({
     }
 
     const {height} = this.state;
+    const stringHeight = parseFloat(height).toFixed(1);
 
     return (
       <div>
@@ -74,15 +75,16 @@ const Collapse = React.createClass({
           defaultStyle={{height: 0}}
           style={{height: spring(isOpened ? height : 0, springConfig)}}>
           {st => {
-            this.height = parseFloat(st.height).toFixed(2);
-            if (!isOpened && !st.height) {
+            this.height = Math.max(0, parseFloat(st.height)).toFixed(1);
+            // TODO: this should be done using onEnd from ReactMotion, which is not yet implemented
+            // See https://github.com/chenglou/react-motion/issues/235
+            if (!isOpened && this.height === '0.0') {
               return null;
             }
 
-            const newStyle = this.height !== parseFloat(height).toFixed(2) ? {
-              height: st.height,
-              overflow: 'hidden'
-            } : {height: 'auto'};
+            const newStyle = (isOpened && this.height === stringHeight) ? {height: 'auto'} : {
+              height: st.height, overflow: 'hidden'
+            };
 
             return (
               <div style={{...style, ...newStyle}} {...props}>
