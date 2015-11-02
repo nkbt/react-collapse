@@ -4,6 +4,7 @@ import VariableText from './VariableText';
 import VariableHeight from './VariableHeight';
 import FixedHeight from './FixedHeight';
 import SpringConfig from './SpringConfig';
+import Nested from './Nested';
 
 
 const style = {
@@ -42,6 +43,11 @@ const App = React.createClass({
         <section style={style.section}>
           <h2>Example 4. Custom spring configuration</h2>
           <SpringConfig />
+        </section>
+
+        <section style={style.section}>
+          <h2>Example 5. Nested Collapse</h2>
+          <Nested />
         </section>
 
       </div>
