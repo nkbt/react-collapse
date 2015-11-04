@@ -65,35 +65,33 @@ const Collapse = React.createClass({
     const {height} = this.state;
     const stringHeight = parseFloat(height).toFixed(1);
 
+    // Cache Content so it is not re-rendered on each animation step
+    const content = (
+      <HeightReporter onHeightReady={this.onHeightReady}>
+        {children}
+      </HeightReporter>
+    );
+
     return (
-      <div>
-        <HeightReporter style={style} hidden={true} onHeightReady={this.onHeightReady} {...props}>
-          {children}
-        </HeightReporter>
+      <Motion
+        defaultStyle={{height: 0}}
+        style={{height: spring(isOpened ? height : 0, springConfig)}}>
+        {st => {
+          this.height = Math.max(0, parseFloat(st.height)).toFixed(1);
 
-        <Motion
-          defaultStyle={{height: 0}}
-          style={{height: spring(isOpened ? height : 0, springConfig)}}>
-          {st => {
-            this.height = Math.max(0, parseFloat(st.height)).toFixed(1);
-            // TODO: this should be done using onEnd from ReactMotion, which is not yet implemented
-            // See https://github.com/chenglou/react-motion/issues/235
-            if (!isOpened && this.height === '0.0') {
-              return null;
-            }
+          // TODO: this should be done using onEnd from ReactMotion, which is not yet implemented
+          // See https://github.com/chenglou/react-motion/issues/235
+          if (!isOpened && this.height === '0.0') {
+            return null;
+          }
 
-            const newStyle = (isOpened && this.height === stringHeight) ? {height: 'auto'} : {
-              height: st.height, overflow: 'hidden'
-            };
+          const newStyle = (isOpened && this.height === stringHeight) ? {height: 'auto'} : {
+            height: st.height, overflow: 'hidden'
+          };
 
-            return (
-              <div style={{...style, ...newStyle}} {...props}>
-                {children}
-              </div>
-            );
-          }}
-        </Motion>
-      </div>
+          return <div style={{...style, ...newStyle}} {...props}>{content}</div>;
+        }}
+      </Motion>
     );
   }
 });
