@@ -22,13 +22,20 @@ const VariableText = React.createClass({
   },
 
 
+  onToggle() {
+    const {isOpened} = this.state;
+
+    this.setState({isOpened: !isOpened});
+  },
+
+
   render() {
     const {isOpened, paragraphs} = this.state;
 
     return (
       <div>
         <div style={style.config}>
-          <button onClick={() => this.setState({isOpened: !isOpened})}>Toggle</button>
+          <button onClick={this.onToggle}>{isOpened ? 'Close' : 'Open'}</button>
           &nbsp;
           Paragraphs:
           &nbsp;
