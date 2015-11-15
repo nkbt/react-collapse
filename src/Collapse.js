@@ -10,6 +10,7 @@ const Collapse = React.createClass({
   propTypes: {
     isOpened: React.PropTypes.bool.isRequired,
     children: React.PropTypes.node.isRequired,
+    collapsedHeight: React.PropTypes.number,
     fixedHeight: React.PropTypes.number,
     style: React.PropTypes.object, // eslint-disable-line react/forbid-prop-types
     springConfig: React.PropTypes.arrayOf(React.PropTypes.number)
@@ -17,7 +18,7 @@ const Collapse = React.createClass({
 
 
   getDefaultProps() {
-    return {fixedHeight: -1, style: {}};
+    return {fixedHeight: -1, style: {}, collapsedHeight: 0};
   },
 
 
@@ -39,12 +40,13 @@ const Collapse = React.createClass({
 
 
   renderFixed() {
-    const {isOpened, style, children, fixedHeight, springConfig, ...props} = this.props;
+    const {isOpened, style, children, fixedHeight,
+      collapsedHeight, springConfig, ...props} = this.props;
 
     return (
       <Motion
-        defaultStyle={{height: 0}}
-        style={{height: spring(isOpened ? fixedHeight : 0, springConfig)}}>
+        defaultStyle={{height: collapsedHeight}}
+        style={{height: spring(isOpened ? fixedHeight : collapsedHeight, springConfig)}}>
         {({height}) => (!isOpened && parseFloat(height).toFixed(1) === '0.0') ? null : (
           <div style={{...style, height, overflow: 'hidden'}} {...props}>
             {children}
@@ -56,7 +58,8 @@ const Collapse = React.createClass({
 
 
   render() {
-    const {isOpened, style, children, fixedHeight, springConfig, ...props} = this.props;
+    const {isOpened, style, children, fixedHeight,
+      collapsedHeight, springConfig, ...props} = this.props;
 
     if (fixedHeight > -1) {
       return this.renderFixed();
@@ -74,8 +77,8 @@ const Collapse = React.createClass({
 
     return (
       <Motion
-        defaultStyle={{height: 0}}
-        style={{height: spring(isOpened ? height : 0, springConfig)}}>
+        defaultStyle={{height: collapsedHeight}}
+        style={{height: spring(isOpened ? height : collapsedHeight, springConfig)}}>
         {st => {
           this.height = Math.max(0, parseFloat(st.height)).toFixed(1);
 

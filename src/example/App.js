@@ -5,6 +5,7 @@ import VariableHeight from './VariableHeight';
 import FixedHeight from './FixedHeight';
 import SpringConfig from './SpringConfig';
 import Nested from './Nested';
+import CollapsedHeight from './CollapsedHeight';
 
 
 const style = {
@@ -48,6 +49,11 @@ const App = React.createClass({
         <section style={style.section}>
           <h2>Example 5. Nested Collapse</h2>
           <Nested />
+        </section>
+
+        <section style={style.section}>
+          <h2>Example 6. CollapsedHeight</h2>
+          <CollapsedHeight />
         </section>
 
       </div>
