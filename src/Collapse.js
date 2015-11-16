@@ -46,7 +46,7 @@ const Collapse = React.createClass({
         defaultStyle={{height: 0}}
         style={{height: spring(isOpened ? fixedHeight : 0, springConfig)}}>
         {({height}) => (!isOpened && parseFloat(height).toFixed(1) === '0.0') ? null : (
-          <div style={{...style, height, overflow: 'hidden'}} {...props}>
+          <div style={{height, overflow: 'hidden', ...style}} {...props}>
             {children}
           </div>
         )}
@@ -89,7 +89,7 @@ const Collapse = React.createClass({
             height: st.height, overflow: 'hidden'
           };
 
-          return <div style={{...style, ...newStyle}} {...props}>{content}</div>;
+          return <div style={{...newStyle, ...style}} {...props}>{content}</div>;
         }}
       </Motion>
     );
