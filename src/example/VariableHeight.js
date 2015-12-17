@@ -14,7 +14,7 @@ const localStyle = height => ({
 
 const VariableHeight = React.createClass({
   getInitialState() {
-    return {isOpened: false, height: 100};
+    return {isOpened: true, height: 100};
   },
 
 

@@ -1,10 +1,7 @@
 import React from 'react';
 import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
 import {Motion, spring} from 'react-motion';
-
-
 import HeightReporter from 'react-height';
-
 
 const Collapse = React.createClass({
   propTypes: {
@@ -22,7 +19,7 @@ const Collapse = React.createClass({
 
 
   getInitialState() {
-    return {height: -1};
+    return {height: -1, staticRendering: true, startsOpen: this.props.isOpened};
   },
 
   componentWillMount() {
@@ -34,7 +31,7 @@ const Collapse = React.createClass({
 
 
   onHeightReady(height) {
-    this.setState({height});
+    this.setState({height, staticRendering: false});
   },
 
 
@@ -62,7 +59,7 @@ const Collapse = React.createClass({
       return this.renderFixed();
     }
 
-    const {height} = this.state;
+    const {height, staticRendering, startsOpen} = this.state;
     const stringHeight = parseFloat(height).toFixed(1);
 
     // Cache Content so it is not re-rendered on each animation step
@@ -72,9 +69,13 @@ const Collapse = React.createClass({
       </HeightReporter>
     );
 
+    if (staticRendering && isOpened) {
+      return <div style={style} {...props}>{content}</div>;
+    }
+
     return (
       <Motion
-        defaultStyle={{height: 0}}
+        defaultStyle={{height: startsOpen ? height : 0}}
         style={{height: spring(isOpened ? height : 0, springConfig)}}>
         {st => {
           this.height = Math.max(0, parseFloat(st.height)).toFixed(1);
