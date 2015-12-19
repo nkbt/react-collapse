@@ -3,6 +3,7 @@ import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
 import {Motion, spring} from 'react-motion';
 import HeightReporter from 'react-height';
 
+
 const Collapse = React.createClass({
   propTypes: {
     isOpened: React.PropTypes.bool.isRequired,
@@ -19,11 +20,12 @@ const Collapse = React.createClass({
 
 
   getInitialState() {
-    return {height: -1, staticRendering: true, startsOpen: this.props.isOpened};
+    return {height: -1};
   },
 
   componentWillMount() {
     this.height = '0.0';
+    this.renderStatic = true;
   },
 
 
@@ -31,16 +33,23 @@ const Collapse = React.createClass({
 
 
   onHeightReady(height) {
-    this.setState({height, staticRendering: false});
+    this.setState({height});
   },
 
 
   renderFixed() {
     const {isOpened, style, children, fixedHeight, springConfig, ...props} = this.props;
 
+    if (this.renderStatic) {
+      this.renderStatic = false;
+      const newStyle = {overflow: 'hidden', height: isOpened ? fixedHeight : 0};
+
+      return isOpened ? <div style={{...newStyle, ...style}} {...props}>{children}</div> : null;
+    }
+
     return (
       <Motion
-        defaultStyle={{height: 0}}
+        defaultStyle={{height: isOpened ? 0 : fixedHeight}}
         style={{height: spring(isOpened ? fixedHeight : 0, springConfig)}}>
         {({height}) => (!isOpened && parseFloat(height).toFixed(1) === '0.0') ? null : (
           <div style={{height, overflow: 'hidden', ...style}} {...props}>
@@ -59,8 +68,13 @@ const Collapse = React.createClass({
       return this.renderFixed();
     }
 
-    const {height, staticRendering, startsOpen} = this.state;
+    const renderStatic = this.renderStatic;
+    const {height} = this.state;
     const stringHeight = parseFloat(height).toFixed(1);
+
+    if (height > -1 && renderStatic) {
+      this.renderStatic = false;
+    }
 
     // Cache Content so it is not re-rendered on each animation step
     const content = (
@@ -69,14 +83,21 @@ const Collapse = React.createClass({
       </HeightReporter>
     );
 
-    if (staticRendering && isOpened) {
-      return <div style={style} {...props}>{content}</div>;
+    if (renderStatic) {
+      const newStyle = {overflow: 'hidden', height: isOpened ? 'auto' : 0};
+
+
+      if (!isOpened && height > -1) {
+        return null;
+      }
+
+      return <div style={{...newStyle, ...style}} {...props}>{content}</div>;
     }
 
     return (
       <Motion
-        defaultStyle={{height: startsOpen ? height : 0}}
-        style={{height: spring(isOpened ? height : 0, springConfig)}}>
+        defaultStyle={{height: isOpened ? 0 : Math.max(0, height)}}
+        style={{height: spring(isOpened ? Math.max(0, height) : 0, springConfig)}}>
         {st => {
           this.height = Math.max(0, parseFloat(st.height)).toFixed(1);
 
