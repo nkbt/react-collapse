@@ -23,7 +23,7 @@ npm install --save react-collapse
 
 ### bower
 
-```js
+```sh
 bower install --save react-collapse
 ```
 
@@ -61,7 +61,7 @@ One or multiple children with static, variable or dynamic height.
   <p>Paragraph of text</p>
   <p>Another paragraph is also OK</p>
   <p>Images and any other content are ok too</p>
-  <img src="nyancat.gif">
+  <img src="nyancat.gif" />
 </Collapse>
 ```
 
@@ -87,7 +87,9 @@ import {presets} from 'react-motion';
 <Collapse isOpened={true} springConfig={presets.wobbly}>
   <div>Wobbly animated container</div>
 </Collapse>
+```
 
+```js
 <Collapse isOpened={true} springConfig={[100, 20]}>
   <div>Customly animated container</div>
 </Collapse>
@@ -109,6 +111,11 @@ All other props are applied to a container that is being resized. So it is possi
 </Collapse>
 ```
 
+
+## Behaviour notes
+
+- initially opened Collapse elements will be statically rendered with no animation (see #19)
+- it is possible to override `overflow` and `height` styles for Collapse (see #16), and ReactCollapse may behave unexpectedly. Do it only when you definitely know you need it, otherwise, never override `overflow` and `height` styles.
 
 
 ## Development and testing
