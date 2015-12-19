@@ -1,7 +1,8 @@
 import React from 'react';
 import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
-import Collapse from '..';
+import Collapse from '../Collapse';
 import * as style from './style';
+
 
 const localStyle = height => ({
   content: {
@@ -12,18 +13,13 @@ const localStyle = height => ({
 });
 
 
-const VariableHeight = React.createClass({
+const InitiallyOpened = React.createClass({
   getInitialState() {
-    return {isOpened: false, height: 100};
+    return {isOpened: true, height: 100};
   },
 
 
   shouldComponentUpdate,
-
-
-  onChange({target: {value: height}}) {
-    this.setState({height});
-  },
 
 
   onToggle() {
@@ -34,28 +30,26 @@ const VariableHeight = React.createClass({
 
 
   render() {
-    const {isOpened, height} = this.state;
+    const {isOpened} = this.state;
+    const height = 100;
 
     return (
       <div>
-
         <div style={style.config}>
           <button onClick={this.onToggle}>{isOpened ? 'Close' : 'Open'}</button>
-          &nbsp;
-          Content height:
-          &nbsp;
-          <input type="range" step={50} min={0} max={500}
-            value={height} onChange={this.onChange} />
         </div>
-
+        <h3>Variable height</h3>
         <Collapse isOpened={isOpened} style={style.container}>
           <div style={{...localStyle(height).content, height}}></div>
         </Collapse>
-
+        <h3>Fixed height</h3>
+        <Collapse isOpened={isOpened} style={style.container} fixedHeight={150}>
+          <div style={{...localStyle(height).content, height}}></div>
+        </Collapse>
       </div>
     );
   }
 });
 
 
-export default VariableHeight;
+export default InitiallyOpened;
