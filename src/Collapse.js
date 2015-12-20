@@ -4,6 +4,9 @@ import {Motion, spring} from 'react-motion';
 import HeightReporter from 'react-height';
 
 
+const stringHeight = height => Math.max(0, parseFloat(height)).toFixed(1);
+
+
 const Collapse = React.createClass({
   propTypes: {
     isOpened: React.PropTypes.bool.isRequired,
@@ -21,12 +24,17 @@ const Collapse = React.createClass({
 
 
   getInitialState() {
-    return {height: -1};
+    return {height: -1, isOpenedChanged: false};
   },
 
   componentWillMount() {
-    this.height = '0.0';
+    this.height = stringHeight(0);
     this.renderStatic = true;
+  },
+
+
+  componentWillReceiveProps({isOpened}) {
+    this.setState({isOpenedChanged: isOpened !== this.props.isOpened});
   },
 
 
@@ -34,7 +42,27 @@ const Collapse = React.createClass({
 
 
   onHeightReady(height) {
+    if (this.renderStatic && this.props.isOpened) {
+      this.height = stringHeight(height);
+    }
     this.setState({height});
+  },
+
+
+  getMotionHeight(height) {
+    const {isOpened, springConfig} = this.props;
+    const {isOpenedChanged} = this.state;
+
+    const newHeight = isOpened ? Math.max(0, parseFloat(height)).toFixed(1) : stringHeight(0);
+
+    // No need to animate if content is closed and it was closed previously
+    // Also no need to animate if height did not change
+    const skipAnimation = !isOpenedChanged && !isOpened || this.height === newHeight;
+
+    const springHeight = spring(isOpened ? Math.max(0, height) : 0, springConfig);
+    const instantHeight = isOpened ? Math.max(0, height) : 0;
+
+    return skipAnimation ? instantHeight : springHeight;
   },
 
 
@@ -49,19 +77,20 @@ const Collapse = React.createClass({
       if (!keepCollapsedContent && !isOpened) {
         return null;
       }
+      this.height = stringHeight(fixedHeight);
       return <div style={{...newStyle, ...style}} {...props}>{children}</div>;
     }
 
     return (
       <Motion
         defaultStyle={{height: isOpened ? 0 : fixedHeight}}
-        style={{height: spring(isOpened ? fixedHeight : 0, springConfig)}}>
+        style={{height: this.getMotionHeight(fixedHeight)}}>
         {({height}) => {
-          this.height = Math.max(0, parseFloat(height)).toFixed(1);
+          this.height = stringHeight(height);
 
           // TODO: this should be done using onEnd from ReactMotion, which is not yet implemented
           // See https://github.com/chenglou/react-motion/issues/235
-          if (!keepCollapsedContent && !isOpened && this.height === '0.0') {
+          if (!keepCollapsedContent && !isOpened && this.height === stringHeight(0)) {
             return null;
           }
 
@@ -91,7 +120,7 @@ const Collapse = React.createClass({
 
     const renderStatic = this.renderStatic;
     const {height} = this.state;
-    const stringHeight = parseFloat(height).toFixed(1);
+    const currentStringHeight = parseFloat(height).toFixed(1);
 
     if (height > -1 && renderStatic) {
       this.renderStatic = false;
@@ -120,9 +149,9 @@ const Collapse = React.createClass({
     return (
       <Motion
         defaultStyle={{height: isOpened ? 0 : Math.max(0, height)}}
-        style={{height: spring(isOpened ? Math.max(0, height) : 0, springConfig)}}>
+        style={{height: this.getMotionHeight(height)}}>
         {st => {
-          this.height = Math.max(0, parseFloat(st.height)).toFixed(1);
+          this.height = stringHeight(st.height);
 
           // TODO: this should be done using onEnd from ReactMotion, which is not yet implemented
           // See https://github.com/chenglou/react-motion/issues/235
@@ -137,7 +166,7 @@ const Collapse = React.createClass({
             );
           }
 
-          const newStyle = (isOpened && this.height === stringHeight) ? {height: 'auto'} : {
+          const newStyle = (isOpened && this.height === currentStringHeight) ? {height: 'auto'} : {
             height: st.height, overflow: 'hidden'
           };
 
