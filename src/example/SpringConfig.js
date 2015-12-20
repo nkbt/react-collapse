@@ -10,7 +10,7 @@ const VariableHeight = React.createClass({
     const preset = 'stiff';
     const [stiffness, damping] = presets[preset];
 
-    return {isOpened: false, height: 100, preset: 'stiff', stiffness, damping};
+    return {isOpened: false, keepContent: false, height: 100, preset: 'stiff', stiffness, damping};
   },
 
 
@@ -25,7 +25,7 @@ const VariableHeight = React.createClass({
 
 
   render() {
-    const {isOpened, height, preset, stiffness, damping} = this.state;
+    const {isOpened, keepContent, height, preset, stiffness, damping} = this.state;
 
     return (
       <div>
@@ -34,8 +34,16 @@ const VariableHeight = React.createClass({
             Opened:
             <input style={style.input}
               type="checkbox"
-              value={isOpened}
+              checked={isOpened}
               onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
+          </label>
+
+          <label style={style.label}>
+            Keep content:
+            <input style={style.input}
+              type="checkbox"
+              checked={keepContent}
+              onChange={({target: {checked}}) => this.setState({keepContent: checked})} />
           </label>
 
           <label style={style.label}>
@@ -74,7 +82,11 @@ const VariableHeight = React.createClass({
             {damping}
           </label>
         </div>
-        <Collapse isOpened={isOpened} style={style.container} springConfig={[stiffness, damping]}>
+        <Collapse
+          style={style.container}
+          isOpened={isOpened}
+          springConfig={[stiffness, damping]}
+          keepCollapsedContent={keepContent}>
           <div style={{...style.getContent(height), height}}></div>
         </Collapse>
 
