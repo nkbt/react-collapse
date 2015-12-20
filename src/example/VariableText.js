@@ -27,7 +27,7 @@ const VariableText = React.createClass({
             Opened:
             <input style={style.input}
               type="checkbox"
-              value={isOpened}
+              checked={isOpened}
               onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
           </label>
 
@@ -35,7 +35,7 @@ const VariableText = React.createClass({
             Keep content:
             <input style={style.input}
               type="checkbox"
-              value={keepContent}
+              checked={keepContent}
               onChange={({target: {checked}}) => this.setState({keepContent: checked})} />
           </label>
 
@@ -49,7 +49,10 @@ const VariableText = React.createClass({
           </label>
         </div>
 
-        <Collapse isOpened={isOpened} style={style.container} keepCollapsedContent={keepContent}>
+        <Collapse
+          style={style.container}
+          isOpened={isOpened}
+          keepCollapsedContent={keepContent}>
           <div style={{padding: 10}}>{paragraphs ? getText(paragraphs) : <p>No text</p>}</div>
         </Collapse>
       </div>
