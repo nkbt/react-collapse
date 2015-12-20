@@ -40,7 +40,7 @@ const VariableHeight = React.createClass({
             <input style={style.input}
               type="range"
               value={height} step={50} min={0} max={500}
-              onChange={({target: {value}}) => this.setState({height: value})} />
+              onChange={({target: {value}}) => this.setState({height: parseInt(value, 10)})} />
             {height}
           </label>
         </div>

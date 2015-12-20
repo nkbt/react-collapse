@@ -44,7 +44,7 @@ const VariableText = React.createClass({
             <input style={style.input}
               type="range"
               value={paragraphs} step={1} min={0} max={4}
-              onChange={({target: {value}}) => this.setState({paragraphs: value})} />
+              onChange={({target: {value}}) => this.setState({paragraphs: parseInt(value, 10)})} />
             {paragraphs}
           </label>
         </div>

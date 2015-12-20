@@ -51,7 +51,7 @@ const VariableHeight = React.createClass({
             <input style={style.input}
               type="range"
               value={height} step={50} min={0} max={500}
-              onChange={({target: {value}}) => this.setState({height: value})} />
+              onChange={({target: {value}}) => this.setState({height: parseInt(value, 10)})} />
             {height}
           </label>
 
@@ -69,7 +69,7 @@ const VariableHeight = React.createClass({
             <input style={style.input}
               type="range"
               value={stiffness} step={10} min={0} max={300}
-              onChange={({target: {value}}) => this.setState({stiffness: value})} />
+              onChange={({target: {value}}) => this.setState({stiffness: parseInt(value, 10)})} />
             {stiffness}
           </label>
 
@@ -78,7 +78,7 @@ const VariableHeight = React.createClass({
             <input style={style.input}
               type="range"
               value={damping} step={5} min={0} max={40}
-              onChange={({target: {value}}) => this.setState({damping: value})} />
+              onChange={({target: {value}}) => this.setState({damping: parseInt(value, 10)})} />
             {damping}
           </label>
         </div>
