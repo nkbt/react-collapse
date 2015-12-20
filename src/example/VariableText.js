@@ -1,6 +1,6 @@
 import React from 'react';
 import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
-import Collapse from '..';
+import Collapse from '../Collapse';
 import text from './text.json';
 import * as style from './style';
 
@@ -10,43 +10,47 @@ const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
 
 const VariableText = React.createClass({
   getInitialState() {
-    return {isOpened: false, paragraphs: 0};
+    return {isOpened: false, keepContent: false, paragraphs: 0};
   },
 
 
   shouldComponentUpdate,
 
 
-  onChange({target: {value}}) {
-    this.setState({paragraphs: parseInt(value, 10)});
-  },
-
-
-  onToggle() {
-    const {isOpened} = this.state;
-
-    this.setState({isOpened: !isOpened});
-  },
-
-
   render() {
-    const {isOpened, paragraphs} = this.state;
+    const {isOpened, keepContent, paragraphs} = this.state;
 
     return (
       <div>
         <div style={style.config}>
-          <button onClick={this.onToggle}>{isOpened ? 'Close' : 'Open'}</button>
-          &nbsp;
-          Paragraphs:
-          &nbsp;
-          <input type="range" step={1} min={0} max={4}
-            value={paragraphs} onChange={this.onChange} />
+          <label style={style.label}>
+            Opened:
+            <input style={style.input}
+              type="checkbox"
+              value={isOpened}
+              onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
+          </label>
+
+          <label style={style.label}>
+            Keep content:
+            <input style={style.input}
+              type="checkbox"
+              value={keepContent}
+              onChange={({target: {checked}}) => this.setState({keepContent: checked})} />
+          </label>
+
+          <label style={style.label}>
+            Paragraphs:
+            <input style={style.input}
+              type="range"
+              value={paragraphs} step={1} min={0} max={4}
+              onChange={({target: {value}}) => this.setState({paragraphs: value})} />
+            {paragraphs}
+          </label>
         </div>
 
-        <Collapse isOpened={isOpened} style={style.container}>
-          <div style={{padding: 10}}>
-            {paragraphs ? getText(paragraphs) : <p>No text</p>}
-          </div>
+        <Collapse isOpened={isOpened} style={style.container} keepCollapsedContent={keepContent}>
+          <div style={{padding: 10}}>{paragraphs ? getText(paragraphs) : <p>No text</p>}</div>
         </Collapse>
       </div>
     );
