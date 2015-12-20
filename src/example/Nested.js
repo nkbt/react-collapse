@@ -1,41 +1,46 @@
 import React from 'react';
 import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
-import Collapse from '..';
+import Collapse from '../Collapse';
 import * as style from './style';
 import VariableHeight from './VariableHeight';
 
 
 const Nested = React.createClass({
   getInitialState() {
-    return {isOpened: false, height: 100};
+    return {isOpened: false, keepContent: false};
   },
 
 
   shouldComponentUpdate,
 
 
-  onChange({target: {value: height}}) {
-    this.setState({height});
-  },
-
-
-  onToggle() {
-    const {isOpened} = this.state;
-
-    this.setState({isOpened: !isOpened});
-  },
-
-
   render() {
-    const {isOpened} = this.state;
+    const {isOpened, keepContent} = this.state;
 
     return (
       <div>
         <div style={style.config}>
-          <button onClick={this.onToggle}>{isOpened ? 'Close' : 'Open'}</button>
+          <label style={style.label}>
+            Opened:
+            <input style={style.input}
+              type="checkbox"
+              checked={isOpened}
+              onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
+          </label>
+
+          <label style={style.label}>
+            Keep content:
+            <input style={style.input}
+              type="checkbox"
+              checked={keepContent}
+              onChange={({target: {checked}}) => this.setState({keepContent: checked})} />
+          </label>
         </div>
 
-        <Collapse isOpened={isOpened} style={style.container}>
+        <Collapse
+          style={style.container}
+          isOpened={isOpened}
+          keepCollapsedContent={keepContent}>
           <div style={{padding: 20}}>
             <VariableHeight />
           </div>
