@@ -1,69 +1,81 @@
 import React from 'react';
 import {presets} from 'react-motion';
 import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
-import Collapse from '..';
+import Collapse from '../Collapse';
 import * as style from './style';
-
-
-const localStyle = height => ({
-  content: {
-    height,
-    background: 'rgba(96, 125, 139, 0.6)',
-    borderRadius: height / 2
-  }
-});
 
 
 const VariableHeight = React.createClass({
   getInitialState() {
-    const [stiffness, damping] = presets.stiff;
+    const preset = 'stiff';
+    const [stiffness, damping] = presets[preset];
 
-    return {isOpened: false, height: 100, stiffness, damping};
+    return {isOpened: false, height: 100, preset: 'stiff', stiffness, damping};
   },
 
 
   shouldComponentUpdate,
 
 
-  onChange(prop) {
-    return ({target: {value}}) => this.setState({[prop]: parseInt(value, 10)});
-  },
+  onChangePreset({target: {value: preset}}) {
+    const [stiffness, damping] = presets[preset];
 
-
-  onToggle() {
-    const {isOpened} = this.state;
-
-    this.setState({isOpened: !isOpened});
+    this.setState({preset, stiffness, damping});
   },
 
 
   render() {
-    const {isOpened, height, stiffness, damping} = this.state;
+    const {isOpened, height, preset, stiffness, damping} = this.state;
 
     return (
       <div>
-
         <div style={style.config}>
-          <button onClick={this.onToggle}>{isOpened ? 'Close' : 'Open'}</button>
-          &nbsp;
-          Content height:
-          &nbsp;
-          <input type="range" min={100} max={500} step={50}
-            value={height} onChange={this.onChange('height')} />
-          &nbsp;
-          Stiffness:
-          &nbsp;
-          <input type="range" min={0} max={300} step={10}
-            value={stiffness} onChange={this.onChange('stiffness')} />
-          &nbsp;
-          Damping:
-          &nbsp;
-          <input type="range" min={0} max={40} step={5}
-            value={damping} onChange={this.onChange('damping')} />
-        </div>
+          <label style={style.label}>
+            Opened:
+            <input style={style.input}
+              type="checkbox"
+              value={isOpened}
+              onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
+          </label>
 
+          <label style={style.label}>
+            Content height:
+            <input style={style.input}
+              type="range"
+              value={height} step={50} min={0} max={500}
+              onChange={({target: {value}}) => this.setState({height: value})} />
+            {height}
+          </label>
+
+          <label style={style.label}>
+            Preset:
+            <select style={style.input}
+              value={preset} step={10} min={0} max={300}
+              onChange={this.onChangePreset}>
+              {Object.keys(presets).map(p => <option key={p} value={p}>{p}</option>)}
+            </select>
+          </label>
+
+          <label style={style.label}>
+            Stiffness:
+            <input style={style.input}
+              type="range"
+              value={stiffness} step={10} min={0} max={300}
+              onChange={({target: {value}}) => this.setState({stiffness: value})} />
+            {stiffness}
+          </label>
+
+          <label style={style.label}>
+            Damping:
+            <input style={style.input}
+              type="range"
+              value={damping} step={5} min={0} max={40}
+              onChange={({target: {value}}) => this.setState({damping: value})} />
+            {damping}
+          </label>
+        </div>
         <Collapse isOpened={isOpened} style={style.container} springConfig={[stiffness, damping]}>
-          <div style={{...localStyle(height).content, height}}></div>
+          <div style={{...style.getContent(height), height}}></div>
         </Collapse>
 
       </div>
