@@ -35,7 +35,7 @@ const App = React.createClass({
 
         <section style={style.section}>
           <h2>Example 2. Variable height content</h2>
-          <VariableHeight />
+          <VariableHeight keepCollapsedContent={true} />
         </section>
 
         <section style={style.section}>
