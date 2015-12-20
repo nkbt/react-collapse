@@ -95,6 +95,11 @@ import {presets} from 'react-motion';
 </Collapse>
 ```
 
+#### `keepCollapsedContent`: React.PropTypes.bool (default: `false`)
+
+By default ReactCollapse destroys content of collapsed element. setting `keepCollapsedContent` to `true` allows to keep content. ReactCollapse renders container with `height: 0` and `overflow: hidden` (with all the content untouched) when closed instead of destroying it. See #18 for details.
+
+
 #### Pass-through props
 
 All other props are applied to a container that is being resized. So it is possible to pass `style` or `className`, for example.
