@@ -30,6 +30,13 @@ const Collapse = React.createClass({
   },
 
 
+  componentWillReceiveProps({isOpened}) {
+    if (isOpened === this.props.isOpened) {
+      this.renderStatic = true;
+    }
+  },
+
+
   shouldComponentUpdate,
 
 
