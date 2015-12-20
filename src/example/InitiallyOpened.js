@@ -37,7 +37,10 @@ const InitiallyOpened = React.createClass({
           </label>
         </div>
         <h3>Variable height</h3>
-        <Collapse isOpened={isOpened} style={style.container}>
+        <Collapse
+          style={style.container}
+          isOpened={isOpened}
+          keepCollapsedContent={keepContent}>
           <div style={{...style.getContent(height), height}}></div>
         </Collapse>
         <h3>Fixed height</h3>
