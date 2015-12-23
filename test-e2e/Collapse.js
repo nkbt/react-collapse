@@ -1,7 +1,10 @@
+'use strict';
+
+
 const WAIT = 1000;
 
 module.exports = {
-  'Smoketest, example loaded': function (browser) {
+  'Test for component appears on the screen'(browser) {
     browser
       .url('http://localhost:8080/')
       .waitForElementVisible('body', WAIT)

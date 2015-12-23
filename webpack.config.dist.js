@@ -1,20 +1,15 @@
 'use strict';
 
 
-var webpack = require('webpack');
-var path = require('path');
-var babelLoader = 'babel?' +
-  JSON.stringify({
-    presets: ['es2015', 'react'],
-    plugins: ['transform-es2015-modules-commonjs', 'transform-object-rest-spread']
-  });
+const webpack = require('webpack');
+const path = require('path');
 
 
 module.exports = {
   devtool: 'source-map',
   entry: './src/index.js',
   output: {
-    filename: require('./package.json').name + '.js',
+    filename: `${require('./package.json').name}.js`,
     path: path.resolve('build'),
     library: 'ReactCollapse',
     libraryTarget: 'umd'
@@ -22,13 +17,18 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
       }
     })
   ],
   module: {
     loaders: [
-      {test: /\.js$/, loader: babelLoader, include: [path.resolve('src')]}
+      {test: /\.js$/, loader: 'babel', include: [path.resolve('src')]}
     ]
   },
   resolve: {extensions: ['', '.js']},

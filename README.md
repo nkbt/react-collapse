@@ -15,17 +15,40 @@ Component-wrapper for collapse animation with react-motion for elements with var
 
 ## Installation
 
-### npm
+### NPM
 
 ```sh
 npm install --save react-collapse
 ```
 
-### bower
 
+### Bower:
 ```sh
-bower install --save react-collapse
+bower install --save https://npmcdn.com/react-collapse/build/react-collapse.js
 ```
+
+or in `bower.json`
+
+```json
+{
+  "dependencies": {
+    "react-collapse": "https://npmcdn.com/react-collapse/build/react-collapse.js"
+  }
+}
+```
+
+then include as
+```html
+<script src="bower_components/react-collapse/index.js"></script>
+```
+
+
+### 1998 Script Tag:
+```html
+<script src="https://npmcdn.com/react-collapse/build/react-collapse.js"></script>
+(Module exposed as `ReactMyComponent`)
+```
+
 
 ## Demo
 
@@ -135,6 +158,18 @@ npm start
 
 # then
 open http://localhost:8080
+```
+
+## Tests
+
+```bash
+npm test
+
+# to run tests in watch mode for development
+npm run test:dev
+
+# to generate test coverage (./reports/coverage)
+npm run test:cov
 ```
 
 ## License

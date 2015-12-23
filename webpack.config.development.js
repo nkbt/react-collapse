@@ -1,18 +1,13 @@
 'use strict';
 
 
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var path = require('path');
-var babelLoader = 'babel?' +
-  JSON.stringify({
-    presets: ['es2015', 'react'],
-    plugins: ['transform-es2015-modules-commonjs', 'transform-object-rest-spread']
-  });
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'cheap-module-eval-source-map',
 
   entry: [
     './src/example/Example.js',
@@ -24,7 +19,7 @@ module.exports = {
     new HtmlWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"development"'
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
     }),
     new webpack.HotModuleReplacementPlugin()
@@ -32,10 +27,10 @@ module.exports = {
   module: {
     loaders: [
       {test: /\.json$/, loader: 'json', include: [path.resolve('src')]},
-      {test: /\.js$/, loaders: ['react-hot', babelLoader], include: [path.resolve('src')]}
+      {test: /\.js$/, loader: 'babel', include: [path.resolve('src')]}
     ],
     preLoaders: [
-      {test: /\.js$/, loaders: ['eslint'], include: [path.resolve('src')]}
+      {test: /\.js$/, loader: 'eslint', include: [path.resolve('src')]}
     ]
   },
   resolve: {extensions: ['', '.js']},
