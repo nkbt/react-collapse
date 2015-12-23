@@ -1,11 +1,14 @@
 {
   "name": "react-collapse",
-  "version": "1.6.1",
+  "version": "0.0.0",
   "description": "Component-wrapper for collapse animation with react-motion for elements with variable (and dynamic) height",
-  "main": "react-collapse.js",
+  "main": [
+    "build/react-collapse.js",
+    "build/react-collapse.js.map"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bower-registry/react-collapse.git"
+    "url": "https://github.com/nkbt/react-collapse.git"
   },
   "keywords": [
     "component",
