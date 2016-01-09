@@ -29,7 +29,7 @@
   "dependencies": {
     "react": "^0.14",
     "react-motion": "^0.3",
-    "react-height": "^2"
+    "react-height": "https://npmcdn.com/react-height@^2/bower.zip"
   },
   "ignore": [
     "**/.*",
