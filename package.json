@@ -44,11 +44,11 @@
   "homepage": "https://github.com/nkbt/react-collapse",
   "peerDependencies": {
     "react": "^0.14",
-    "react-motion": "^0.3"
+    "react-motion": "^0.3",
+    "react-height": "^2.0.1"
   },
   "dependencies": {
-    "react-addons-pure-render-mixin": "^0.14.6",
-    "react-height": "^2.0.1"
+    "react-addons-pure-render-mixin": "^0.14.6"
   },
   "devDependencies": {
     "babel-cli": "^6.4.0",
