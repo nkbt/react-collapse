@@ -29,6 +29,6 @@
   "dependencies": {
     "react": "^0.14",
     "react-motion": "^0.3",
-    "react-height": "^1.0.0"
+    "react-height": "^2"
   }
 }
