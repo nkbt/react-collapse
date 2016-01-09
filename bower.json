@@ -4,7 +4,9 @@
   "description": "Component-wrapper for collapse animation with react-motion for elements with variable (and dynamic) height",
   "main": [
     "build/react-collapse.js",
-    "build/react-collapse.js.map"
+    "build/react-collapse.js.map",
+    "build/react-collapse.min.js",
+    "build/react-collapse.min.js.map"
   ],
   "repository": {
     "type": "git",
@@ -28,12 +30,5 @@
     "react": "^0.14",
     "react-motion": "^0.3",
     "react-height": "^1.0.0"
-  },
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ]
+  }
 }

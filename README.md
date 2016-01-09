@@ -2,8 +2,8 @@
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nkbt/help)
 
-[![Circle CI](https://circleci.com/gh/nkbt/react-collapse.svg?style=svg)](https://circleci.com/gh/nkbt/react-collapse)
-[![Coverage Status](https://coveralls.io/repos/nkbt/react-collapse/badge.svg?branch=master)](https://coveralls.io/r/nkbt/react-collapse?branch=master)
+[![Circle CI](https://circleci.com/gh/nkbt/react-collapse.svg?style=shield)](https://circleci.com/gh/nkbt/react-collapse)
+[![codecov.io](https://codecov.io/github/nkbt/react-collapse/coverage.svg?branch=master)](https://codecov.io/github/nkbt/react-collapse?branch=master)
 [![Dependency Status](https://david-dm.org/nkbt/react-collapse.svg)](https://david-dm.org/nkbt/react-collapse)
 [![devDependency Status](https://david-dm.org/nkbt/react-collapse/dev-status.svg)](https://david-dm.org/nkbt/react-collapse#info=devDependencies)
 
@@ -25,7 +25,7 @@ Don't forget to install dependencies (`react`, `react-motion`), especially if yo
 
 ### Bower:
 ```sh
-bower install --save https://npmcdn.com/react-collapse/build/react-collapse.js
+bower install --save https://npmcdn.com/react-my-component/bower.zip
 ```
 
 or in `bower.json`
@@ -33,14 +33,14 @@ or in `bower.json`
 ```json
 {
   "dependencies": {
-    "react-collapse": "https://npmcdn.com/react-collapse/build/react-collapse.js"
+    "react-my-component": "https://npmcdn.com/react-my-component/bower.zip"
   }
 }
 ```
 
 then include as
 ```html
-<script src="bower_components/react-collapse/index.js"></script>
+<script src="bower_components/react-my-component/build/react-my-component.js"></script>
 ```
 
 
@@ -148,6 +148,9 @@ All other props are applied to a container that is being resized. So it is possi
 
 
 ## Development and testing
+
+Currently is being developed and tested with the latest stable `Node 5` on `OSX` and `Windows`.
+Should be ok with Node 4, but not guaranteed.
 
 To run example covering all `ReactCollapse` features, use `npm start`, which will compile `src/example/Example.js`
 
