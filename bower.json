@@ -30,5 +30,12 @@
     "react": "^0.14",
     "react-motion": "^0.3",
     "react-height": "^2"
-  }
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
 }
