@@ -2,8 +2,9 @@
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nkbt/help)
 
-[![Circle CI](https://circleci.com/gh/nkbt/react-collapse.svg?style=svg)](https://circleci.com/gh/nkbt/react-collapse)
-[![Coverage Status](https://coveralls.io/repos/nkbt/react-collapse/badge.svg?branch=master)](https://coveralls.io/r/nkbt/react-collapse?branch=master)
+[![Circle CI](https://circleci.com/gh/nkbt/react-collapse.svg?style=shield)](https://circleci.com/gh/nkbt/react-collapse)
+[![Appveyor](https://ci.appveyor.com/api/projects/status/31w5us9354apbgum/branch/master?svg=true)](https://ci.appveyor.com/project/nkbt/react-collapse/branch/master)
+[![codecov.io](https://codecov.io/github/nkbt/react-collapse/coverage.svg?branch=master)](https://codecov.io/github/nkbt/react-collapse?branch=master)
 [![Dependency Status](https://david-dm.org/nkbt/react-collapse.svg)](https://david-dm.org/nkbt/react-collapse)
 [![devDependency Status](https://david-dm.org/nkbt/react-collapse/dev-status.svg)](https://david-dm.org/nkbt/react-collapse#info=devDependencies)
 
@@ -21,11 +22,12 @@ Component-wrapper for collapse animation with react-motion for elements with var
 npm install --save react react-motion react-collapse
 ```
 
-Don't forget to install dependencies (`react`, `react-motion`), especially if you use npm@3.
+Don't forget to manually install peer dependencies (`react`, `react-motion`) if you use npm@3.
+
 
 ### Bower:
 ```sh
-bower install --save https://npmcdn.com/react-collapse/build/react-collapse.js
+bower install --save https://npmcdn.com/react-collapse/bower.zip
 ```
 
 or in `bower.json`
@@ -33,21 +35,31 @@ or in `bower.json`
 ```json
 {
   "dependencies": {
-    "react-collapse": "https://npmcdn.com/react-collapse/build/react-collapse.js"
+    "react-collapse": "https://npmcdn.com/react-collapse/bower.zip"
   }
 }
 ```
 
 then include as
 ```html
-<script src="bower_components/react-collapse/index.js"></script>
+<!-- Dependencies -->
+<script src="bower_components/react/react.js"></script>
+<script src="bower_components/react-height/build/react-height.js"></script>
+<script src="bower_components/react-motion/build/react-motion.js"></script>
+<!-- React-collapse -->
+<script src="bower_components/react-collapse/build/react-collapse.js"></script>
 ```
 
 
 ### 1998 Script Tag:
 ```html
+<!-- Dependencies -->
+<script src="https://npmcdn.com/react/dist/react.js"></script>
+<script src="https://npmcdn.com/react-height/build/react-height.js"></script>
+<script src="https://npmcdn.com/react-motion/build/react-motion.js"></script>
+<!-- React-collapse -->
 <script src="https://npmcdn.com/react-collapse/build/react-collapse.js"></script>
-(Module exposed as `ReactMyComponent`)
+(Module exposed as `ReactCollapse`)
 ```
 
 
@@ -148,6 +160,9 @@ All other props are applied to a container that is being resized. So it is possi
 
 
 ## Development and testing
+
+Currently is being developed and tested with the latest stable `Node 5` on `OSX` and `Windows`.
+Should be ok with Node 4, but not guaranteed.
 
 To run example covering all `ReactCollapse` features, use `npm start`, which will compile `src/example/Example.js`
 
