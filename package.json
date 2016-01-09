@@ -45,7 +45,7 @@
   "peerDependencies": {
     "react": "^0.14",
     "react-motion": "^0.3",
-    "react-height": "^2.0.1"
+    "react-height": "^2"
   },
   "dependencies": {
     "react-addons-pure-render-mixin": "^0.14.6"
