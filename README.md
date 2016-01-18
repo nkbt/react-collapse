@@ -19,10 +19,10 @@ Component-wrapper for collapse animation with react-motion for elements with var
 ### NPM
 
 ```sh
-npm install --save react react-motion react-collapse
+npm install --save react react-motion react-height react-collapse
 ```
 
-Don't forget to manually install peer dependencies (`react`, `react-motion`) if you use npm@3.
+Don't forget to manually install peer dependencies (`react`, `react-motion`, `react-height`) if you use npm@3.
 
 
 ### Bower:
