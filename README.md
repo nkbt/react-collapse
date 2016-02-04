@@ -113,9 +113,9 @@ If content's height is known ahead it is possible to bypass the process of conte
 ```
 
 
-#### `springConfig`: React.PropTypes.arrayOf(React.PropTypes.number)
+#### `springConfig`: React.PropTypes.objectOf(React.PropTypes.number)
 
-Custom config `[stiffness, damping]` passed to the spring function (see https://github.com/chenglou/react-motion#spring-number---stiffness-damping---configurationobject)
+Custom config `{stiffness, damping, precision}` passed to the spring function (see https://github.com/chenglou/react-motion#--spring-val-number-config-springhelperconfig--opaqueconfig)
 
 ```js
 import {presets} from 'react-motion';
@@ -126,7 +126,7 @@ import {presets} from 'react-motion';
 ```
 
 ```js
-<Collapse isOpened={true} springConfig={[100, 20]}>
+<Collapse isOpened={true} springConfig={{stiffness: 100, damping: 20}}>
   <div>Customly animated container</div>
 </Collapse>
 ```

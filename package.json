@@ -44,7 +44,7 @@
   "homepage": "https://github.com/nkbt/react-collapse",
   "peerDependencies": {
     "react": "^0.14",
-    "react-motion": "^0.3",
+    "react-motion": "^0.4",
     "react-height": "^2"
   },
   "dependencies": {
