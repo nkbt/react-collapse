@@ -13,7 +13,7 @@ const Collapse = React.createClass({
     children: React.PropTypes.node.isRequired,
     fixedHeight: React.PropTypes.number,
     style: React.PropTypes.object, // eslint-disable-line react/forbid-prop-types
-    springConfig: React.PropTypes.arrayOf(React.PropTypes.number),
+    springConfig: React.PropTypes.objectOf(React.PropTypes.number),
     keepCollapsedContent: React.PropTypes.bool
   },
 

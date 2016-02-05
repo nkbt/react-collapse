@@ -8,7 +8,7 @@ import * as style from './style';
 const VariableHeight = React.createClass({
   getInitialState() {
     const preset = 'stiff';
-    const [stiffness, damping] = presets[preset];
+    const {stiffness, damping} = presets[preset];
 
     return {isOpened: false, keepContent: false, height: 100, preset: 'stiff', stiffness, damping};
   },
@@ -18,7 +18,7 @@ const VariableHeight = React.createClass({
 
 
   onChangePreset({target: {value: preset}}) {
-    const [stiffness, damping] = presets[preset];
+    const {stiffness, damping} = presets[preset];
 
     this.setState({preset, stiffness, damping});
   },
@@ -85,7 +85,7 @@ const VariableHeight = React.createClass({
         <Collapse
           style={style.container}
           isOpened={isOpened}
-          springConfig={[stiffness, damping]}
+          springConfig={{stiffness, damping}}
           keepCollapsedContent={keepContent}>
           <div style={{...style.getContent(height), height}}></div>
         </Collapse>
