@@ -148,7 +148,7 @@ const Collapse = React.createClass({
 
     return (
       <Motion
-        defaultStyle={{height: isOpened ? 0 : Math.max(0, height)}}
+        defaultStyle={{height: isOpened ? Math.max(0, height) : 0}}
         style={{height: this.getMotionHeight(height)}}>
         {st => {
           this.height = stringHeight(st.height);
