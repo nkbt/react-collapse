@@ -42,10 +42,14 @@ const Collapse = React.createClass({
 
 
   onHeightReady(height) {
-    if (this.renderStatic && this.props.isOpened) {
-      this.height = stringHeight(height);
+    const isOpened = this.props.isOpened;
+    let _height = height;
+    if (this.renderStatic && isOpened) {
+      this.height = stringHeight(_height);
+    } else if (!isOpened) {
+      _height = 0;
     }
-    this.setState({height});
+    this.setState({_height});
   },
 
 
@@ -148,7 +152,7 @@ const Collapse = React.createClass({
 
     return (
       <Motion
-        defaultStyle={{height: isOpened ? Math.max(0, height) : 0}}
+        defaultStyle={{height: Math.max(0, height)}}
         style={{height: this.getMotionHeight(height)}}>
         {st => {
           this.height = stringHeight(st.height);
