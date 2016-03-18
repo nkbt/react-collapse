@@ -149,7 +149,7 @@ const Collapse = React.createClass({
     const content = <HeightReporter onHeightReady={this.onHeightReady}>{children}</HeightReporter>;
 
     if (renderStatic) {
-      const newStyle = {overflow: 'hidden', height: isOpened ? 'auto' : 0};
+      const newStyle = isOpened ? {height: 'auto'} : {overflow: 'hidden', height: 0};
 
       if (!isOpened && height > -1) {
         if (!keepCollapsedContent) {
