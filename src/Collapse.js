@@ -72,7 +72,12 @@ const Collapse = React.createClass({
 
     if (this.renderStatic) {
       this.renderStatic = false;
-      const newStyle = {overflow: 'hidden', height: isOpened ? fixedHeight : 0};
+
+      const newStyle = isOpened ? {
+        height: isOpened
+      } : {
+        height: 0, overflow: 'hidden'
+      };
 
       if (!keepCollapsedContent && !isOpened) {
         return null;
