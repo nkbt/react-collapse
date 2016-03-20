@@ -74,7 +74,7 @@ const Collapse = React.createClass({
       this.renderStatic = false;
 
       const newStyle = isOpened ? {
-        height: isOpened
+        height: 'auto'
       } : {
         height: 0, overflow: 'hidden'
       };
