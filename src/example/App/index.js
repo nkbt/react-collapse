@@ -1,11 +1,12 @@
 import React from 'react';
-import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
+import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import VariableText from './VariableText';
 import VariableHeight from './VariableHeight';
 import InitiallyOpened from './InitiallyOpened';
 import FixedHeight from './FixedHeight';
 import SpringConfig from './SpringConfig';
 import Nested from './Nested';
+import {name} from '../../../package.json';
 
 
 const style = {
@@ -26,7 +27,7 @@ const App = React.createClass({
     return (
       <div style={style.container}>
 
-        <h1>ReactCollapse</h1>
+        <h1>{name}</h1>
 
         <section style={style.section}>
           <h2>Example 1. Variable text</h2>
