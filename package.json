@@ -74,6 +74,7 @@
     "react-motion": "0.4.2",
     "react": "15.0.1",
     "rimraf": "2.5.2",
+    "scroll": "1.0.0",
     "sinon": "1.17.3",
     "style-loader": "0.13.1",
     "tap-nyan": "0.0.2",
