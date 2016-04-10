@@ -52,9 +52,7 @@ const VariableText = React.createClass({
         <Collapse
           style={style.container}
           isOpened={isOpened}
-          keepCollapsedContent={keepContent}
-          onHeightReady={(h) => console.log('height', h)}
-        >
+          keepCollapsedContent={keepContent}>
           <div style={{padding: 10}}>{paragraphs ? getText(paragraphs) : <p>No text</p>}</div>
         </Collapse>
       </div>
