@@ -1,12 +1,12 @@
 import React from 'react';
-import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
-import Collapse from '../Collapse';
+import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
+import Collapse from '../../Collapse';
 import * as style from './style';
 
 
-const FixedHeight = React.createClass({
+const VariableHeight = React.createClass({
   getInitialState() {
-    return {isOpened: false, keepContent: false, height: 100, fixedHeight: 200};
+    return {isOpened: false, keepContent: false, height: 100};
   },
 
 
@@ -14,7 +14,7 @@ const FixedHeight = React.createClass({
 
 
   render() {
-    const {isOpened, keepContent, height, fixedHeight} = this.state;
+    const {isOpened, keepContent, height} = this.state;
 
     return (
       <div>
@@ -43,28 +43,19 @@ const FixedHeight = React.createClass({
               onChange={({target: {value}}) => this.setState({height: parseInt(value, 10)})} />
             {height}
           </label>
-
-          <label style={style.label}>
-            Collapse height:
-            <input style={style.input}
-              type="range"
-              value={fixedHeight} step={50} min={0} max={500}
-              onChange={({target: {value}}) => this.setState({fixedHeight: parseInt(value, 10)})} />
-            {fixedHeight}
-          </label>
         </div>
 
         <Collapse
           style={style.container}
           isOpened={isOpened}
-          fixedHeight={fixedHeight}
           keepCollapsedContent={keepContent}>
           <div style={{...style.getContent(height), height}}></div>
         </Collapse>
+
       </div>
     );
   }
 });
 
 
-export default FixedHeight;
+export default VariableHeight;

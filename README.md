@@ -1,12 +1,12 @@
-# react-collapse
+# react-collapse [![npm](https://img.shields.io/npm/v/react-collapse.svg?style=flat-square)](https://www.npmjs.com/package/react-collapse)
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nkbt/help)
+[![Gitter](https://img.shields.io/gitter/room/nkbt/help.svg?style=flat-square)](https://gitter.im/nkbt/help)
 
-[![Circle CI](https://circleci.com/gh/nkbt/react-collapse.svg?style=shield)](https://circleci.com/gh/nkbt/react-collapse)
-[![Appveyor](https://ci.appveyor.com/api/projects/status/31w5us9354apbgum/branch/master?svg=true)](https://ci.appveyor.com/project/nkbt/react-collapse/branch/master)
-[![codecov.io](https://codecov.io/github/nkbt/react-collapse/coverage.svg?branch=master)](https://codecov.io/github/nkbt/react-collapse?branch=master)
-[![Dependency Status](https://david-dm.org/nkbt/react-collapse.svg)](https://david-dm.org/nkbt/react-collapse)
-[![devDependency Status](https://david-dm.org/nkbt/react-collapse/dev-status.svg)](https://david-dm.org/nkbt/react-collapse#info=devDependencies)
+[![CircleCI](https://img.shields.io/circleci/project/nkbt/react-collapse.svg?style=flat-square&label=nix-build)](https://circleci.com/gh/nkbt/react-collapse)
+[![AppVeyor](https://img.shields.io/appveyor/ci/nkbt/react-collapse.svg?style=flat-square&label=win-build)](https://ci.appveyor.com/project/nkbt/react-collapse)
+[![Coverage](https://img.shields.io/codecov/c/github/nkbt/react-collapse.svg?style=flat-square)](https://codecov.io/github/nkbt/react-collapse?branch=master)
+[![Dependencies](https://img.shields.io/david/nkbt/react-collapse.svg?style=flat-square)](https://david-dm.org/nkbt/react-collapse)
+[![Dev Dependencies](https://img.shields.io/david/dev/nkbt/react-collapse.svg?style=flat-square)](https://david-dm.org/nkbt/react-collapse#info=devDependencies)
 
 Component-wrapper for collapse animation with react-motion for elements with variable (and dynamic) height
 
@@ -42,22 +42,18 @@ or in `bower.json`
 
 then include as
 ```html
-<!-- Dependencies -->
 <script src="bower_components/react/react.js"></script>
 <script src="bower_components/react-height/build/react-height.js"></script>
 <script src="bower_components/react-motion/build/react-motion.js"></script>
-<!-- React-collapse -->
 <script src="bower_components/react-collapse/build/react-collapse.js"></script>
 ```
 
 
 ### 1998 Script Tag:
 ```html
-<!-- Dependencies -->
 <script src="https://npmcdn.com/react/dist/react.js"></script>
 <script src="https://npmcdn.com/react-height/build/react-height.js"></script>
 <script src="https://npmcdn.com/react-motion/build/react-motion.js"></script>
-<!-- React-collapse -->
 <script src="https://npmcdn.com/react-collapse/build/react-collapse.js"></script>
 (Module exposed as `ReactCollapse`)
 ```
@@ -72,13 +68,11 @@ then include as
 [http://codepen.io/nkbt/pen/MarzEg](http://codepen.io/nkbt/pen/MarzEg?editors=101)
 
 ## Usage
-
 ```js
 <Collapse isOpened={true || false}>
   <div>Random content</div>
 </Collapse>
 ```
-
 
 ## Options
 

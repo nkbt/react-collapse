@@ -1,7 +1,7 @@
 import React from 'react';
 import {presets} from 'react-motion';
-import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
-import Collapse from '../Collapse';
+import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
+import Collapse from '../../Collapse';
 import * as style from './style';
 
 

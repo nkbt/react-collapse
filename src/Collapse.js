@@ -1,5 +1,5 @@
 import React from 'react';
-import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
+import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import {Motion, spring} from 'react-motion';
 import HeightReporter from 'react-height';
 
@@ -76,8 +76,9 @@ const Collapse = React.createClass({
 
 
   renderFixed() {
-    const {isOpened, style, children, fixedHeight, springConfig, keepCollapsedContent,
-      ...props} = this.props;
+    const {
+      isOpened, style, children, fixedHeight, springConfig: _, keepCollapsedContent, ...props
+    } = this.props;
 
     if (this.renderStatic) {
       this.renderStatic = false;
@@ -112,16 +113,10 @@ const Collapse = React.createClass({
   },
 
 
-  renderHeightReporter() {
-    const {children} = this.props;
-
-    return <HeightReporter onHeightReady={this.onHeightReady}>{children}</HeightReporter>;
-  },
-
-
   render() {
-    const {isOpened, style, children, fixedHeight, springConfig, keepCollapsedContent,
-      ...props} = this.props;
+    const {
+      isOpened, style, children, fixedHeight, springConfig: _, keepCollapsedContent, ...props
+    } = this.props;
 
     if (fixedHeight > -1) {
       return this.renderFixed();
@@ -136,7 +131,7 @@ const Collapse = React.createClass({
     }
 
     // Cache Content so it is not re-rendered on each animation step
-    const content = this.renderHeightReporter();
+    const content = <HeightReporter onHeightReady={this.onHeightReady}>{children}</HeightReporter>;
 
     if (renderStatic) {
       const newStyle = {overflow: 'hidden', height: isOpened ? 'auto' : 0};
@@ -175,7 +170,7 @@ const Collapse = React.createClass({
             );
           }
 
-          const newStyle = (isOpened && this.height === currentStringHeight) ? {height: 'auto'} : {
+          const newStyle = isOpened && this.height === currentStringHeight ? {height: 'auto'} : {
             height: st.height, overflow: 'hidden'
           };
 

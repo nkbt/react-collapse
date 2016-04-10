@@ -1,6 +1,6 @@
 import React from 'react';
-import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
-import Collapse from '../Collapse';
+import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
+import Collapse from '../../Collapse';
 import text from './text.json';
 import * as style from './style';
 

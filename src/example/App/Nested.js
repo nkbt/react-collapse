@@ -1,12 +1,13 @@
 import React from 'react';
-import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
-import Collapse from '../Collapse';
+import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
+import Collapse from '../../Collapse';
 import * as style from './style';
+import VariableHeight from './VariableHeight';
 
 
-const VariableHeight = React.createClass({
+const Nested = React.createClass({
   getInitialState() {
-    return {isOpened: false, keepContent: false, height: 100};
+    return {isOpened: false, keepContent: false};
   },
 
 
@@ -14,7 +15,7 @@ const VariableHeight = React.createClass({
 
 
   render() {
-    const {isOpened, keepContent, height} = this.state;
+    const {isOpened, keepContent} = this.state;
 
     return (
       <div>
@@ -34,28 +35,26 @@ const VariableHeight = React.createClass({
               checked={keepContent}
               onChange={({target: {checked}}) => this.setState({keepContent: checked})} />
           </label>
-
-          <label style={style.label}>
-            Content height:
-            <input style={style.input}
-              type="range"
-              value={height} step={50} min={0} max={500}
-              onChange={({target: {value}}) => this.setState({height: parseInt(value, 10)})} />
-            {height}
-          </label>
         </div>
 
         <Collapse
           style={style.container}
           isOpened={isOpened}
           keepCollapsedContent={keepContent}>
-          <div style={{...style.getContent(height), height}}></div>
+          <div style={{padding: 20}}>
+            <VariableHeight />
+          </div>
+          <div style={{padding: 20}}>
+            <VariableHeight />
+          </div>
+          <div style={{padding: 20}}>
+            <VariableHeight />
+          </div>
         </Collapse>
-
       </div>
     );
   }
 });
 
 
-export default VariableHeight;
+export default Nested;
