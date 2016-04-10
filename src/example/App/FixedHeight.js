@@ -1,16 +1,12 @@
 import React from 'react';
-import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
-import Collapse from '../Collapse';
-import text from './text.json';
+import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
+import Collapse from '../../Collapse';
 import * as style from './style';
 
 
-const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
-
-
-const VariableText = React.createClass({
+const FixedHeight = React.createClass({
   getInitialState() {
-    return {isOpened: false, keepContent: false, paragraphs: 0};
+    return {isOpened: false, keepContent: false, height: 100, fixedHeight: 200};
   },
 
 
@@ -18,7 +14,7 @@ const VariableText = React.createClass({
 
 
   render() {
-    const {isOpened, keepContent, paragraphs} = this.state;
+    const {isOpened, keepContent, height, fixedHeight} = this.state;
 
     return (
       <div>
@@ -40,20 +36,30 @@ const VariableText = React.createClass({
           </label>
 
           <label style={style.label}>
-            Paragraphs:
+            Content height:
             <input style={style.input}
               type="range"
-              value={paragraphs} step={1} min={0} max={4}
-              onChange={({target: {value}}) => this.setState({paragraphs: parseInt(value, 10)})} />
-            {paragraphs}
+              value={height} step={50} min={0} max={500}
+              onChange={({target: {value}}) => this.setState({height: parseInt(value, 10)})} />
+            {height}
+          </label>
+
+          <label style={style.label}>
+            Collapse height:
+            <input style={style.input}
+              type="range"
+              value={fixedHeight} step={50} min={0} max={500}
+              onChange={({target: {value}}) => this.setState({fixedHeight: parseInt(value, 10)})} />
+            {fixedHeight}
           </label>
         </div>
 
         <Collapse
           style={style.container}
           isOpened={isOpened}
+          fixedHeight={fixedHeight}
           keepCollapsedContent={keepContent}>
-          <div style={{padding: 10}}>{paragraphs ? getText(paragraphs) : <p>No text</p>}</div>
+          <div style={{...style.getContent(height), height}}></div>
         </Collapse>
       </div>
     );
@@ -61,4 +67,4 @@ const VariableText = React.createClass({
 });
 
 
-export default VariableText;
+export default FixedHeight;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {shouldComponentUpdate} from 'react-addons-pure-render-mixin';
+import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import {Motion, spring} from 'react-motion';
 import HeightReporter from 'react-height';
 
