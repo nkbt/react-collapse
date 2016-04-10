@@ -53,7 +53,7 @@ const Collapse = React.createClass({
     }
     this.setState({height});
     if (this.props.onHeightReady && !this.state.isOpenedChanged) {
-      this.props.onHeightReady(height);
+      this.props.onHeightReady(this.props.isOpened ? height : 0);
     }
   },
 
