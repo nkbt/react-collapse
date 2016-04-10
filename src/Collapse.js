@@ -20,7 +20,12 @@ const Collapse = React.createClass({
 
 
   getDefaultProps() {
-    return {fixedHeight: -1, style: {}, keepCollapsedContent: false};
+    return {
+      fixedHeight: -1,
+      style: {},
+      keepCollapsedContent: false,
+      onHeightReady: () => {} // eslint-disable-line no-empty-function
+    };
   },
 
 
@@ -35,26 +40,29 @@ const Collapse = React.createClass({
 
 
   componentWillReceiveProps({isOpened}) {
-    const isOpenedChanged = isOpened !== this.props.isOpened;
-
-    this.setState({isOpenedChanged}, () => {
-      if (this.props.onHeightReady && isOpenedChanged) {
-        this.props.onHeightReady(isOpened ? this.state.height : 0);
-      }
-    });
+    this.setState({isOpenedChanged: isOpened !== this.props.isOpened});
   },
-
 
   shouldComponentUpdate,
 
+  componentDidUpdate({isOpened}) {
+    if (isOpened !== this.props.isOpened) {
+      const report = this.props.isOpened ? this.state.height : 0;
+
+      this.props.onHeightReady(report);
+    }
+  },
 
   onHeightReady(height) {
     if (this.renderStatic && this.props.isOpened) {
       this.height = stringHeight(height);
     }
     this.setState({height});
-    if (this.props.onHeightReady && !this.state.isOpenedChanged) {
-      this.props.onHeightReady(this.props.isOpened ? height : 0);
+
+    const reportHeight = this.props.isOpened ? height : 0;
+
+    if (this.state.height !== reportHeight) {
+      this.props.onHeightReady(reportHeight);
     }
   },
 
