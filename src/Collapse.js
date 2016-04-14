@@ -14,12 +14,18 @@ const Collapse = React.createClass({
     fixedHeight: React.PropTypes.number,
     style: React.PropTypes.object, // eslint-disable-line react/forbid-prop-types
     springConfig: React.PropTypes.objectOf(React.PropTypes.number),
-    keepCollapsedContent: React.PropTypes.bool
+    keepCollapsedContent: React.PropTypes.bool,
+    onHeightReady: React.PropTypes.func
   },
 
 
   getDefaultProps() {
-    return {fixedHeight: -1, style: {}, keepCollapsedContent: false};
+    return {
+      fixedHeight: -1,
+      style: {},
+      keepCollapsedContent: false,
+      onHeightReady: () => {} // eslint-disable-line no-empty-function
+    };
   },
 
 
@@ -37,15 +43,27 @@ const Collapse = React.createClass({
     this.setState({isOpenedChanged: isOpened !== this.props.isOpened});
   },
 
-
   shouldComponentUpdate,
 
+  componentDidUpdate({isOpened}) {
+    if (isOpened !== this.props.isOpened) {
+      const report = this.props.isOpened ? this.state.height : 0;
+
+      this.props.onHeightReady(report);
+    }
+  },
 
   onHeightReady(height) {
     if (this.renderStatic && this.props.isOpened) {
       this.height = stringHeight(height);
     }
     this.setState({height});
+
+    const reportHeight = this.props.isOpened ? height : 0;
+
+    if (this.state.height !== reportHeight) {
+      this.props.onHeightReady(reportHeight);
+    }
   },
 
 

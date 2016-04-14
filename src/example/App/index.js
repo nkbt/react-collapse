@@ -6,6 +6,7 @@ import InitiallyOpened from './InitiallyOpened';
 import FixedHeight from './FixedHeight';
 import SpringConfig from './SpringConfig';
 import Nested from './Nested';
+import Hooks from './Hooks';
 import {name} from '../../../package.json';
 
 
@@ -57,6 +58,11 @@ const App = React.createClass({
         <section style={style.section}>
           <h2>Example 6. Nested Collapse</h2>
           <Nested />
+        </section>
+
+        <section style={style.section}>
+          <h2>Example 7. Hooks</h2>
+          <Hooks />
         </section>
 
       </div>
