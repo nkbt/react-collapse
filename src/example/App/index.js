@@ -36,6 +36,11 @@ const App = React.createClass({
         </section>
 
         <section style={style.section}>
+          <h2>Example 1.1. Variable text (initially opened)</h2>
+          <VariableText isOpened={true} />
+        </section>
+
+        <section style={style.section}>
           <h2>Example 2. Variable height content</h2>
           <VariableHeight keepCollapsedContent={true} />
         </section>
