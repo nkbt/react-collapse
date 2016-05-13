@@ -9,8 +9,20 @@ const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
 
 
 const VariableText = React.createClass({
+  propTypes: {
+    isOpened: React.PropTypes.bool
+  },
+
+
+  getDefaultProps() {
+    return {
+      isOpened: false
+    }
+  },
+
+
   getInitialState() {
-    return {isOpened: false, keepContent: false, paragraphs: 0};
+    return {isOpened: this.props.isOpened, keepContent: false, paragraphs: 0};
   },
 
 
