@@ -62,7 +62,7 @@ const Collapse = React.createClass({
     if (keepCollapsedContent) {
       this.setState({height});
     } else {
-      this.setState({height: isOpened ? height : 0});
+      this.setState({height: isOpened || !this.renderStatic ? height : 0});
     }
 
     const reportHeight = this.props.isOpened ? height : 0;
