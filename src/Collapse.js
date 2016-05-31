@@ -4,6 +4,9 @@ import {Motion, spring} from 'react-motion';
 import HeightReporter from 'react-height';
 
 
+const PRECISION = 0.5;
+
+
 const stringHeight = height => Math.max(0, parseFloat(height)).toFixed(1);
 
 
@@ -83,7 +86,10 @@ const Collapse = React.createClass({
     // Also no need to animate if height did not change
     const skipAnimation = !isOpenedChanged && !isOpened || this.height === newHeight;
 
-    const springHeight = spring(isOpened ? Math.max(0, height) : 0, springConfig);
+    const springHeight = spring(isOpened ? Math.max(0, height) : 0, {
+      precision: PRECISION,
+      ...springConfig
+    });
     const instantHeight = isOpened ? Math.max(0, height) : 0;
 
     return skipAnimation ? instantHeight : springHeight;
