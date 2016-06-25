@@ -129,9 +129,21 @@ import {presets} from 'react-motion';
 
 By default ReactCollapse destroys content of collapsed element. setting `keepCollapsedContent` to `true` allows to keep content. ReactCollapse renders container with `height: 0` and `overflow: hidden` (with all the content untouched) when closed instead of destroying it. See #18 for details.
 
+#### `onAnimationReady`: React.PropTypes.func
+
+Callback function for animation ready from
+[react-motion](https://github.com/chenglou/react-motion#--onrest---void).
+It can be used to trigger any function after animation is done.
+
+```js
+<Collapse onAnimationReady={() => console.log(123)}>
+  <div>Container text</div>
+</Collapse>
+```
+
 #### `onHeightReady`: React.PropTypes.func
 
-Callback function for changes in height as reported by [react-height](https://github.com/nkbt/react-height). 
+Callback function for changes in height as reported by [react-height](https://github.com/nkbt/react-height).
 As an [example](https://github.com/nutgaard/react-collapse/blob/master/src/example/App/Hooks.js) it can be used to implement auto-scroll if content expand below the fold.
 
 #### Pass-through props
