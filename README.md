@@ -129,14 +129,14 @@ import {presets} from 'react-motion';
 
 By default ReactCollapse destroys content of collapsed element. setting `keepCollapsedContent` to `true` allows to keep content. ReactCollapse renders container with `height: 0` and `overflow: hidden` (with all the content untouched) when closed instead of destroying it. See #18 for details.
 
-#### `onAnimationReady`: React.PropTypes.func
+#### `onRest`: React.PropTypes.func
 
-Callback function for animation ready from
+Callback function for animation finished from
 [react-motion](https://github.com/chenglou/react-motion#--onrest---void).
 It can be used to trigger any function after animation is done.
 
 ```js
-<Collapse onAnimationReady={() => console.log(123)}>
+<Collapse onRest={() => console.log(123)}>
   <div>Container text</div>
 </Collapse>
 ```
