@@ -18,6 +18,7 @@ const Collapse = React.createClass({
     style: React.PropTypes.object, // eslint-disable-line react/forbid-prop-types
     springConfig: React.PropTypes.objectOf(React.PropTypes.number),
     keepCollapsedContent: React.PropTypes.bool,
+    onRest: React.PropTypes.func,
     onHeightReady: React.PropTypes.func
   },
 
@@ -174,6 +175,7 @@ const Collapse = React.createClass({
     return (
       <Motion
         defaultStyle={{height: Math.max(0, height)}}
+        onRest={this.props.onRest}
         style={{height: this.getMotionHeight(height)}}>
         {st => {
           this.height = stringHeight(st.height);
