@@ -19,7 +19,10 @@ const Hooks = React.createClass({
   },
 
 
-  scroll(height) {
+  shouldComponentUpdate,
+
+
+  onHeightReady(height) {
     if (this.state.scrollHook) {
       const collapsable = findDOMNode(this).querySelector('.collapsable');
       const bottom = collapsable.getBoundingClientRect().top + height;
@@ -29,9 +32,6 @@ const Hooks = React.createClass({
       }
     }
   },
-
-
-  shouldComponentUpdate,
 
 
   render() {
@@ -78,7 +78,7 @@ const Hooks = React.createClass({
           style={style.container}
           isOpened={isOpened}
           keepCollapsedContent={keepContent}
-          onHeightReady={this.scroll}>
+          onHeightReady={this.onHeightReady}>
           <div style={{padding: 10}}>{paragraphs ? getText(paragraphs) : <p>No text</p>}</div>
         </Collapse>
       </div>

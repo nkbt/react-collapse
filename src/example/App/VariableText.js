@@ -17,7 +17,7 @@ const VariableText = React.createClass({
   getDefaultProps() {
     return {
       isOpened: false
-    }
+    };
   },
 
 
