@@ -47,7 +47,9 @@ const Collapse = React.createClass({
     this.setState({isOpenedChanged: isOpened !== this.props.isOpened});
   },
 
+
   shouldComponentUpdate,
+
 
   componentDidUpdate({isOpened}) {
     if (isOpened !== this.props.isOpened) {
@@ -57,8 +59,9 @@ const Collapse = React.createClass({
     }
   },
 
+
   onHeightReady(height) {
-    const {isOpened, keepCollapsedContent} = this.props;
+    const {isOpened, keepCollapsedContent, onHeightReady} = this.props;
 
     if (this.renderStatic && isOpened) {
       this.height = stringHeight(height);
@@ -69,10 +72,10 @@ const Collapse = React.createClass({
       this.setState({height: isOpened || !this.renderStatic ? height : 0});
     }
 
-    const reportHeight = this.props.isOpened ? height : 0;
+    const reportHeight = isOpened ? height : 0;
 
     if (this.state.height !== reportHeight) {
-      this.props.onHeightReady(reportHeight);
+      onHeightReady(reportHeight);
     }
   },
 
@@ -99,7 +102,15 @@ const Collapse = React.createClass({
 
   renderFixed() {
     const {
-      isOpened, style, children, fixedHeight, springConfig: _, keepCollapsedContent, ...props
+      springConfig: _springConfig,
+      onHeightReady: _onHeightReady,
+      onRest: _onRest,
+      isOpened,
+      style,
+      children,
+      fixedHeight,
+      keepCollapsedContent,
+      ...props
     } = this.props;
 
     if (this.renderStatic) {
@@ -137,7 +148,15 @@ const Collapse = React.createClass({
 
   render() {
     const {
-      isOpened, style, children, fixedHeight, springConfig: _, keepCollapsedContent, ...props
+      springConfig: _springConfig,
+      onHeightReady: _onHeightReady,
+      isOpened,
+      style,
+      children,
+      fixedHeight,
+      keepCollapsedContent,
+      onRest,
+      ...props
     } = this.props;
 
     if (fixedHeight > -1) {
@@ -175,7 +194,7 @@ const Collapse = React.createClass({
     return (
       <Motion
         defaultStyle={{height: Math.max(0, height)}}
-        onRest={this.props.onRest}
+        onRest={onRest}
         style={{height: this.getMotionHeight(height)}}>
         {st => {
           this.height = stringHeight(st.height);
