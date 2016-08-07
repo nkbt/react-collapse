@@ -85,8 +85,8 @@ const Collapse = React.createClass({
 
     // No need to animate if content is closed and it was closed previously
     // Also no need to animate if height did not change
-    const skipAnimation = fixedHeight === -1 &&
-      (!isOpenedChanged && !isOpened || this.height === newHeight);
+    const skipAnimation = !isOpenedChanged && !isOpened ||
+      this.height === newHeight && fixedHeight === -1;
 
     const springHeight = spring(isOpened ? Math.max(0, height) : 0, {
       precision: PRECISION,
