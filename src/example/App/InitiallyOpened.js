@@ -41,7 +41,7 @@ const InitiallyOpened = React.createClass({
           style={style.container}
           isOpened={isOpened}
           keepCollapsedContent={keepContent}>
-          <div style={{...style.getContent(height), height}}></div>
+          <div style={{...style.getContent(height), height}} />
         </Collapse>
         <h3>Fixed height</h3>
         <Collapse
@@ -49,7 +49,7 @@ const InitiallyOpened = React.createClass({
           isOpened={isOpened}
           fixedHeight={150}
           keepCollapsedContent={keepContent}>
-          <div style={{...style.getContent(height), height}}></div>
+          <div style={{...style.getContent(height), height}} />
         </Collapse>
       </div>
     );

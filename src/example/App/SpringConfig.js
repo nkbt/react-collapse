@@ -87,7 +87,7 @@ const VariableHeight = React.createClass({
           isOpened={isOpened}
           springConfig={{stiffness, damping}}
           keepCollapsedContent={keepContent}>
-          <div style={{...style.getContent(height), height}}></div>
+          <div style={{...style.getContent(height), height}} />
         </Collapse>
 
       </div>

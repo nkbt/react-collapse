@@ -171,7 +171,7 @@ All other props are applied to a container that is being resized. So it is possi
 
 ## Development and testing
 
-Currently is being developed and tested with the latest stable `Node 5` on `OSX` and `Windows`.
+Currently is being developed and tested with the latest stable `Node 6` on `OSX` and `Windows`.
 Should be ok with Node 4, but not guaranteed.
 
 To run example covering all `ReactCollapse` features, use `npm start`, which will compile `src/example/Example.js`
