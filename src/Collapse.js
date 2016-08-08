@@ -61,16 +61,13 @@ const Collapse = React.createClass({
 
 
   onHeightReady(height) {
-    const {isOpened, keepCollapsedContent, onHeightReady} = this.props;
+    const {isOpened, onHeightReady} = this.props;
 
     if (this.renderStatic && isOpened) {
       this.height = stringHeight(height);
     }
-    if (keepCollapsedContent) {
-      this.setState({height});
-    } else {
-      this.setState({height: isOpened || !this.renderStatic ? height : 0});
-    }
+
+    this.setState({height: isOpened || !this.renderStatic ? height : 0});
 
     const reportHeight = isOpened ? height : 0;
 
@@ -81,14 +78,15 @@ const Collapse = React.createClass({
 
 
   getMotionHeight(height) {
-    const {isOpened, springConfig} = this.props;
+    const {isOpened, springConfig, fixedHeight} = this.props;
     const {isOpenedChanged} = this.state;
 
     const newHeight = isOpened ? Math.max(0, parseFloat(height)).toFixed(1) : stringHeight(0);
 
     // No need to animate if content is closed and it was closed previously
     // Also no need to animate if height did not change
-    const skipAnimation = !isOpenedChanged && !isOpened || this.height === newHeight;
+    const skipAnimation = !isOpenedChanged && !isOpened ||
+      this.height === newHeight && fixedHeight === -1;
 
     const springHeight = spring(isOpened ? Math.max(0, height) : 0, {
       precision: PRECISION,
