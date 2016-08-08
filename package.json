@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "pregh-pages": "git fetch origin",
-    "gh-pages": "git checkout gh-pages && git rebase origin/master --force-rebase && npm run build && git add . && git commit --amend --no-edit && git push --force && git checkout master",
+    "gh-pages": "git checkout gh-pages && git rebase origin/master --force-rebase && npm run build && git add . && git commit --amend --no-edit --no-verify && git push --force --no-verify && git checkout master",
     "build": "parallelshell -w \"npm run build:lib -s\" \"npm run build:ghPages -s\" \"npm run build:dist -s\" \"npm run build:min -s\"",
     "prebuild": "rimraf lib example build",
     "build:lib": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps --ignore src/example",
