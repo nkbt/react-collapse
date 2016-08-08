@@ -181,6 +181,7 @@ const Collapse = React.createClass({
         if (!keepCollapsedContent) {
           return null;
         }
+
         return (
           <div style={{height: 0, overflow: 'hidden', ...style}} {...props}>
             {content}
@@ -188,7 +189,17 @@ const Collapse = React.createClass({
         );
       }
 
-      return <div style={{...newStyle, ...style}} {...props}>{content}</div>;
+      // <Motion> to prevent loosing input after causing this component to rerender
+      return (
+        <Motion
+          defaultStyle={{height: Math.max(0, height)}}
+          style={{height: Math.max(0, height)}}
+          onRest={onRest}>
+          {() =>
+            <div style={{...newStyle, ...style}} {...props}>{content}</div>
+          }
+        </Motion>
+      );
     }
 
     return (
@@ -207,7 +218,7 @@ const Collapse = React.createClass({
             }
             return (
               <div style={{height: 0, overflow: 'hidden', ...style}} {...props}>
-                {content}
+              {content}
               </div>
             );
           }
