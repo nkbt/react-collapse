@@ -217,9 +217,7 @@ const Collapse = React.createClass({
               return null;
             }
             return (
-              <div style={{height: 0, overflow: 'hidden', ...style}} {...props}>
-              {content}
-              </div>
+              <div style={{height: 0, overflow: 'hidden', ...style}} {...props}>{content}</div>
             );
           }
 
