@@ -1,5 +1,4 @@
 import React from 'react';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import {Motion, spring} from 'react-motion';
 import HeightReporter from 'react-height';
 
@@ -40,15 +39,30 @@ const Collapse = React.createClass({
   componentWillMount() {
     this.height = stringHeight(0);
     this.renderStatic = true;
+    this.dirtyHeight = true;
   },
 
 
-  componentWillReceiveProps({isOpened}) {
-    this.setState({isOpenedChanged: isOpened !== this.props.isOpened});
+  componentWillReceiveProps({isOpened, fixedHeight}) {
+    this.dirtyHeight = isOpened !== this.props.isOpened;
+
+    if (fixedHeight > -1) {
+      this.setState({isOpenedChanged: this.dirtyHeight});
+    }
   },
 
 
-  shouldComponentUpdate,
+  shouldComponentUpdate(props, state) {
+    return this.state.isOpened !== state.isOpened ||
+      this.state.height !== state.height ||
+      this.props.children !== props.children ||
+      this.props.fixedHeight !== props.fixedHeight ||
+      this.props.style !== props.style ||
+      this.props.springConfig !== props.springConfig ||
+      this.props.keepCollapsedContent !== props.keepCollapsedContent ||
+      this.props.onRest !== props.onRest ||
+      this.props.onHeightReady !== props.onHeightReady;
+  },
 
 
   componentDidUpdate({isOpened}) {
@@ -63,11 +77,16 @@ const Collapse = React.createClass({
   onHeightReady(height) {
     const {isOpened, onHeightReady} = this.props;
 
+    const isOpenedChangedState = {isOpenedChanged: this.dirtyHeight};
+    const heightState = {height: isOpened || !this.renderStatic ? height : 0};
+
+    this.dirtyHeight = false;
+
     if (this.renderStatic && isOpened) {
       this.height = stringHeight(height);
     }
 
-    this.setState({height: isOpened || !this.renderStatic ? height : 0});
+    this.setState({...isOpenedChangedState, ...heightState});
 
     const reportHeight = isOpened ? height : 0;
 
@@ -170,7 +189,13 @@ const Collapse = React.createClass({
     }
 
     // Cache Content so it is not re-rendered on each animation step
-    const content = <HeightReporter onHeightReady={this.onHeightReady}>{children}</HeightReporter>;
+    const content = (
+      <HeightReporter
+        dirty={this.dirtyHeight}
+        onHeightReady={this.onHeightReady}>
+        {children}
+      </HeightReporter>
+    );
 
     if (renderStatic) {
       const newStyle = isOpened ? {height: 'auto'} : {overflow: 'hidden', height: 0};
@@ -187,10 +212,9 @@ const Collapse = React.createClass({
         );
       }
 
-      // <Motion> to prevent loosing input after causing this component to rerender
+      // <Motion> to prevent loosing input after causing this component to re-render
       return (
         <Motion
-          defaultStyle={{height: Math.max(0, height)}}
           style={{height: Math.max(0, height)}}
           onRest={onRest}>
           {() =>
@@ -202,7 +226,6 @@ const Collapse = React.createClass({
 
     return (
       <Motion
-        defaultStyle={{height: Math.max(0, height)}}
         onRest={onRest}
         style={{height: this.getMotionHeight(height)}}>
         {st => {

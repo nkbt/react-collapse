@@ -1,21 +1,14 @@
 import React from 'react';
-import {findDOMNode} from 'react-dom';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import Collapse from '../../Collapse';
 import text from './text.json';
 import * as style from './style';
-import scroll from 'scroll';
-
-const page = /Firefox/.test(navigator.userAgent) ?
-  document.documentElement :
-  document.body;
-
 const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
 
 
 const Hooks = React.createClass({
   getInitialState() {
-    return {isOpened: false, keepContent: false, scrollHook: true, paragraphs: 0};
+    return {isOpened: false, keepContent: false, height: -1, paragraphs: 0};
   },
 
 
@@ -23,19 +16,12 @@ const Hooks = React.createClass({
 
 
   onHeightReady(height) {
-    if (this.state.scrollHook) {
-      const collapsable = findDOMNode(this).querySelector('.collapsable');
-      const bottom = collapsable.getBoundingClientRect().top + height;
-
-      if (bottom > window.innerHeight) {
-        scroll.top(page, bottom);
-      }
-    }
+    this.setState({height});
   },
 
 
   render() {
-    const {isOpened, keepContent, scrollHook, paragraphs} = this.state;
+    const {isOpened, keepContent, height, paragraphs} = this.state;
 
     return (
       <div>
@@ -57,20 +43,15 @@ const Hooks = React.createClass({
           </label>
 
           <label style={style.label}>
-            Auto-scroll:
-            <input style={style.input}
-              type="checkbox"
-              checked={scrollHook}
-              onChange={({target: {checked}}) => this.setState({scrollHook: checked})} />
-          </label>
-
-          <label style={style.label}>
             Paragraphs:
             <input style={style.input}
               type="range"
               value={paragraphs} step={1} min={0} max={4}
               onChange={({target: {value}}) => this.setState({paragraphs: parseInt(value, 10)})} />
             {paragraphs}
+          </label>
+          <label style={style.label}>
+            onHeightReady hook: {height}px
           </label>
         </div>
         <Collapse

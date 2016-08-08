@@ -12,7 +12,8 @@ import {name} from '../../../package.json';
 
 const style = {
   container: {
-    padding: 20
+    padding: 20,
+    minHeight: 10000
   },
   section: {
     paddingTop: 30
