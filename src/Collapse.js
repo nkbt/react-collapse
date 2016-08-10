@@ -13,7 +13,6 @@ const Collapse = React.createClass({
   propTypes: {
     isOpened: React.PropTypes.bool.isRequired,
     children: React.PropTypes.node.isRequired,
-    fixedHeight: React.PropTypes.number,
     style: React.PropTypes.object, // eslint-disable-line react/forbid-prop-types
     springConfig: React.PropTypes.objectOf(React.PropTypes.number),
     keepCollapsedContent: React.PropTypes.bool,
@@ -24,7 +23,6 @@ const Collapse = React.createClass({
 
   getDefaultProps() {
     return {
-      fixedHeight: -1,
       style: {},
       keepCollapsedContent: false,
       onHeightReady: () => {} // eslint-disable-line no-empty-function
@@ -43,12 +41,8 @@ const Collapse = React.createClass({
   },
 
 
-  componentWillReceiveProps({isOpened, fixedHeight}) {
+  componentWillReceiveProps({isOpened}) {
     this.dirtyHeight = isOpened !== this.props.isOpened;
-
-    if (fixedHeight > -1) {
-      this.setState({isOpenedChanged: this.dirtyHeight});
-    }
   },
 
 
@@ -56,7 +50,6 @@ const Collapse = React.createClass({
     return this.state.isOpened !== state.isOpened ||
       this.state.height !== state.height ||
       this.props.children !== props.children ||
-      this.props.fixedHeight !== props.fixedHeight ||
       this.props.style !== props.style ||
       this.props.springConfig !== props.springConfig ||
       this.props.keepCollapsedContent !== props.keepCollapsedContent ||
@@ -97,15 +90,14 @@ const Collapse = React.createClass({
 
 
   getMotionHeight(height) {
-    const {isOpened, springConfig, fixedHeight} = this.props;
+    const {isOpened, springConfig} = this.props;
     const {isOpenedChanged} = this.state;
 
-    const newHeight = isOpened ? Math.max(0, parseFloat(height)).toFixed(1) : stringHeight(0);
+    const newHeight = isOpened ? stringHeight(height) : stringHeight(0);
 
     // No need to animate if content is closed and it was closed previously
     // Also no need to animate if height did not change
-    const skipAnimation = !isOpenedChanged && !isOpened ||
-      this.height === newHeight && fixedHeight === -1;
+    const skipAnimation = !isOpenedChanged && !isOpened || this.height === newHeight;
 
     const springHeight = spring(isOpened ? Math.max(0, height) : 0, {
       precision: PRECISION,
@@ -117,52 +109,6 @@ const Collapse = React.createClass({
   },
 
 
-  renderFixed() {
-    const {
-      springConfig: _springConfig,
-      onHeightReady: _onHeightReady,
-      onRest: _onRest,
-      isOpened,
-      style,
-      children,
-      fixedHeight,
-      keepCollapsedContent,
-      ...props
-    } = this.props;
-
-    if (this.renderStatic) {
-      this.renderStatic = false;
-      const newStyle = {overflow: 'hidden', height: isOpened ? fixedHeight : 0};
-
-      if (!keepCollapsedContent && !isOpened) {
-        return null;
-      }
-      this.height = stringHeight(fixedHeight);
-      return <div style={{...newStyle, ...style}} {...props}>{children}</div>;
-    }
-
-    return (
-      <Motion
-        defaultStyle={{height: isOpened ? 0 : fixedHeight}}
-        style={{height: this.getMotionHeight(fixedHeight)}}>
-        {({height}) => {
-          this.height = stringHeight(height);
-
-          // TODO: this should be done using onEnd from ReactMotion, which is not yet implemented
-          // See https://github.com/chenglou/react-motion/issues/235
-          if (!keepCollapsedContent && !isOpened && this.height === stringHeight(0)) {
-            return null;
-          }
-
-          const newStyle = {overflow: 'hidden', height};
-
-          return <div style={{...newStyle, ...style}} {...props}>{children}</div>;
-        }}
-      </Motion>
-    );
-  },
-
-
   render() {
     const {
       springConfig: _springConfig,
@@ -170,19 +116,14 @@ const Collapse = React.createClass({
       isOpened,
       style,
       children,
-      fixedHeight,
       keepCollapsedContent,
       onRest,
       ...props
     } = this.props;
 
-    if (fixedHeight > -1) {
-      return this.renderFixed();
-    }
-
     const renderStatic = this.renderStatic;
     const {height} = this.state;
-    const currentStringHeight = parseFloat(height).toFixed(1);
+    const currentStringHeight = stringHeight(height);
 
     if (height > -1 && renderStatic) {
       this.renderStatic = false;

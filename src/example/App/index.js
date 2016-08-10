@@ -3,7 +3,6 @@ import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin
 import VariableText from './VariableText';
 import VariableHeight from './VariableHeight';
 import InitiallyOpened from './InitiallyOpened';
-import FixedHeight from './FixedHeight';
 import SpringConfig from './SpringConfig';
 import Nested from './Nested';
 import Hooks from './Hooks';
@@ -49,11 +48,6 @@ const App = React.createClass({
         <section style={style.section}>
           <h2>Example 3. Initially opened</h2>
           <InitiallyOpened />
-        </section>
-
-        <section style={style.section}>
-          <h2>Example 4. Fixed Collapse height</h2>
-          <FixedHeight />
         </section>
 
         <section style={style.section}>

@@ -96,17 +96,6 @@ One or multiple children with static, variable or dynamic height.
 ```
 
 
-#### `fixedHeight`: PropTypes.number
-
-If content's height is known ahead it is possible to bypass the process of content height calculation by passing optional `fixedHeight` prop with number of pixels.
-
-```js
-<Collapse isOpened={true} fixedHeight={100}>
-  <div>Animated container will always expand to 100px height</div>
-</Collapse>
-```
-
-
 #### `springConfig`: React.PropTypes.objectOf(React.PropTypes.number)
 
 Custom config `{stiffness, damping, precision}` passed to the spring function (see https://github.com/chenglou/react-motion#--spring-val-number-config-springhelperconfig--opaqueconfig)
