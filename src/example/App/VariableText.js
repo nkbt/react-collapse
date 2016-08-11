@@ -1,11 +1,11 @@
 import React from 'react';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
-import Collapse from '../../Collapse';
+import Collapse from '../..';
 import text from './text.json';
-import * as style from './style';
+import css from './App.css';
 
 
-const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
+const getText = num => text.slice(0, num)
+  .map((p, i) => <p key={i} style={{margin: 0, padding: 10}}>{p}</p>);
 
 
 const VariableText = React.createClass({
@@ -22,38 +22,27 @@ const VariableText = React.createClass({
 
 
   getInitialState() {
-    return {isOpened: this.props.isOpened, keepContent: false, paragraphs: 0};
+    return {isOpened: this.props.isOpened, paragraphs: 0};
   },
 
 
-  shouldComponentUpdate,
-
-
   render() {
-    const {isOpened, keepContent, paragraphs} = this.state;
+    const {isOpened, paragraphs} = this.state;
 
     return (
       <div>
-        <div style={style.config}>
-          <label style={style.label}>
+        <div className={css.config}>
+          <label className={css.label}>
             Opened:
-            <input style={style.input}
+            <input className={css.input}
               type="checkbox"
               checked={isOpened}
               onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
           </label>
 
-          <label style={style.label}>
-            Keep content:
-            <input style={style.input}
-              type="checkbox"
-              checked={keepContent}
-              onChange={({target: {checked}}) => this.setState({keepContent: checked})} />
-          </label>
-
-          <label style={style.label}>
+          <label className={css.label}>
             Paragraphs:
-            <input style={style.input}
+            <input className={css.input}
               type="range"
               value={paragraphs} step={1} min={0} max={4}
               onChange={({target: {value}}) => this.setState({paragraphs: parseInt(value, 10)})} />
@@ -61,11 +50,10 @@ const VariableText = React.createClass({
           </label>
         </div>
 
-        <Collapse
-          style={style.container}
-          isOpened={isOpened}
-          keepCollapsedContent={keepContent}>
-          <div style={{padding: 10}}>{paragraphs ? getText(paragraphs) : <p>No text</p>}</div>
+        <Collapse theme={css} isOpened={isOpened}>
+          <div className={css.text}>
+            {paragraphs ? getText(paragraphs) : <p style={{margin: 0, padding: 10}}>No text</p>}
+          </div>
         </Collapse>
       </div>
     );

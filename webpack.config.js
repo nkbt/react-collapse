@@ -81,12 +81,6 @@ const externals = {
     commonjs2: 'react-motion',
     commonjs: 'react-motion',
     amd: 'react-motion'
-  },
-  'react-height': {
-    root: 'ReactHeight',
-    commonjs2: 'react-height',
-    commonjs: 'react-height',
-    amd: 'react-height'
   }
 };
 
