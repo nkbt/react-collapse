@@ -7,6 +7,7 @@ import Nested from './Nested';
 import Hooks from './Hooks';
 
 import {Issue40} from './Issue40';
+import {Issue59} from './Issue59';
 
 import {name} from '../../../package.json';
 
@@ -64,6 +65,15 @@ const App = React.createClass({
             Re-render nested components
           </h2>
           <Issue40 />
+        </section>
+
+
+        <section className={css.section}>
+          <h2>
+            <a target="_blank" href="https://github.com/nkbt/react-collapse/issues/59">59</a>.
+            Instantly collapses if re-rendered during collapse
+          </h2>
+          <Issue59 />
         </section>
 
 
