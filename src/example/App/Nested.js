@@ -1,8 +1,10 @@
 import React from 'react';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
-import Collapse from '../../Collapse';
-import * as style from './style';
+import Collapse from '../..';
 import VariableHeight from './VariableHeight';
+
+
+import css from './App.css';
 
 
 const Nested = React.createClass({
@@ -15,41 +17,24 @@ const Nested = React.createClass({
 
 
   render() {
-    const {isOpened, keepContent} = this.state;
+    const {isOpened} = this.state;
 
     return (
       <div>
-        <div style={style.config}>
-          <label style={style.label}>
+        <div className={css.config}>
+          <label className={css.label}>
             Opened:
-            <input style={style.input}
+            <input className={css.input}
               type="checkbox"
               checked={isOpened}
               onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
           </label>
-
-          <label style={style.label}>
-            Keep content:
-            <input style={style.input}
-              type="checkbox"
-              checked={keepContent}
-              onChange={({target: {checked}}) => this.setState({keepContent: checked})} />
-          </label>
         </div>
 
-        <Collapse
-          style={style.container}
-          isOpened={isOpened}
-          keepCollapsedContent={keepContent}>
-          <div style={{padding: 20}}>
-            <VariableHeight />
-          </div>
-          <div style={{padding: 20}}>
-            <VariableHeight />
-          </div>
-          <div style={{padding: 20}}>
-            <VariableHeight />
-          </div>
+        <Collapse theme={css} isOpened={isOpened}>
+          <VariableHeight className={css.subCollapse} />
+          <VariableHeight className={css.subCollapse} />
+          <VariableHeight className={css.subCollapse} />
         </Collapse>
       </div>
     );

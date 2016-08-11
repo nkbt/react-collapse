@@ -44,8 +44,7 @@
   "homepage": "https://github.com/nkbt/react-collapse",
   "peerDependencies": {
     "react": "^0.14 || ^15",
-    "react-motion": "^0.4",
-    "react-height": "^2"
+    "react-motion": "^0.4"
   },
   "devDependencies": {
     "babel-cli": "6.11.4",
@@ -69,7 +68,6 @@
     "nightwatch-autorun": "3.0.0",
     "parallelshell": "2.0.0",
     "react-dom": "15.3.0",
-    "react-height": "2.1.1",
     "react-motion": "0.4.4",
     "react": "15.3.0",
     "rimraf": "2.5.4",

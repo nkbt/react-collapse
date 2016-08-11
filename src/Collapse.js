@@ -1,198 +1,169 @@
 import React from 'react';
 import {Motion, spring} from 'react-motion';
-import HeightReporter from 'react-height';
+import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 
 
-const PRECISION = 0.5;
+const SPRING_PRECISION = 1;
 
 
-const stringHeight = height => Math.max(0, parseFloat(height)).toFixed(1);
+const WAIT = 'WAIT';
+const RESIZE = 'RESIZE';
+const REST = 'REST';
+const STABLE = 'STABLE';
 
 
-const Collapse = React.createClass({
+const noop = () => null;
+const css = {
+  collapse: 'collapse',
+  content: 'content'
+};
+
+
+export const Collapse = React.createClass({
   propTypes: {
     isOpened: React.PropTypes.bool.isRequired,
-    children: React.PropTypes.node.isRequired,
-    style: React.PropTypes.object, // eslint-disable-line react/forbid-prop-types
     springConfig: React.PropTypes.objectOf(React.PropTypes.number),
-    keepCollapsedContent: React.PropTypes.bool,
+
+    theme: React.PropTypes.objectOf(React.PropTypes.string),
+    style: React.PropTypes.object,
+
     onRest: React.PropTypes.func,
-    onHeightReady: React.PropTypes.func
+    onHeightReady: React.PropTypes.func,
+
+    children: React.PropTypes.node.isRequired
   },
 
 
   getDefaultProps() {
     return {
       style: {},
-      keepCollapsedContent: false,
-      onHeightReady: () => {} // eslint-disable-line no-empty-function
+      theme: css,
+      onRest: noop,
+      onHeightReady: noop
     };
   },
 
 
   getInitialState() {
-    return {height: -1, isOpenedChanged: false};
-  },
-
-  componentWillMount() {
-    this.height = stringHeight(0);
-    this.renderStatic = true;
-    this.dirtyHeight = true;
+    return {action: STABLE, from: 0, to: 0};
   },
 
 
-  componentWillReceiveProps({isOpened}) {
-    this.dirtyHeight = isOpened !== this.props.isOpened;
+  componentDidMount() {
+    if (this.props.isOpened) {
+      const to = this.content.clientHeight;
+      this.setState({action: STABLE, from: to, to});
+    }
+    this.props.onRest();
   },
 
 
-  shouldComponentUpdate(props, state) {
-    return this.state.isOpened !== state.isOpened ||
-      this.state.height !== state.height ||
-      this.props.children !== props.children ||
-      this.props.style !== props.style ||
-      this.props.springConfig !== props.springConfig ||
-      this.props.keepCollapsedContent !== props.keepCollapsedContent ||
-      this.props.onRest !== props.onRest ||
-      this.props.onHeightReady !== props.onHeightReady;
-  },
-
-
-  componentDidUpdate({isOpened}) {
-    if (isOpened !== this.props.isOpened) {
-      const report = this.props.isOpened ? this.state.height : 0;
-
-      this.props.onHeightReady(report);
+  componentWillReceiveProps(nextProps) {
+    if (this.state.action === STABLE && (nextProps.isOpened || this.props.isOpened)) {
+      this.setState({action: WAIT});
     }
   },
 
 
-  onHeightReady(height) {
-    const {isOpened, onHeightReady} = this.props;
+  shouldComponentUpdate,
 
-    const isOpenedChangedState = {isOpenedChanged: this.dirtyHeight};
-    const heightState = {height: isOpened || !this.renderStatic ? height : 0};
 
-    this.dirtyHeight = false;
-
-    if (this.renderStatic && isOpened) {
-      this.height = stringHeight(height);
+  componentDidUpdate(_, prevState) {
+    if (this.state.action === STABLE) {
+      this.props.onRest();
+      return;
     }
 
-    this.setState({...isOpenedChangedState, ...heightState});
+    if (prevState.to !== this.state.to) {
+      this.props.onHeightReady(this.state.to);
+    }
 
-    const reportHeight = isOpened ? height : 0;
+    const from = this.wrapper.clientHeight;
+    const to = this.props.isOpened ? this.content.clientHeight : 0;
 
-    if (this.state.height !== reportHeight) {
-      onHeightReady(reportHeight);
+    if (from !== to) {
+      this.setState({action: RESIZE, from, to});
+      return;
+    }
+
+    if (this.state.action === REST) {
+      this.setState({action: STABLE, from, to});
     }
   },
 
 
-  getMotionHeight(height) {
-    const {isOpened, springConfig} = this.props;
-    const {isOpenedChanged} = this.state;
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf);
+  },
 
-    const newHeight = isOpened ? stringHeight(height) : stringHeight(0);
 
-    // No need to animate if content is closed and it was closed previously
-    // Also no need to animate if height did not change
-    const skipAnimation = !isOpenedChanged && !isOpened || this.height === newHeight;
+  onContentRef(content) {
+    this.content = content;
+  },
 
-    const springHeight = spring(isOpened ? Math.max(0, height) : 0, {
-      precision: PRECISION,
-      ...springConfig
-    });
-    const instantHeight = isOpened ? Math.max(0, height) : 0;
 
-    return skipAnimation ? instantHeight : springHeight;
+  onWrapperRef(wrapper) {
+    this.wrapper = wrapper;
+  },
+
+
+  onRest() {
+    this.raf = requestAnimationFrame(() => this.setState({action: REST}));
   },
 
 
   render() {
     const {
-      springConfig: _springConfig,
-      onHeightReady: _onHeightReady,
-      isOpened,
+      isOpened: _isOpened,
+      springConfig,
+      theme,
       style,
+      onRest: _onRest,
+      onHeightReady: _onHeightReady,
       children,
-      keepCollapsedContent,
-      onRest,
       ...props
     } = this.props;
 
-    const renderStatic = this.renderStatic;
-    const {height} = this.state;
-    const currentStringHeight = stringHeight(height);
-
-    if (height > -1 && renderStatic) {
-      this.renderStatic = false;
-    }
-
-    // Cache Content so it is not re-rendered on each animation step
-    const content = (
-      <HeightReporter
-        dirty={this.dirtyHeight}
-        onHeightReady={this.onHeightReady}>
-        {children}
-      </HeightReporter>
-    );
-
-    if (renderStatic) {
-      const newStyle = isOpened ? {height: 'auto'} : {overflow: 'hidden', height: 0};
-
-      if (!isOpened && height > -1) {
-        if (!keepCollapsedContent) {
-          return null;
-        }
-
-        return (
-          <div style={{height: 0, overflow: 'hidden', ...style}} {...props}>
-            {content}
-          </div>
-        );
+    const isAutosize = this.state.action === STABLE && this.state.to;
+    const extraStyle = {};
+    if (isAutosize) {
+      extraStyle.height = 'auto';
+    } else {
+      extraStyle.overflow = 'hidden';
+      if (this.state.action === WAIT && !this.state.to) {
+        extraStyle.height = 0;
+        extraStyle.overflow = 'hidden';
       }
-
-      // <Motion> to prevent loosing input after causing this component to re-render
-      return (
-        <Motion
-          style={{height: Math.max(0, height)}}
-          onRest={onRest}>
-          {() =>
-            <div style={{...newStyle, ...style}} {...props}>{content}</div>
-          }
-        </Motion>
-      );
     }
+
+
+    const motionProps = this.state.action === STABLE ? {
+      // When waiting, instantly jump to the position
+      defaultStyle: {height: this.state.to},
+      style: {height: this.state.to}
+    } : {
+      // Otherwise, animate
+      defaultStyle: {height: this.state.from},
+      style: {height: spring(this.state.to, {precision: SPRING_PRECISION, ...springConfig})}
+    };
+
 
     return (
-      <Motion
-        onRest={onRest}
-        style={{height: this.getMotionHeight(height)}}>
-        {st => {
-          this.height = stringHeight(st.height);
-
-          // TODO: this should be done using onEnd from ReactMotion, which is not yet implemented
-          // See https://github.com/chenglou/react-motion/issues/235
-          if (!isOpened && this.height === '0.0') {
-            if (!keepCollapsedContent) {
-              return null;
-            }
-            return (
-              <div style={{height: 0, overflow: 'hidden', ...style}} {...props}>{content}</div>
-            );
-          }
-
-          const newStyle = isOpened && this.height === currentStringHeight ? {height: 'auto'} : {
-            height: st.height, overflow: 'hidden'
-          };
-
-          return <div style={{...newStyle, ...style}} {...props}>{content}</div>;
-        }}
+      <Motion {...motionProps} onRest={this.onRest}>
+        {({height}) => (
+          <div
+            ref={this.onWrapperRef}
+            className={theme.collapse}
+            style={{
+              ...extraStyle,
+              ...(isAutosize ? {} : {height: Math.max(0, height)}),
+              ...style
+            }}
+            {...props}>
+            <div ref={this.onContentRef} className={theme.content}>{children}</div>
+          </div>
+        )}
       </Motion>
     );
   }
 });
-
-
-export default Collapse;

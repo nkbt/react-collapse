@@ -1,14 +1,24 @@
 import React from 'react';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
-import Collapse from '../../Collapse';
+import Collapse from '../..';
 import text from './text.json';
-import * as style from './style';
+
+
+import css from './App.css';
+
+
 const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
 
 
 const Hooks = React.createClass({
   getInitialState() {
-    return {isOpened: false, keepContent: false, height: -1, paragraphs: 0};
+    return {
+      isOpened: false,
+      isResting: false,
+      keepContent: false,
+      height: -1,
+      paragraphs: 0
+    };
   },
 
 
@@ -20,47 +30,54 @@ const Hooks = React.createClass({
   },
 
 
+  onRest() {
+    this.setState({isResting: true});
+  },
+
+
   render() {
-    const {isOpened, keepContent, height, paragraphs} = this.state;
+    const {isOpened, height, paragraphs} = this.state;
 
     return (
       <div>
-        <div style={style.config}>
-          <label style={style.label}>
+        <div className={css.config}>
+          <label className={css.label}>
             Opened:
-            <input style={style.input}
+            <input className={css.input}
               type="checkbox"
               checked={isOpened}
-              onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
+              onChange={({target: {checked}}) => this.setState({
+                isOpened: checked,
+                isResting: false
+              })} />
           </label>
 
-          <label style={style.label}>
-            Keep content:
-            <input style={style.input}
-              type="checkbox"
-              checked={keepContent}
-              onChange={({target: {checked}}) => this.setState({keepContent: checked})} />
-          </label>
-
-          <label style={style.label}>
+          <label className={css.label}>
             Paragraphs:
-            <input style={style.input}
+            <input className={css.input}
               type="range"
               value={paragraphs} step={1} min={0} max={4}
-              onChange={({target: {value}}) => this.setState({paragraphs: parseInt(value, 10)})} />
+              onChange={({target: {value}}) => this.setState({
+                paragraphs: parseInt(value, 10),
+                isResting: false
+              })} />
             {paragraphs}
           </label>
-          <label style={style.label}>
-            onHeightReady hook: {height}px
+        </div>
+        <div className={css.config}>
+          <label className={css.label}>
+            height: {height}px
+          </label>
+          <label className={css.label}>
+            resting: {this.state.isResting ? 'true' : 'false'}
           </label>
         </div>
         <Collapse
-          className="collapsable"
-          style={style.container}
+          theme={css}
           isOpened={isOpened}
-          keepCollapsedContent={keepContent}
-          onHeightReady={this.onHeightReady}>
-          <div style={{padding: 10}}>{paragraphs ? getText(paragraphs) : <p>No text</p>}</div>
+          onHeightReady={this.onHeightReady}
+          onRest={this.onRest}>
+          <div className={css.text}>{paragraphs ? getText(paragraphs) : <p>No text</p>}</div>
         </Collapse>
       </div>
     );

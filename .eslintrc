@@ -215,7 +215,7 @@
     "max-statements": 0, // specify the maximum number of statement allowed in a function
     "new-cap": [2, {"newIsCap": true, "capIsNew": false}], // require a capital letter for constructors
     "new-parens": 2, // disallow the omission of parentheses when invoking a constructor with no arguments
-    "newline-after-var": [2, "always"], // require or disallow an empty newline after variable declarations
+    "newline-after-var": 0, // require or disallow an empty newline after variable declarations
     "newline-per-chained-call": 0, // enforce newline after each call when chaining the calls
     "no-array-constructor": 2, // disallow use of the Array constructor
     "no-bitwise": 2, // disallow use of bitwise operators
@@ -289,11 +289,11 @@
     // List of supported rules
     //
     "react/display-name": 0, // Prevent missing displayName in a React component definition
-    "react/forbid-prop-types": [2, {"forbid": ["any", "array"]}], // Forbid certain propTypes
+    "react/forbid-prop-types": 0, // Forbid certain propTypes
     "react/no-danger": 2, // Prevent usage of dangerous JSX properties
     "react/no-deprecated": 2, // Prevent usage of deprecated methods
-    "react/no-did-mount-set-state": 2, // Prevent usage of setState in componentDidMount
-    "react/no-did-update-set-state": 2, // Prevent usage of setState in componentDidUpdate
+    "react/no-did-mount-set-state": 0, // Prevent usage of setState in componentDidMount
+    "react/no-did-update-set-state": 0, // Prevent usage of setState in componentDidUpdate
     "react/no-direct-mutation-state": 2, // Prevent direct mutation of this.state
     "react/no-is-mounted": 2, // Prevent usage of isMounted
     "react/no-multi-comp": 0, // Prevent multiple component definition per file
