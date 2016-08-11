@@ -3,9 +3,6 @@ import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin
 import Collapse from '../..';
 
 
-import css from './App.css';
-
-
 const InitiallyOpened = React.createClass({
   getInitialState() {
     return {isOpened: true};
@@ -21,17 +18,17 @@ const InitiallyOpened = React.createClass({
 
     return (
       <div>
-        <div className={css.config}>
-          <label className={css.label}>
+        <div className="config">
+          <label className="label">
             Opened:
-            <input className={css.input}
+            <input className="input"
               type="checkbox"
               checked={isOpened}
               onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
           </label>
         </div>
-        <Collapse theme={css} isOpened={isOpened}>
-          <div style={{height}} className={css.blob} />
+        <Collapse isOpened={isOpened}>
+          <div style={{height}} className="blob" />
         </Collapse>
       </div>
     );

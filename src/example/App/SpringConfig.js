@@ -4,9 +4,6 @@ import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin
 import Collapse from '../..';
 
 
-import css from './App.css';
-
-
 const VariableHeight = React.createClass({
   getInitialState() {
     const preset = 'stiff';
@@ -31,45 +28,45 @@ const VariableHeight = React.createClass({
 
     return (
       <div>
-        <div className={css.config}>
-          <label className={css.label}>
+        <div className="config">
+          <label className="label">
             Opened:
-            <input className={css.input}
+            <input className="input"
               type="checkbox"
               checked={isOpened}
               onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
           </label>
 
-          <label className={css.label}>
+          <label className="label">
             Content height:
-            <input className={css.input}
+            <input className="input"
               type="range"
               value={height} step={50} min={0} max={500}
               onChange={({target: {value}}) => this.setState({height: parseInt(value, 10)})} />
             {height}
           </label>
 
-          <label className={css.label}>
+          <label className="label">
             Preset:
-            <select className={css.input}
+            <select className="input"
               value={preset} step={10} min={0} max={300}
               onChange={this.onChangePreset}>
               {Object.keys(presets).map(p => <option key={p} value={p}>{p}</option>)}
             </select>
           </label>
 
-          <label className={css.label}>
+          <label className="label">
             Stiffness:
-            <input className={css.input}
+            <input className="input"
               type="range"
               value={stiffness} step={10} min={0} max={300}
               onChange={({target: {value}}) => this.setState({stiffness: parseInt(value, 10)})} />
             {stiffness}
           </label>
 
-          <label className={css.label}>
+          <label className="label">
             Damping:
-            <input className={css.input}
+            <input className="input"
               type="range"
               value={damping} step={5} min={0} max={40}
               onChange={({target: {value}}) => this.setState({damping: parseInt(value, 10)})} />
@@ -77,10 +74,10 @@ const VariableHeight = React.createClass({
           </label>
         </div>
         <Collapse
-          theme={css}
+
           isOpened={isOpened}
           springConfig={{stiffness, damping}}>
-          <div style={{height}} className={css.blob} />
+          <div style={{height}} className="blob" />
         </Collapse>
 
       </div>

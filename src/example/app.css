@@ -13,7 +13,11 @@
 
 .text {
   margin: 0;
-  /*padding: 10px;*/
+}
+
+.text p {
+  margin: 0;
+  padding: 10px;
 }
 
 .config {

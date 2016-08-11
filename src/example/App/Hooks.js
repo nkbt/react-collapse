@@ -4,9 +4,6 @@ import Collapse from '../..';
 import text from './text.json';
 
 
-import css from './App.css';
-
-
 const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
 
 
@@ -40,10 +37,10 @@ const Hooks = React.createClass({
 
     return (
       <div>
-        <div className={css.config}>
-          <label className={css.label}>
+        <div className="config">
+          <label className="label">
             Opened:
-            <input className={css.input}
+            <input className="input"
               type="checkbox"
               checked={isOpened}
               onChange={({target: {checked}}) => this.setState({
@@ -52,9 +49,9 @@ const Hooks = React.createClass({
               })} />
           </label>
 
-          <label className={css.label}>
+          <label className="label">
             Paragraphs:
-            <input className={css.input}
+            <input className="input"
               type="range"
               value={paragraphs} step={1} min={0} max={4}
               onChange={({target: {value}}) => this.setState({
@@ -64,20 +61,19 @@ const Hooks = React.createClass({
             {paragraphs}
           </label>
         </div>
-        <div className={css.config}>
-          <label className={css.label}>
+        <div className="config">
+          <label className="label">
             height: {height}px
           </label>
-          <label className={css.label}>
+          <label className="label">
             resting: {this.state.isResting ? 'true' : 'false'}
           </label>
         </div>
         <Collapse
-          theme={css}
           isOpened={isOpened}
           onHeightReady={this.onHeightReady}
           onRest={this.onRest}>
-          <div className={css.text}>{paragraphs ? getText(paragraphs) : <p>No text</p>}</div>
+          <div className="text">{paragraphs ? getText(paragraphs) : <p>No text</p>}</div>
         </Collapse>
       </div>
     );
