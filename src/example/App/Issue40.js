@@ -7,7 +7,7 @@ import VariableHeight from './VariableHeight';
 import css from './App.css';
 
 
-const Nested = React.createClass({
+export const Issue40 = React.createClass({
   getInitialState() {
     return {isOpened: false};
   },
@@ -24,7 +24,8 @@ const Nested = React.createClass({
         <div className={css.config}>
           <label className={css.label}>
             Opened:
-            <input className={css.input}
+            <input
+              className={css.input}
               type="checkbox"
               checked={isOpened}
               onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
@@ -33,13 +34,8 @@ const Nested = React.createClass({
 
         <Collapse theme={css} isOpened={isOpened}>
           <VariableHeight className={css.subCollapse} />
-          <VariableHeight className={css.subCollapse} />
-          <VariableHeight className={css.subCollapse} />
         </Collapse>
       </div>
     );
   }
 });
-
-
-export default Nested;
