@@ -1,10 +1,11 @@
 import React from 'react';
-import VariableText from './VariableText';
-import VariableHeight from './VariableHeight';
-import InitiallyOpened from './InitiallyOpened';
-import SpringConfig from './SpringConfig';
-import Nested from './Nested';
-import Hooks from './Hooks';
+import {VariableText} from './VariableText';
+import {VariableHeight} from './VariableHeight';
+import {FixedHeight} from './FixedHeight';
+import {InitiallyOpened} from './InitiallyOpened';
+import {SpringConfig} from './SpringConfig';
+import {Nested} from './Nested';
+import {Hooks} from './Hooks';
 import {AutoUnmount} from './AutoUnmount';
 
 import {Issue40} from './Issue40';
@@ -14,7 +15,7 @@ import {Issue66} from './Issue66';
 import {name} from '../../../package.json';
 
 
-const App = React.createClass({
+export const App = React.createClass({
   render() {
     return (
       <div className="app">
@@ -34,6 +35,11 @@ const App = React.createClass({
         <section className="section">
           <h2>3. Variable height content</h2>
           <VariableHeight />
+        </section>
+
+        <section className="section">
+          <h2>4. Fixed height content</h2>
+          <FixedHeight />
         </section>
 
         <section className="section">
@@ -100,6 +106,3 @@ const App = React.createClass({
     );
   }
 });
-
-
-export default App;

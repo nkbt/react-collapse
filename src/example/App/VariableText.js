@@ -1,5 +1,5 @@
 import React from 'react';
-import Collapse from '../..';
+import {Collapse} from '../..';
 import text from './text.json';
 
 
@@ -7,7 +7,7 @@ const getText = num => text.slice(0, num)
   .map((p, i) => <p key={i}>{p}</p>);
 
 
-const VariableText = React.createClass({
+export const VariableText = React.createClass({
   propTypes: {
     isOpened: React.PropTypes.bool
   },
@@ -58,6 +58,3 @@ const VariableText = React.createClass({
     );
   }
 });
-
-
-export default VariableText;

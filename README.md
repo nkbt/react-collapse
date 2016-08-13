@@ -70,7 +70,7 @@ then include as
 Default behaviour, never unmounts content
 
 ```js
-import Collapse from 'react-collapse';
+import {Collapse} from 'react-collapse';
 
 // ...
 <Collapse isOpened={true || false}>
@@ -107,6 +107,17 @@ One or multiple children with static, variable or dynamic height.
   <p>Another paragraph is also OK</p>
   <p>Images and any other content are ok too</p>
   <img src="nyancat.gif" />
+</Collapse>
+```
+
+
+#### `fixedHeight`: PropTypes.number
+
+If content's height is known ahead it is possible pass optional `fixedHeight` prop with number of pixels.
+
+```js
+<Collapse isOpened={true} fixedHeight={100}>
+  <div>Animated container will always expand to 100px height</div>
 </Collapse>
 ```
 

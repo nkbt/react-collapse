@@ -1,13 +1,13 @@
 import React from 'react';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
-import Collapse from '../..';
+import {Collapse} from '../..';
 import text from './text.json';
 
 
 const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
 
 
-const Hooks = React.createClass({
+export const Hooks = React.createClass({
   getInitialState() {
     return {
       isOpened: false,
@@ -97,6 +97,3 @@ const Hooks = React.createClass({
     );
   }
 });
-
-
-export default Hooks;

@@ -1,10 +1,10 @@
 import React from 'react';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
-import Collapse from '../..';
-import VariableHeight from './VariableHeight';
+import {Collapse} from '../..';
+import {VariableHeight} from './VariableHeight';
 
 
-const Nested = React.createClass({
+export const Nested = React.createClass({
   getInitialState() {
     return {isOpened: false};
   },
@@ -37,6 +37,3 @@ const Nested = React.createClass({
     );
   }
 });
-
-
-export default Nested;
