@@ -25,6 +25,8 @@ export const Collapse = React.createClass({
     springConfig: React.PropTypes.objectOf(React.PropTypes.number),
     forceInitialAnimation: React.PropTypes.bool,
 
+    fixedHeight: React.PropTypes.number,
+
     theme: React.PropTypes.objectOf(React.PropTypes.string),
     style: React.PropTypes.object,
 
@@ -39,6 +41,7 @@ export const Collapse = React.createClass({
   getDefaultProps() {
     return {
       forceInitialAnimation: false,
+      fixedHeight: -1,
       style: {},
       theme: css,
       onRender: noop,
@@ -60,7 +63,7 @@ export const Collapse = React.createClass({
   componentDidMount() {
     const {isOpened, forceInitialAnimation, onRest} = this.props;
     if (isOpened) {
-      const to = this.content.clientHeight;
+      const to = this.getTo();
       if (forceInitialAnimation) {
         const from = this.wrapper.clientHeight;
         this.setState({currentState: RESIZING, from, to});
@@ -95,7 +98,7 @@ export const Collapse = React.createClass({
     }
 
     const from = this.wrapper.clientHeight;
-    const to = isOpened ? this.content.clientHeight : 0;
+    const to = isOpened ? this.getTo() : 0;
 
     if (from !== to) {
       this.setState({currentState: RESIZING, from, to});
@@ -133,22 +136,26 @@ export const Collapse = React.createClass({
   },
 
 
-  isHeightAuto() {
-    return this.state.currentState === IDLING && this.state.to;
+  getTo() {
+    const {fixedHeight} = this.props;
+    return (fixedHeight > -1) ? fixedHeight : this.content.clientHeight;
   },
 
 
-  getExtraStyles() {
-    if (this.isHeightAuto()) {
+  getWrapperStyle(height) {
+    if (this.state.currentState === IDLING && this.state.to) {
+      const {fixedHeight} = this.props;
+      if (fixedHeight > -1) {
+        return {overflow: 'hidden', height: fixedHeight};
+      }
       return {height: 'auto'};
     }
 
-    const extraStyle = {overflow: 'hidden'};
     if (this.state.currentState === WAITING && !this.state.to) {
-      return {...extraStyle, height: 0};
+      return {overflow: 'hidden', height: 0};
     }
 
-    return extraStyle;
+    return {overflow: 'hidden', height: Math.max(0, height)};
   },
 
 
@@ -172,6 +179,7 @@ export const Collapse = React.createClass({
       isOpened: _isOpened,
       springConfig: _springConfig,
       forceInitialAnimation: _forceInitialAnimation,
+      fixedHeight: _fixedHeight,
       theme,
       style,
       onRender,
@@ -193,11 +201,7 @@ export const Collapse = React.createClass({
       <div
         ref={this.onWrapperRef}
         className={theme.collapse}
-        style={{
-          ...this.getExtraStyles(),
-          ...(this.isHeightAuto() ? {} : {height: Math.max(0, height)}),
-          ...style
-        }}
+        style={{...this.getWrapperStyle(Math.max(0, height)), ...style}}
         {...props}>
         <div ref={this.onContentRef} className={theme.content}>{children}</div>
       </div>

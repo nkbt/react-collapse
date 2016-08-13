@@ -1,9 +1,9 @@
 import React from 'react';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
-import Collapse from '../..';
+import {Collapse} from '../..';
 
 
-const InitiallyOpened = React.createClass({
+export const InitiallyOpened = React.createClass({
   getInitialState() {
     return {isOpened: true};
   },
@@ -34,6 +34,3 @@ const InitiallyOpened = React.createClass({
     );
   }
 });
-
-
-export default InitiallyOpened;

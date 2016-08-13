@@ -1,6 +1,6 @@
 import React from 'react';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
-import Collapse from '../..';
+import {Collapse} from '../..';
 
 
 const styles = {

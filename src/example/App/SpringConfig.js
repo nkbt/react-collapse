@@ -1,10 +1,10 @@
 import React from 'react';
 import {presets} from 'react-motion';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
-import Collapse from '../..';
+import {Collapse} from '../..';
 
 
-const VariableHeight = React.createClass({
+export const SpringConfig = React.createClass({
   getInitialState() {
     const preset = 'stiff';
     const {stiffness, damping} = presets[preset];
@@ -84,6 +84,3 @@ const VariableHeight = React.createClass({
     );
   }
 });
-
-
-export default VariableHeight;

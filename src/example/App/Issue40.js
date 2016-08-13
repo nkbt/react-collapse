@@ -1,7 +1,7 @@
 import React from 'react';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
-import Collapse from '../..';
-import VariableHeight from './VariableHeight';
+import {Collapse} from '../..';
+import {VariableHeight} from './VariableHeight';
 
 
 export const Issue40 = React.createClass({

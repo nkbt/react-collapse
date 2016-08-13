@@ -1,5 +1,5 @@
 import React from 'react';
-import Collapse from '../..';
+import {Collapse} from '../..';
 
 
 const Test = React.createClass({

@@ -3,9 +3,9 @@ import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin
 import {Collapse} from '../..';
 
 
-export const VariableHeight = React.createClass({
+export const FixedHeight = React.createClass({
   getInitialState() {
-    return {isOpened: false, height: 100};
+    return {isOpened: false, height: 100, fixedHeight: 200};
   },
 
 
@@ -13,7 +13,7 @@ export const VariableHeight = React.createClass({
 
 
   render() {
-    const {isOpened, height} = this.state;
+    const {isOpened, height, fixedHeight} = this.state;
 
     return (
       <div {...this.props}>
@@ -34,9 +34,18 @@ export const VariableHeight = React.createClass({
               onChange={({target: {value}}) => this.setState({height: parseInt(value, 10)})} />
             {height}
           </label>
+
+          <label className="label">
+            Collapse height:
+            <input className="input"
+              type="range"
+              value={fixedHeight} step={50} min={0} max={500}
+              onChange={({target: {value}}) => this.setState({fixedHeight: parseInt(value, 10)})} />
+            {fixedHeight}
+          </label>
         </div>
 
-        <Collapse isOpened={isOpened}>
+        <Collapse isOpened={isOpened} fixedHeight={fixedHeight}>
           <div style={{height}} className="blob" />
         </Collapse>
 
