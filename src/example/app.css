@@ -39,6 +39,12 @@
   background: rgba(96, 125, 139, 0.6);
 }
 
+.log {
+  padding: 0.5em;
+  font-size: 0.6em;
+  font-family: Menlo, Consolas, Monospaced, monospace;
+}
+
 .ReactCollapse--collapse {
   max-width: 800px;
   border: 1px solid rgba(3, 169, 244, 0.3);
