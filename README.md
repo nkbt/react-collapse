@@ -135,6 +135,18 @@ As an [example](https://github.com/nutgaard/react-collapse/blob/master/src/examp
 </Collapse>
 ```
 
+#### `onRender`: React.PropTypes.func
+
+Callback function for every re-render while animating.
+**DANGEROUS** use with caution, may have huge performance impact if used improperly. Never do `setState` with it, since it is running while rendering and React will shoot Warning.
+ 
+Possible usage: synchronous scrolling of some other component
+```js
+<Collapse onRender={({height}) => (this.anotherComponent.scrollTop = height)}>
+  <div>Container text</div>
+</Collapse>
+```
+
 #### Pass-through props
 
 All other props are applied to a container that is being resized. So it is possible to pass `style` or `className`, for example.
