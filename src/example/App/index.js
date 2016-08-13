@@ -5,6 +5,7 @@ import InitiallyOpened from './InitiallyOpened';
 import SpringConfig from './SpringConfig';
 import Nested from './Nested';
 import Hooks from './Hooks';
+import {AutoUnmount} from './AutoUnmount';
 
 import {Issue40} from './Issue40';
 import {Issue59} from './Issue59';
@@ -53,6 +54,16 @@ const App = React.createClass({
         <section className="section">
           <h2>7. Hooks</h2>
           <Hooks />
+        </section>
+
+        <section className="section">
+          <h2>8. Auto-unmount when closed</h2>
+          <p>closed by default</p>
+          <AutoUnmount isOpened={false} />
+          <section className="section">
+            <p>opened by default</p>
+            <AutoUnmount isOpened={true} />
+          </section>
         </section>
 
         <h1>Edge cases from issues</h1>

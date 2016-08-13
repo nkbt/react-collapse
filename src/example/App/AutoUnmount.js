@@ -1,5 +1,5 @@
 import React from 'react';
-import Collapse from '../..';
+import {CollapseUnmountClosed} from '../..';
 
 
 const Test = React.createClass({
@@ -25,14 +25,14 @@ const Test = React.createClass({
 });
 
 
-export const Issue66 = React.createClass({
+export const AutoUnmount = React.createClass({
   propTypes: {
     isOpened: React.PropTypes.bool.isRequired
   },
 
 
   getInitialState() {
-    return {shouldRender: false};
+    return {isOpened: this.props.isOpened, shouldRender: false};
   },
 
 
@@ -68,30 +68,27 @@ export const Issue66 = React.createClass({
 
 
   onChange({target: {checked}}) {
-    this.setState({shouldRender: checked});
+    this.setState({isOpened: checked});
   },
 
 
   render() {
+    const {isOpened} = this.state;
+
     return (
       <div>
         <div className="config">
           <label className="label">
-            Should render:
-            <input
-              type="checkbox"
-              checked={this.state.shouldRender}
-              onChange={this.onChange} />
+            Opened:
+            <input className="input" type="checkbox" checked={isOpened} onChange={this.onChange} />
           </label>
         </div>
 
-        <div className="log" ref={this.onRef} />
+        <CollapseUnmountClosed isOpened={isOpened}>
+          <Test onMount={this.onMount} onUnmount={this.onUnmount} />
+        </CollapseUnmountClosed>
 
-        {this.state.shouldRender ? (
-          <Collapse isOpened={this.props.isOpened}>
-            <Test onMount={this.onMount} onUnmount={this.onUnmount} />
-          </Collapse>
-        ) : null}
+        <div className="log" ref={this.onRef} />
       </div>
     );
   }

@@ -23,6 +23,7 @@ export const Collapse = React.createClass({
   propTypes: {
     isOpened: React.PropTypes.bool.isRequired,
     springConfig: React.PropTypes.objectOf(React.PropTypes.number),
+    forceInitialAnimation: React.PropTypes.bool,
 
     theme: React.PropTypes.objectOf(React.PropTypes.string),
     style: React.PropTypes.object,
@@ -37,6 +38,7 @@ export const Collapse = React.createClass({
 
   getDefaultProps() {
     return {
+      forceInitialAnimation: false,
       style: {},
       theme: css,
       onRender: noop,
@@ -47,15 +49,24 @@ export const Collapse = React.createClass({
 
 
   getInitialState() {
-    return {currentState: IDLING, from: 0, to: 0};
+    return {
+      currentState: IDLING,
+      from: 0,
+      to: 0
+    };
   },
 
 
   componentDidMount() {
-    const {isOpened, onRest} = this.props;
+    const {isOpened, forceInitialAnimation, onRest} = this.props;
     if (isOpened) {
       const to = this.content.clientHeight;
-      this.setState({currentState: IDLING, from: to, to});
+      if (forceInitialAnimation) {
+        const from = this.wrapper.clientHeight;
+        this.setState({currentState: RESIZING, from, to});
+      } else {
+        this.setState({currentState: IDLING, from: to, to});
+      }
     }
     onRest();
   },
@@ -160,6 +171,7 @@ export const Collapse = React.createClass({
     const {
       isOpened: _isOpened,
       springConfig: _springConfig,
+      forceInitialAnimation: _forceInitialAnimation,
       theme,
       style,
       onRender,

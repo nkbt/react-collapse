@@ -66,10 +66,27 @@ then include as
 [http://codepen.io/nkbt/pen/MarzEg](http://codepen.io/nkbt/pen/MarzEg?editors=101)
 
 ## Usage
+
+Default behaviour, never unmounts content
+
 ```js
+import Collapse from 'react-collapse';
+
+// ...
 <Collapse isOpened={true || false}>
   <div>Random content</div>
 </Collapse>
+```
+
+If you want to unmount collapsed content, use `Unmount` component provided as:
+
+```js
+import {CollapseUnmountClosed} from 'react-collapse';
+
+// ...
+<CollapseUnmountClosed isOpened={true || false}>
+  <div>Random content</div>
+</CollapseUnmountClosed>
 ```
 
 ## Options
@@ -111,6 +128,12 @@ import {presets} from 'react-motion';
   <div>Customly animated container</div>
 </Collapse>
 ```
+
+#### `forceInitialAnimation: PropTypes.boolean
+
+When initially opened, by default collapse content will be opened without animation, instantly. With this option set to `true` you can enforce initial rendering to be smoothly expanded from 0.
+It is used internally in `Unmount` component implementation.
+
 
 #### `onRest`: React.PropTypes.func
 
