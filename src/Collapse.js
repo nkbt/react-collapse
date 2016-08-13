@@ -50,11 +50,12 @@ export const Collapse = React.createClass({
 
 
   componentDidMount() {
-    if (this.props.isOpened) {
+    const {isOpened, onRest} = this.props;
+    if (isOpened) {
       const to = this.content.clientHeight;
       this.setState({action: STABLE, from: to, to});
     }
-    this.props.onRest();
+    onRest();
   },
 
 
@@ -69,17 +70,19 @@ export const Collapse = React.createClass({
 
 
   componentDidUpdate(_, prevState) {
+    const {isOpened, onRest, onHeightReady} = this.props;
+
     if (this.state.action === STABLE) {
-      this.props.onRest();
+      onRest();
       return;
     }
 
     if (prevState.to !== this.state.to) {
-      this.props.onHeightReady(this.state.to);
+      onHeightReady(this.state.to);
     }
 
     const from = this.wrapper.clientHeight;
-    const to = this.props.isOpened ? this.content.clientHeight : 0;
+    const to = isOpened ? this.content.clientHeight : 0;
 
     if (from !== to) {
       this.setState({action: RESIZE, from, to});
