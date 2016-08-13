@@ -15,6 +15,7 @@ const Hooks = React.createClass({
       renderHeight: -1,
       keepContent: false,
       height: -1,
+      width: -1,
       paragraphs: 0
     };
   },
@@ -30,8 +31,8 @@ const Hooks = React.createClass({
   },
 
 
-  onHeightReady(height) {
-    this.setState({height});
+  onMeasure({height, width}) {
+    this.setState({height, width});
   },
 
 
@@ -41,7 +42,7 @@ const Hooks = React.createClass({
 
 
   render() {
-    const {isOpened, height, paragraphs} = this.state;
+    const {isOpened, height, width, paragraphs} = this.state;
 
     return (
       <div>
@@ -74,6 +75,9 @@ const Hooks = React.createClass({
             height: {height}px
           </label>
           <label className="label">
+            width: {width}px
+          </label>
+          <label className="label">
             resting: {this.state.isResting ? 'true' : 'false'}
           </label>
           <label className="label">
@@ -83,7 +87,7 @@ const Hooks = React.createClass({
         <Collapse
           isOpened={isOpened}
           onRender={this.onRender}
-          onHeightReady={this.onHeightReady}
+          onMeasure={this.onMeasure}
           onRest={this.onRest}>
           <div className="text">{paragraphs ? getText(paragraphs) : <p>No text</p>}</div>
         </Collapse>

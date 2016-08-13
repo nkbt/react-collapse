@@ -124,10 +124,16 @@ It can be used to trigger any function after animation is done.
 </Collapse>
 ```
 
-#### `onHeightReady`: React.PropTypes.func
+#### `onMeasure`: React.PropTypes.func
 
-Callback function for changes in height.
+Callback function for changes in height. Also passes measured width.
 As an [example](https://github.com/nutgaard/react-collapse/blob/master/src/example/App/Hooks.js) it can be used to implement auto-scroll if content expand below the fold.
+
+```js
+<Collapse onMeasure={({height, width}) => this.setState({height, width})}>
+  <div>Container text</div>
+</Collapse>
+```
 
 #### Pass-through props
 

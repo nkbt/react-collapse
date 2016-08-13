@@ -29,7 +29,7 @@ export const Collapse = React.createClass({
 
     onRender: React.PropTypes.func,
     onRest: React.PropTypes.func,
-    onHeightReady: React.PropTypes.func,
+    onMeasure: React.PropTypes.func,
 
     children: React.PropTypes.node.isRequired
   },
@@ -41,7 +41,7 @@ export const Collapse = React.createClass({
       theme: css,
       onRender: noop,
       onRest: noop,
-      onHeightReady: noop
+      onMeasure: noop
     };
   },
 
@@ -72,7 +72,7 @@ export const Collapse = React.createClass({
 
 
   componentDidUpdate(_, prevState) {
-    const {isOpened, onRest, onHeightReady} = this.props;
+    const {isOpened, onRest, onMeasure} = this.props;
 
     if (this.state.currentState === IDLING) {
       onRest();
@@ -80,7 +80,7 @@ export const Collapse = React.createClass({
     }
 
     if (prevState.to !== this.state.to) {
-      onHeightReady(this.state.to);
+      onMeasure({height: this.state.to, width: this.content.clientWidth});
     }
 
     const from = this.wrapper.clientHeight;
@@ -164,7 +164,7 @@ export const Collapse = React.createClass({
       style,
       onRender,
       onRest: _onRest,
-      onHeightReady: _onHeightReady,
+      onMeasure: _onMeasure,
       children,
       ...props
     } = this.props;
