@@ -39,13 +39,13 @@
   background: rgba(96, 125, 139, 0.6);
 }
 
-.collapse {
+.ReactCollapse--collapse {
   max-width: 800px;
   border: 1px solid rgba(3, 169, 244, 0.3);
   border-radius: 10px;
   background-color: rgba(100, 255, 100, 0.1);
 }
 
-.content {
+.ReactCollapse--content {
 }
 

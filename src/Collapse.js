@@ -14,8 +14,8 @@ const IDLING = 'IDLING';
 
 const noop = () => null;
 const css = {
-  collapse: 'collapse',
-  content: 'content'
+  collapse: 'ReactCollapse--collapse',
+  content: 'ReactCollapse--content'
 };
 
 
