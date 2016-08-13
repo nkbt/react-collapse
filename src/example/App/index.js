@@ -8,6 +8,7 @@ import Hooks from './Hooks';
 
 import {Issue40} from './Issue40';
 import {Issue59} from './Issue59';
+import {Issue66} from './Issue66';
 
 import {name} from '../../../package.json';
 
@@ -73,6 +74,16 @@ const App = React.createClass({
           <Issue59 />
         </section>
 
+        <section className="section">
+          <h2>
+            <a target="_blank" href="https://github.com/nkbt/react-collapse/issues/66">66</a>.
+            Unnecessary unmount with keepCollapsedContent
+          </h2>
+          <p>Opened by default</p>
+          <Issue66 isOpened={true} />
+          <p>Closed by default</p>
+          <Issue66 isOpened={false} />
+        </section>
 
       </div>
     );
