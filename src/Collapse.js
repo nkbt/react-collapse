@@ -169,8 +169,13 @@ export const Collapse = React.createClass({
       ...props
     } = this.props;
 
+    const {
+      from,
+      to
+    } = this.state;
+
     // DANGEROUS, use with caution, never do setState with it
-    onRender({height});
+    onRender({current: height, from, to});
 
     return (
       <div

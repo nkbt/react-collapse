@@ -24,9 +24,13 @@ const Hooks = React.createClass({
   shouldComponentUpdate,
 
 
-  onRender({height}) {
+  onRender({current, from, to}) {
     if (this.ref) {
-      this.ref.innerHTML = height.toFixed(2);
+      this.ref.innerHTML = `
+        from: ${from.toFixed(2)},
+        to: ${to.toFixed(2)},
+        current: ${current.toFixed(2)}
+      `;
     }
   },
 
@@ -80,9 +84,7 @@ const Hooks = React.createClass({
           <label className="label">
             resting: {this.state.isResting ? 'true' : 'false'}
           </label>
-          <label className="label">
-            current: <span ref={ref => (this.ref = ref)} />px
-          </label>
+          <label className="label" ref={ref => (this.ref = ref)} />
         </div>
         <Collapse
           isOpened={isOpened}
