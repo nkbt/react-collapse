@@ -70,7 +70,7 @@ then include as
 Default behaviour, never unmounts content
 
 ```js
-import Collapse from 'react-collapse';
+import {Collapse} from 'react-collapse';
 
 // ...
 <Collapse isOpened={true || false}>
