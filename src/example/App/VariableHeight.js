@@ -1,12 +1,11 @@
 import React from 'react';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
-import Collapse from '../../Collapse';
-import * as style from './style';
+import Collapse from '../..';
 
 
 const VariableHeight = React.createClass({
   getInitialState() {
-    return {isOpened: false, keepContent: false, height: 100};
+    return {isOpened: false, height: 100};
   },
 
 
@@ -14,30 +13,22 @@ const VariableHeight = React.createClass({
 
 
   render() {
-    const {isOpened, keepContent, height} = this.state;
+    const {isOpened, height} = this.state;
 
     return (
-      <div>
-        <div style={style.config}>
-          <label style={style.label}>
+      <div {...this.props}>
+        <div className="config">
+          <label className="label">
             Opened:
-            <input style={style.input}
+            <input className="input"
               type="checkbox"
               checked={isOpened}
               onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
           </label>
 
-          <label style={style.label}>
-            Keep content:
-            <input style={style.input}
-              type="checkbox"
-              checked={keepContent}
-              onChange={({target: {checked}}) => this.setState({keepContent: checked})} />
-          </label>
-
-          <label style={style.label}>
+          <label className="label">
             Content height:
-            <input style={style.input}
+            <input className="input"
               type="range"
               value={height} step={50} min={0} max={500}
               onChange={({target: {value}}) => this.setState({height: parseInt(value, 10)})} />
@@ -45,11 +36,8 @@ const VariableHeight = React.createClass({
           </label>
         </div>
 
-        <Collapse
-          style={style.container}
-          isOpened={isOpened}
-          keepCollapsedContent={keepContent}>
-          <div style={{...style.getContent(height), height}} />
+        <Collapse isOpened={isOpened}>
+          <div style={{height}} className="blob" />
         </Collapse>
 
       </div>

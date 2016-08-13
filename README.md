@@ -19,10 +19,10 @@ Component-wrapper for collapse animation with react-motion for elements with var
 ### NPM
 
 ```sh
-npm install --save react react-motion react-height react-collapse
+npm install --save react react-motion react-collapse
 ```
 
-Don't forget to manually install peer dependencies (`react`, `react-motion`, `react-height`) if you use npm@3.
+Don't forget to manually install peer dependencies (`react`, `react-motion`) if you use npm@3.
 
 
 ### Bower:
@@ -43,7 +43,6 @@ or in `bower.json`
 then include as
 ```html
 <script src="bower_components/react/react.js"></script>
-<script src="bower_components/react-height/build/react-height.js"></script>
 <script src="bower_components/react-motion/build/react-motion.js"></script>
 <script src="bower_components/react-collapse/build/react-collapse.js"></script>
 ```
@@ -52,7 +51,6 @@ then include as
 ### 1998 Script Tag:
 ```html
 <script src="https://npmcdn.com/react/dist/react.js"></script>
-<script src="https://npmcdn.com/react-height/build/react-height.js"></script>
 <script src="https://npmcdn.com/react-motion/build/react-motion.js"></script>
 <script src="https://npmcdn.com/react-collapse/build/react-collapse.js"></script>
 (Module exposed as `ReactCollapse`)
@@ -96,17 +94,6 @@ One or multiple children with static, variable or dynamic height.
 ```
 
 
-#### `fixedHeight`: PropTypes.number
-
-If content's height is known ahead it is possible to bypass the process of content height calculation by passing optional `fixedHeight` prop with number of pixels.
-
-```js
-<Collapse isOpened={true} fixedHeight={100}>
-  <div>Animated container will always expand to 100px height</div>
-</Collapse>
-```
-
-
 #### `springConfig`: React.PropTypes.objectOf(React.PropTypes.number)
 
 Custom config `{stiffness, damping, precision}` passed to the spring function (see https://github.com/chenglou/react-motion#--spring-val-number-config-springhelperconfig--opaqueconfig)
@@ -125,10 +112,6 @@ import {presets} from 'react-motion';
 </Collapse>
 ```
 
-#### `keepCollapsedContent`: React.PropTypes.bool (default: `false`)
-
-By default ReactCollapse destroys content of collapsed element. setting `keepCollapsedContent` to `true` allows to keep content. ReactCollapse renders container with `height: 0` and `overflow: hidden` (with all the content untouched) when closed instead of destroying it. See #18 for details.
-
 #### `onRest`: React.PropTypes.func
 
 Callback function for animation finished from
@@ -141,10 +124,31 @@ It can be used to trigger any function after animation is done.
 </Collapse>
 ```
 
-#### `onHeightReady`: React.PropTypes.func
+#### `onMeasure`: React.PropTypes.func
 
-Callback function for changes in height as reported by [react-height](https://github.com/nkbt/react-height).
+Callback function for changes in height. Also passes measured width.
 As an [example](https://github.com/nutgaard/react-collapse/blob/master/src/example/App/Hooks.js) it can be used to implement auto-scroll if content expand below the fold.
+
+```js
+<Collapse onMeasure={({height, width}) => this.setState({height, width})}>
+  <div>Container text</div>
+</Collapse>
+```
+
+#### `onRender`: React.PropTypes.func
+
+Callback function for every re-render while animating.
+
+Passes `current` height, as well as `from`/`to` heights.
+
+**DANGEROUS** use with caution, may have huge performance impact if used improperly. Never do `setState` with it, since it is running while rendering and React will shoot Warning.
+ 
+Possible usage: synchronous scrolling of some other component
+```js
+<Collapse onRender={({current, from, to}) => (this.anotherComponent.scrollTop = current)}>
+  <div>Container text</div>
+</Collapse>
+```
 
 #### Pass-through props
 

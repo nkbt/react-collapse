@@ -1,73 +1,88 @@
 import React from 'react';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import VariableText from './VariableText';
 import VariableHeight from './VariableHeight';
 import InitiallyOpened from './InitiallyOpened';
-import FixedHeight from './FixedHeight';
 import SpringConfig from './SpringConfig';
 import Nested from './Nested';
 import Hooks from './Hooks';
+
+import {Issue40} from './Issue40';
+import {Issue59} from './Issue59';
+import {Issue66} from './Issue66';
+
 import {name} from '../../../package.json';
 
 
-const style = {
-  container: {
-    padding: 20
-  },
-  section: {
-    paddingTop: 30
-  }
-};
-
-
 const App = React.createClass({
-  shouldComponentUpdate,
-
-
   render() {
     return (
-      <div style={style.container}>
+      <div className="app">
 
         <h1>{name}</h1>
 
-        <section style={style.section}>
-          <h2>Example 1. Variable text</h2>
+        <section className="section">
+          <h2>1. Variable text</h2>
           <VariableText />
         </section>
 
-        <section style={style.section}>
-          <h2>Example 1.1. Variable text (initially opened)</h2>
+        <section className="section">
+          <h2>2. Variable text (initially opened)</h2>
           <VariableText isOpened={true} />
         </section>
 
-        <section style={style.section}>
-          <h2>Example 2. Variable height content</h2>
-          <VariableHeight keepCollapsedContent={true} />
+        <section className="section">
+          <h2>3. Variable height content</h2>
+          <VariableHeight />
         </section>
 
-        <section style={style.section}>
-          <h2>Example 3. Initially opened</h2>
+        <section className="section">
+          <h2>4. Initially opened</h2>
           <InitiallyOpened />
         </section>
 
-        <section style={style.section}>
-          <h2>Example 4. Fixed Collapse height</h2>
-          <FixedHeight />
-        </section>
-
-        <section style={style.section}>
-          <h2>Example 5. Custom spring configuration</h2>
+        <section className="section">
+          <h2>5. Custom spring configuration</h2>
           <SpringConfig />
         </section>
 
-        <section style={style.section}>
-          <h2>Example 6. Nested Collapse</h2>
+        <section className="section">
+          <h2>6. Nested Collapse</h2>
           <Nested />
         </section>
 
-        <section style={style.section}>
-          <h2>Example 7. Hooks</h2>
+        <section className="section">
+          <h2>7. Hooks</h2>
           <Hooks />
+        </section>
+
+        <h1>Edge cases from issues</h1>
+
+        <section className="section">
+          <h2>
+            <a target="_blank" href="https://github.com/nkbt/react-collapse/issues/40">40</a>.
+            Re-render nested components
+          </h2>
+          <Issue40 />
+        </section>
+
+
+        <section className="section">
+          <h2>
+            <a target="_blank" href="https://github.com/nkbt/react-collapse/issues/59">59</a>.
+            Instantly collapses if re-rendered during collapse
+          </h2>
+          <Issue59 />
+        </section>
+
+        <section className="section">
+          <h2>
+            <a target="_blank" href="https://github.com/nkbt/react-collapse/issues/66">66</a>.
+            Unnecessary unmount with keepCollapsedContent
+          </h2>
+          <p>Opened by default</p>
+          <Issue66 isOpened={true} />
+          <p>Closed by default</p>
+          <Issue66 isOpened={false} />
         </section>
 
       </div>

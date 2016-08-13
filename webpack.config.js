@@ -9,7 +9,7 @@ const path = require('path');
 const loaders = [
   {
     test: /\.css$/,
-    loader: 'style!css?sourceMap&modules&localIdentName=[path][name]---[local]',
+    loader: 'style!css',
     include: [path.resolve('src/example')]
   },
   {test: /\.json$/, loader: 'json'},
@@ -36,6 +36,8 @@ const development = {
   devtool: '#source-map',
 
   entry: [
+    './src/example/reset.css',
+    './src/example/app.css',
     './src/example/Example.js',
     'webpack-dev-server/client?http://localhost:8080'
   ],
@@ -81,12 +83,6 @@ const externals = {
     commonjs2: 'react-motion',
     commonjs: 'react-motion',
     amd: 'react-motion'
-  },
-  'react-height': {
-    root: 'ReactHeight',
-    commonjs2: 'react-height',
-    commonjs: 'react-height',
-    amd: 'react-height'
   }
 };
 

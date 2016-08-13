@@ -1,11 +1,12 @@
 import React from 'react';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import Collapse from '../..';
+import VariableHeight from './VariableHeight';
 
 
-const InitiallyOpened = React.createClass({
+export const Issue40 = React.createClass({
   getInitialState() {
-    return {isOpened: true};
+    return {isOpened: false};
   },
 
 
@@ -14,26 +15,24 @@ const InitiallyOpened = React.createClass({
 
   render() {
     const {isOpened} = this.state;
-    const height = 100;
 
     return (
       <div>
         <div className="config">
           <label className="label">
             Opened:
-            <input className="input"
+            <input
+              className="input"
               type="checkbox"
               checked={isOpened}
               onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
           </label>
         </div>
+
         <Collapse isOpened={isOpened}>
-          <div style={{height}} className="blob" />
+          <VariableHeight className="subCollapse" />
         </Collapse>
       </div>
     );
   }
 });
-
-
-export default InitiallyOpened;
