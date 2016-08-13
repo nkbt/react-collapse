@@ -111,7 +111,12 @@ export const Collapse = React.createClass({
 
 
   onRest() {
-    this.raf = requestAnimationFrame(() => this.setState({currentState: RESTING}));
+    this.raf = requestAnimationFrame(this.setResting);
+  },
+
+
+  setResting() {
+    this.setState({currentState: RESTING});
   },
 
 
