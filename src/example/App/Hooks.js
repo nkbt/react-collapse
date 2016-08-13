@@ -12,6 +12,7 @@ const Hooks = React.createClass({
     return {
       isOpened: false,
       isResting: false,
+      renderHeight: -1,
       keepContent: false,
       height: -1,
       paragraphs: 0
@@ -20,6 +21,13 @@ const Hooks = React.createClass({
 
 
   shouldComponentUpdate,
+
+
+  onRender({height}) {
+    if (this.ref) {
+      this.ref.innerHTML = height.toFixed(2);
+    }
+  },
 
 
   onHeightReady(height) {
@@ -68,9 +76,13 @@ const Hooks = React.createClass({
           <label className="label">
             resting: {this.state.isResting ? 'true' : 'false'}
           </label>
+          <label className="label">
+            current: <span ref={ref => (this.ref = ref)} />px
+          </label>
         </div>
         <Collapse
           isOpened={isOpened}
+          onRender={this.onRender}
           onHeightReady={this.onHeightReady}
           onRest={this.onRest}>
           <div className="text">{paragraphs ? getText(paragraphs) : <p>No text</p>}</div>

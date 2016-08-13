@@ -27,6 +27,7 @@ export const Collapse = React.createClass({
     theme: React.PropTypes.objectOf(React.PropTypes.string),
     style: React.PropTypes.object,
 
+    onRender: React.PropTypes.func,
     onRest: React.PropTypes.func,
     onHeightReady: React.PropTypes.func,
 
@@ -38,6 +39,7 @@ export const Collapse = React.createClass({
     return {
       style: {},
       theme: css,
+      onRender: noop,
       onRest: noop,
       onHeightReady: noop
     };
@@ -160,11 +162,15 @@ export const Collapse = React.createClass({
       springConfig: _springConfig,
       theme,
       style,
+      onRender,
       onRest: _onRest,
       onHeightReady: _onHeightReady,
       children,
       ...props
     } = this.props;
+
+    // DANGEROUS, use with caution, never do setState with it
+    onRender({height});
 
     return (
       <div
