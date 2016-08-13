@@ -6,10 +6,10 @@ import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin
 const SPRING_PRECISION = 1;
 
 
-const WAIT = 'WAIT';
-const RESIZE = 'RESIZE';
-const REST = 'REST';
-const STABLE = 'STABLE';
+const WAITING = 'WAITING';
+const RESIZING = 'RESIZING';
+const RESTING = 'RESTING';
+const IDLING = 'IDLING';
 
 
 const noop = () => null;
@@ -45,7 +45,7 @@ export const Collapse = React.createClass({
 
 
   getInitialState() {
-    return {action: STABLE, from: 0, to: 0};
+    return {currentState: IDLING, from: 0, to: 0};
   },
 
 
@@ -53,15 +53,15 @@ export const Collapse = React.createClass({
     const {isOpened, onRest} = this.props;
     if (isOpened) {
       const to = this.content.clientHeight;
-      this.setState({action: STABLE, from: to, to});
+      this.setState({currentState: IDLING, from: to, to});
     }
     onRest();
   },
 
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.action === STABLE && (nextProps.isOpened || this.props.isOpened)) {
-      this.setState({action: WAIT});
+    if (this.state.currentState === IDLING && (nextProps.isOpened || this.props.isOpened)) {
+      this.setState({currentState: WAITING});
     }
   },
 
@@ -72,7 +72,7 @@ export const Collapse = React.createClass({
   componentDidUpdate(_, prevState) {
     const {isOpened, onRest, onHeightReady} = this.props;
 
-    if (this.state.action === STABLE) {
+    if (this.state.currentState === IDLING) {
       onRest();
       return;
     }
@@ -85,12 +85,12 @@ export const Collapse = React.createClass({
     const to = isOpened ? this.content.clientHeight : 0;
 
     if (from !== to) {
-      this.setState({action: RESIZE, from, to});
+      this.setState({currentState: RESIZING, from, to});
       return;
     }
 
-    if (this.state.action === REST) {
-      this.setState({action: STABLE, from, to});
+    if (this.state.currentState === RESTING) {
+      this.setState({currentState: IDLING, from, to});
     }
   },
 
@@ -111,14 +111,48 @@ export const Collapse = React.createClass({
 
 
   onRest() {
-    this.raf = requestAnimationFrame(() => this.setState({action: REST}));
+    this.raf = requestAnimationFrame(() => this.setState({currentState: RESTING}));
   },
 
 
-  render() {
+  isHeightAuto() {
+    return this.state.currentState === IDLING && this.state.to;
+  },
+
+
+  getExtraStyles() {
+    if (this.isHeightAuto()) {
+      return {height: 'auto'};
+    }
+
+    const extraStyle = {overflow: 'hidden'};
+    if (this.state.currentState === WAITING && !this.state.to) {
+      return {...extraStyle, height: 0};
+    }
+
+    return extraStyle;
+  },
+
+
+  getMotionProps() {
+    const {springConfig} = this.props;
+
+    return this.state.currentState === IDLING ? {
+      // When completely stable, instantly jump to the position
+      defaultStyle: {height: this.state.to},
+      style: {height: this.state.to}
+    } : {
+      // Otherwise, animate
+      defaultStyle: {height: this.state.from},
+      style: {height: spring(this.state.to, {precision: SPRING_PRECISION, ...springConfig})}
+    };
+  },
+
+
+  renderContent({height}) {
     const {
       isOpened: _isOpened,
-      springConfig,
+      springConfig: _springConfig,
       theme,
       style,
       onRest: _onRest,
@@ -127,46 +161,28 @@ export const Collapse = React.createClass({
       ...props
     } = this.props;
 
-    const isAutosize = this.state.action === STABLE && this.state.to;
-    const extraStyle = {};
-    if (isAutosize) {
-      extraStyle.height = 'auto';
-    } else {
-      extraStyle.overflow = 'hidden';
-      if (this.state.action === WAIT && !this.state.to) {
-        extraStyle.height = 0;
-        extraStyle.overflow = 'hidden';
-      }
-    }
-
-
-    const motionProps = this.state.action === STABLE ? {
-      // When waiting, instantly jump to the position
-      defaultStyle: {height: this.state.to},
-      style: {height: this.state.to}
-    } : {
-      // Otherwise, animate
-      defaultStyle: {height: this.state.from},
-      style: {height: spring(this.state.to, {precision: SPRING_PRECISION, ...springConfig})}
-    };
-
-
     return (
-      <Motion {...motionProps} onRest={this.onRest}>
-        {({height}) => (
-          <div
-            ref={this.onWrapperRef}
-            className={theme.collapse}
-            style={{
-              ...extraStyle,
-              ...(isAutosize ? {} : {height: Math.max(0, height)}),
-              ...style
-            }}
-            {...props}>
-            <div ref={this.onContentRef} className={theme.content}>{children}</div>
-          </div>
-        )}
-      </Motion>
+      <div
+        ref={this.onWrapperRef}
+        className={theme.collapse}
+        style={{
+          ...this.getExtraStyles(),
+          ...(this.isHeightAuto() ? {} : {height: Math.max(0, height)}),
+          ...style
+        }}
+        {...props}>
+        <div ref={this.onContentRef} className={theme.content}>{children}</div>
+      </div>
+    );
+  },
+
+
+  render() {
+    return (
+      <Motion
+        {...this.getMotionProps()}
+        onRest={this.onRest}
+        children={this.renderContent} />
     );
   }
 });
