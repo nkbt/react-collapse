@@ -1,5 +1,5 @@
 import React from 'react';
-import {CollapseUnmountClosed} from '../..';
+import {UnmountClosed} from '../..';
 
 
 const Test = React.createClass({
@@ -84,9 +84,9 @@ export const AutoUnmount = React.createClass({
           </label>
         </div>
 
-        <CollapseUnmountClosed isOpened={isOpened}>
+        <UnmountClosed isOpened={isOpened}>
           <Test onMount={this.onMount} onUnmount={this.onUnmount} />
-        </CollapseUnmountClosed>
+        </UnmountClosed>
 
         <div className="log" ref={this.onRef} />
       </div>
