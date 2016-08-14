@@ -81,12 +81,12 @@ import {Collapse} from 'react-collapse';
 If you want to unmount collapsed content, use `Unmount` component provided as:
 
 ```js
-import {CollapseUnmountClosed} from 'react-collapse';
+import {UnmountClosed} from 'react-collapse';
 
 // ...
-<CollapseUnmountClosed isOpened={true || false}>
+<UnmountClosed isOpened={true || false}>
   <div>Random content</div>
-</CollapseUnmountClosed>
+</UnmountClosed>
 ```
 
 ## Options

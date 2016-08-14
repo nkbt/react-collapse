@@ -3,7 +3,7 @@ import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin
 import {Collapse} from './Collapse';
 
 
-export const Unmount = React.createClass({
+export const UnmountClosed = React.createClass({
   propTypes: {
     isOpened: React.PropTypes.bool.isRequired,
     onRest: React.PropTypes.func

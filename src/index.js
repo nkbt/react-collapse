@@ -2,11 +2,11 @@
 
 
 const {Collapse} = require('./Collapse');
-const {Unmount} = require('./Unmount');
+const {UnmountClosed} = require('./UnmountClosed');
 
 
 Collapse.Collapse = Collapse;
-Collapse.CollapseUnmountClosed = Unmount;
+Collapse.UnmountClosed = UnmountClosed;
 
 
 module.exports = Collapse;
