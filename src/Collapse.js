@@ -25,6 +25,8 @@ export const Collapse = React.createClass({
     springConfig: React.PropTypes.objectOf(React.PropTypes.number),
     forceInitialAnimation: React.PropTypes.bool,
 
+    hasNestedCollapse: React.PropTypes.bool,
+
     fixedHeight: React.PropTypes.number,
 
     theme: React.PropTypes.objectOf(React.PropTypes.string),
@@ -41,6 +43,7 @@ export const Collapse = React.createClass({
   getDefaultProps() {
     return {
       forceInitialAnimation: false,
+      hasNestedCollapse: false,
       fixedHeight: -1,
       style: {},
       theme: css,
@@ -76,8 +79,13 @@ export const Collapse = React.createClass({
 
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.currentState === IDLING && (nextProps.isOpened || this.props.isOpened)) {
-      this.setState({currentState: WAITING});
+    // For nested collapses we do not need to change to waiting state and should keep `height:auto`
+    // Because children will be animated and height will not jump anyway
+    // See https://github.com/nkbt/react-collapse/issues/76 for more details
+    if (!nextProps.hasNestedCollapse) {
+      if (this.state.currentState === IDLING && (nextProps.isOpened || this.props.isOpened)) {
+        this.setState({currentState: WAITING});
+      }
     }
   },
 
