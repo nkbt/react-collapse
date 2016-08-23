@@ -79,13 +79,17 @@ export const Collapse = React.createClass({
 
 
   componentWillReceiveProps(nextProps) {
-    // For nested collapses we do not need to change to waiting state and should keep `height:auto`
-    // Because children will be animated and height will not jump anyway
-    // See https://github.com/nkbt/react-collapse/issues/76 for more details
-    if (!nextProps.hasNestedCollapse) {
-      if (this.state.currentState === IDLING && (nextProps.isOpened || this.props.isOpened)) {
+    if (nextProps.hasNestedCollapse) {
+      // For nested collapses we do not need to change to waiting state
+      // and should keep `height:auto`
+      // Because children will be animated and height will not jump anyway
+      // See https://github.com/nkbt/react-collapse/issues/76 for more details
+      if (nextProps.isOpened !== this.props.isOpened) {
+        // Still go to WAITING state if own isOpened was changed
         this.setState({currentState: WAITING});
       }
+    } else if (this.state.currentState === IDLING && (nextProps.isOpened || this.props.isOpened)) {
+      this.setState({currentState: WAITING});
     }
   },
 
