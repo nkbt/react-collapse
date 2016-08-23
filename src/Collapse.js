@@ -187,6 +187,7 @@ export const Collapse = React.createClass({
       isOpened: _isOpened,
       springConfig: _springConfig,
       forceInitialAnimation: _forceInitialAnimation,
+      hasNestedCollapse: _hasNestedCollapse,
       fixedHeight: _fixedHeight,
       theme,
       style,
