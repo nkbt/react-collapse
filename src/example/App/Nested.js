@@ -28,7 +28,7 @@ export const Nested = React.createClass({
           </label>
         </div>
 
-        <Collapse isOpened={isOpened}>
+        <Collapse isOpened={isOpened} hasNestedCollapse={true}>
           <VariableHeight className="subCollapse" />
           <VariableHeight className="subCollapse" />
           <VariableHeight className="subCollapse" />
