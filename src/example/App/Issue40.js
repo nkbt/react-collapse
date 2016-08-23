@@ -29,7 +29,7 @@ export const Issue40 = React.createClass({
           </label>
         </div>
 
-        <Collapse isOpened={isOpened}>
+        <Collapse isOpened={isOpened} hasNestedCollapse={true}>
           <VariableHeight className="subCollapse" />
         </Collapse>
       </div>
