@@ -58,7 +58,7 @@
     "codecov.io": "0.1.6",
     "cross-env": "3.1.1",
     "css-loader": "0.24.0",
-    "eslint": "3.4.0",
+    "eslint": "3.6.1",
     "eslint-loader": "1.5.0",
     "eslint-plugin-react": "6.2.0",
     "glob": "7.0.6",
