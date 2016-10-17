@@ -27,7 +27,7 @@ Don't forget to manually install peer dependencies (`react`, `react-motion`, `re
 
 ### Bower:
 ```sh
-bower install --save https://npmcdn.com/react-collapse/bower.zip
+bower install --save https://unpkg.com/react-collapse/bower.zip
 ```
 
 or in `bower.json`
@@ -35,7 +35,7 @@ or in `bower.json`
 ```json
 {
   "dependencies": {
-    "react-collapse": "https://npmcdn.com/react-collapse/bower.zip"
+    "react-collapse": "https://unpkg.com/react-collapse/bower.zip"
   }
 }
 ```
@@ -51,10 +51,10 @@ then include as
 
 ### 1998 Script Tag:
 ```html
-<script src="https://npmcdn.com/react/dist/react.js"></script>
-<script src="https://npmcdn.com/react-height/build/react-height.js"></script>
-<script src="https://npmcdn.com/react-motion/build/react-motion.js"></script>
-<script src="https://npmcdn.com/react-collapse/build/react-collapse.js"></script>
+<script src="https://unpkg.com/react/dist/react.js"></script>
+<script src="https://unpkg.com/react-height/build/react-height.js"></script>
+<script src="https://unpkg.com/react-motion/build/react-motion.js"></script>
+<script src="https://unpkg.com/react-collapse/build/react-collapse.js"></script>
 (Module exposed as `ReactCollapse`)
 ```
 
