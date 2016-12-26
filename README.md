@@ -127,7 +127,7 @@ import {presets} from 'react-motion';
 
 #### `keepCollapsedContent`: React.PropTypes.bool (default: `false`)
 
-By default ReactCollapse destroys content of collapsed element. setting `keepCollapsedContent` to `true` allows to keep content. ReactCollapse renders container with `height: 0` and `overflow: hidden` (with all the content untouched) when closed instead of destroying it. See #18 for details.
+By default ReactCollapse destroys content of collapsed element. setting `keepCollapsedContent` to `true` allows to keep content. ReactCollapse renders container with `height: 0` and `overflow: hidden` (with all the content untouched) when closed instead of destroying it. See [#18](https://github.com/nkbt/react-collapse/issues/18) for details.
 
 #### `onRest`: React.PropTypes.func
 
