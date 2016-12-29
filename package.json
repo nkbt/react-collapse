@@ -79,7 +79,7 @@
     "tap-nyan": "0.0.2",
     "tap-xunit": "1.4.0",
     "tape": "4.6.0",
-    "webpack": "1.13.2",
+    "webpack": "1.13.3",
     "webpack-dev-server": "1.16.2"
   }
 }
