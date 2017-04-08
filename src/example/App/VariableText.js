@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import reactCreateClass from 'create-react-class';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import Collapse from '../../Collapse';
 import text from './text.json';
@@ -8,9 +10,9 @@ import * as style from './style';
 const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
 
 
-const VariableText = React.createClass({
+const VariableText = reactCreateClass({
   propTypes: {
-    isOpened: React.PropTypes.bool
+    isOpened: PropTypes.bool
   },
 
 

@@ -1,11 +1,12 @@
 import React from 'react';
+import reactCreateClass from 'create-react-class';
 import {presets} from 'react-motion';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import Collapse from '../../Collapse';
 import * as style from './style';
 
 
-const VariableHeight = React.createClass({
+const VariableHeight = reactCreateClass({
   getInitialState() {
     const preset = 'stiff';
     const {stiffness, damping} = presets[preset];

@@ -1,10 +1,11 @@
 import React from 'react';
+import reactCreateClass from 'create-react-class';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import Collapse from '../../Collapse';
 import * as style from './style';
 
 
-const InitiallyOpened = React.createClass({
+const InitiallyOpened = reactCreateClass({
   getInitialState() {
     return {isOpened: true, keepContent: false};
   },

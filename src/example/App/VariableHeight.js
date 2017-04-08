@@ -1,10 +1,11 @@
 import React from 'react';
+import reactCreateClass from 'create-react-class';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import Collapse from '../../Collapse';
 import * as style from './style';
 
 
-const VariableHeight = React.createClass({
+const VariableHeight = reactCreateClass({
   getInitialState() {
     return {isOpened: false, keepContent: false, height: 100};
   },

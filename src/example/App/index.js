@@ -1,4 +1,5 @@
 import React from 'react';
+import reactCreateClass from 'create-react-class';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import VariableText from './VariableText';
 import VariableHeight from './VariableHeight';
@@ -20,7 +21,7 @@ const style = {
 };
 
 
-const App = React.createClass({
+const App = reactCreateClass({
   shouldComponentUpdate,
 
 
