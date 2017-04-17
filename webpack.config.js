@@ -9,13 +9,12 @@ const path = require('path');
 const loaders = [
   {
     test: /\.css$/,
-    loader: 'style!css?sourceMap&modules&localIdentName=[path][name]---[local]',
+    loader: 'style-loader!css-loader?sourceMap&modules&localIdentName=[path][name]---[local]',
     include: [path.resolve('src/example')]
   },
-  {test: /\.json$/, loader: 'json'},
   {
     test: /\.js$/,
-    loader: 'babel',
+    loader: 'babel-loader',
     include: [path.resolve('src')]
   }
 ];
@@ -28,7 +27,7 @@ const definePlugin = new webpack.DefinePlugin({
 });
 
 
-const resolve = {extensions: ['', '.js']};
+const resolve = {};
 const stats = {colors: true};
 
 
@@ -45,10 +44,7 @@ const development = {
     definePlugin
   ],
   module: {
-    loaders,
-    preLoaders: [
-      {test: /\.js$/, loader: 'eslint', include: [path.resolve('src')]}
-    ]
+    loaders
   },
   resolve,
   stats,
