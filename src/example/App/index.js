@@ -1,4 +1,5 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import {VariableText} from './VariableText';
 import {VariableHeight} from './VariableHeight';
 import {FixedHeight} from './FixedHeight';
@@ -15,7 +16,7 @@ import {Issue66} from './Issue66';
 import {name} from '../../../package.json';
 
 
-export const App = React.createClass({
+export const App = createReactClass({
   render() {
     return (
       <div className="app">

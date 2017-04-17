@@ -1,12 +1,14 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
+import PropTypes from 'prop-types';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import {Collapse} from './Collapse';
 
 
-export const UnmountClosed = React.createClass({
+export const UnmountClosed = createReactClass({
   propTypes: {
-    isOpened: React.PropTypes.bool.isRequired,
-    onRest: React.PropTypes.func
+    isOpened: PropTypes.bool.isRequired,
+    onRest: PropTypes.func
   },
 
 

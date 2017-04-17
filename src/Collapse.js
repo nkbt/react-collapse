@@ -1,7 +1,8 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
+import PropTypes from 'prop-types';
 import {Motion, spring} from 'react-motion';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
-
 
 const SPRING_PRECISION = 1;
 
@@ -19,24 +20,24 @@ const css = {
 };
 
 
-export const Collapse = React.createClass({
+export const Collapse = createReactClass({
   propTypes: {
-    isOpened: React.PropTypes.bool.isRequired,
-    springConfig: React.PropTypes.objectOf(React.PropTypes.number),
-    forceInitialAnimation: React.PropTypes.bool,
+    isOpened: PropTypes.bool.isRequired,
+    springConfig: PropTypes.objectOf(PropTypes.number),
+    forceInitialAnimation: PropTypes.bool,
 
-    hasNestedCollapse: React.PropTypes.bool,
+    hasNestedCollapse: PropTypes.bool,
 
-    fixedHeight: React.PropTypes.number,
+    fixedHeight: PropTypes.number,
 
-    theme: React.PropTypes.objectOf(React.PropTypes.string),
-    style: React.PropTypes.object,
+    theme: PropTypes.objectOf(PropTypes.string),
+    style: PropTypes.object,
 
-    onRender: React.PropTypes.func,
-    onRest: React.PropTypes.func,
-    onMeasure: React.PropTypes.func,
+    onRender: PropTypes.func,
+    onRest: PropTypes.func,
+    onMeasure: PropTypes.func,
 
-    children: React.PropTypes.node.isRequired
+    children: PropTypes.node.isRequired
   },
 
 
@@ -186,7 +187,7 @@ export const Collapse = React.createClass({
   },
 
 
-  renderContent({height}) {
+  renderContent({height}) { // eslint-disable-line
     const {
       isOpened: _isOpened,
       springConfig: _springConfig,

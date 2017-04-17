@@ -139,7 +139,7 @@ If content's height is known ahead it is possible pass optional `fixedHeight` pr
 ```
 
 
-#### `springConfig`: React.PropTypes.objectOf(React.PropTypes.number)
+#### `springConfig`: PropTypes.objectOf(PropTypes.number)
 
 Custom config `{stiffness, damping, precision}` passed to the spring function (see https://github.com/chenglou/react-motion#--spring-val-number-config-springhelperconfig--opaqueconfig)
 
@@ -163,7 +163,7 @@ When initially opened, by default collapse content will be opened without animat
 It is used internally in `Unmount` component implementation.
 
 
-#### `onRest`: React.PropTypes.func
+#### `onRest`: PropTypes.func
 
 Callback function for animation finished from
 [react-motion](https://github.com/chenglou/react-motion#--onrest---void).
@@ -175,7 +175,7 @@ It can be used to trigger any function after animation is done.
 </Collapse>
 ```
 
-#### `onMeasure`: React.PropTypes.func
+#### `onMeasure`: PropTypes.func
 
 Callback function for changes in height. Also passes measured width.
 As an [example](https://github.com/nutgaard/react-collapse/blob/master/src/example/App/Hooks.js) it can be used to implement auto-scroll if content expand below the fold.
@@ -186,7 +186,7 @@ As an [example](https://github.com/nutgaard/react-collapse/blob/master/src/examp
 </Collapse>
 ```
 
-#### `onRender`: React.PropTypes.func
+#### `onRender`: PropTypes.func
 
 Callback function for every re-render while animating.
 

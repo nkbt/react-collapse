@@ -1,11 +1,13 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
+import PropTypes from 'prop-types';
 import {Collapse} from '../..';
 
 
-const Test = React.createClass({
+const Test = createReactClass({
   propTypes: {
-    onMount: React.PropTypes.func.isRequired,
-    onUnmount: React.PropTypes.func.isRequired
+    onMount: PropTypes.func.isRequired,
+    onUnmount: PropTypes.func.isRequired
   },
 
 
@@ -25,9 +27,9 @@ const Test = React.createClass({
 });
 
 
-export const Issue66 = React.createClass({
+export const Issue66 = createReactClass({
   propTypes: {
-    isOpened: React.PropTypes.bool.isRequired
+    isOpened: PropTypes.bool.isRequired
   },
 
 
