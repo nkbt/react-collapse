@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import reactCreateClass from 'create-react-class';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import {Motion, spring} from 'react-motion';
 import HeightReporter from 'react-height';
@@ -10,16 +12,16 @@ const PRECISION = 0.5;
 const stringHeight = height => Math.max(0, parseFloat(height)).toFixed(1);
 
 
-const Collapse = React.createClass({
+const Collapse = reactCreateClass({
   propTypes: {
-    isOpened: React.PropTypes.bool.isRequired,
-    children: React.PropTypes.node.isRequired,
-    fixedHeight: React.PropTypes.number,
-    style: React.PropTypes.object, // eslint-disable-line react/forbid-prop-types
-    springConfig: React.PropTypes.objectOf(React.PropTypes.number),
-    keepCollapsedContent: React.PropTypes.bool,
-    onRest: React.PropTypes.func,
-    onHeightReady: React.PropTypes.func
+    isOpened: PropTypes.bool.isRequired,
+    children: PropTypes.node.isRequired,
+    fixedHeight: PropTypes.number,
+    style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    springConfig: PropTypes.objectOf(PropTypes.number),
+    keepCollapsedContent: PropTypes.bool,
+    onRest: PropTypes.func,
+    onHeightReady: PropTypes.func
   },
 
 

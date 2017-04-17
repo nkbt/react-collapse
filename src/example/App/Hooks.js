@@ -1,4 +1,5 @@
 import React from 'react';
+import reactCreateClass from 'create-react-class';
 import {findDOMNode} from 'react-dom';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import Collapse from '../../Collapse';
@@ -13,7 +14,7 @@ const page = /Firefox/.test(navigator.userAgent) ?
 const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
 
 
-const Hooks = React.createClass({
+const Hooks = reactCreateClass({
   getInitialState() {
     return {isOpened: false, keepContent: false, scrollHook: true, paragraphs: 0};
   },
