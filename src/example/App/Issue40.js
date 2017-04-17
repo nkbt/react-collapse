@@ -1,10 +1,11 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import {Collapse} from '../..';
 import {VariableHeight} from './VariableHeight';
 
 
-export const Issue40 = React.createClass({
+export const Issue40 = createReactClass({
   getInitialState() {
     return {isOpened: false};
   },

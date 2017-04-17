@@ -1,4 +1,5 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import {Collapse} from '../..';
 
@@ -28,7 +29,7 @@ const styles = {
 };
 
 
-export const Issue59 = React.createClass({
+export const Issue59 = createReactClass({
   getInitialState() {
     return {opened: 1};
   },

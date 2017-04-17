@@ -1,10 +1,11 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import {presets} from 'react-motion';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import {Collapse} from '../..';
 
 
-export const SpringConfig = React.createClass({
+export const SpringConfig = createReactClass({
   getInitialState() {
     const preset = 'stiff';
     const {stiffness, damping} = presets[preset];

@@ -1,9 +1,10 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import {Collapse} from '../..';
 
 
-export const FixedHeight = React.createClass({
+export const FixedHeight = createReactClass({
   getInitialState() {
     return {isOpened: false, height: 100, fixedHeight: 200};
   },
