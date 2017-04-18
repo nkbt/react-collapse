@@ -1,7 +1,5 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import reactCreateClass from 'create-react-class';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import Collapse from '../../Collapse';
 import text from './text.json';
 import * as style from './style';
@@ -10,25 +8,21 @@ import * as style from './style';
 const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
 
 
-const VariableText = reactCreateClass({
-  propTypes: {
+export default class VariableText extends PureComponent {
+  static propTypes = {
     isOpened: PropTypes.bool
-  },
+  }
 
 
-  getDefaultProps() {
-    return {
-      isOpened: false
-    };
-  },
+  static defaultProps = {
+    isOpened: false
+  }
 
 
-  getInitialState() {
-    return {isOpened: this.props.isOpened, keepContent: false, paragraphs: 0};
-  },
-
-
-  shouldComponentUpdate,
+  constructor(props) {
+    super(props)
+    this.state = {isOpened: this.props.isOpened, keepContent: false, paragraphs: 0};
+  }
 
 
   render() {
@@ -72,7 +66,4 @@ const VariableText = reactCreateClass({
       </div>
     );
   }
-});
-
-
-export default VariableText;
+}

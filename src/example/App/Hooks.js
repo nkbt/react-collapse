@@ -1,7 +1,5 @@
-import React from 'react';
-import reactCreateClass from 'create-react-class';
+import React, {PureComponent} from 'react';
 import {findDOMNode} from 'react-dom';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import Collapse from '../../Collapse';
 import text from './text.json';
 import * as style from './style';
@@ -14,16 +12,14 @@ const page = /Firefox/.test(navigator.userAgent) ?
 const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
 
 
-const Hooks = reactCreateClass({
-  getInitialState() {
-    return {isOpened: false, keepContent: false, scrollHook: true, paragraphs: 0};
-  },
+export default class Hooks extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {isOpened: false, keepContent: false, scrollHook: true, paragraphs: 0};
+  }
 
 
-  shouldComponentUpdate,
-
-
-  onHeightReady(height) {
+  onHeightReady = height => {
     if (this.state.scrollHook) {
       const collapsable = findDOMNode(this).querySelector('.collapsable');
       const bottom = collapsable.getBoundingClientRect().top + height;
@@ -32,7 +28,7 @@ const Hooks = reactCreateClass({
         scroll.top(page, bottom);
       }
     }
-  },
+  }
 
 
   render() {
@@ -85,7 +81,4 @@ const Hooks = reactCreateClass({
       </div>
     );
   }
-});
-
-
-export default Hooks;
+}

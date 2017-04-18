@@ -1,17 +1,13 @@
-import React from 'react';
-import reactCreateClass from 'create-react-class';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
+import React, {PureComponent} from 'react';
 import Collapse from '../../Collapse';
 import * as style from './style';
 
 
-const InitiallyOpened = reactCreateClass({
-  getInitialState() {
-    return {isOpened: true, keepContent: false};
-  },
-
-
-  shouldComponentUpdate,
+export default class InitiallyOpened extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {isOpened: true, keepContent: false};
+  }
 
 
   render() {
@@ -55,7 +51,4 @@ const InitiallyOpened = reactCreateClass({
       </div>
     );
   }
-});
-
-
-export default InitiallyOpened;
+}
