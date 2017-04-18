@@ -25,29 +25,6 @@ npm install --save react react-motion react-collapse
 Don't forget to manually install peer dependencies (`react`, `react-motion`) if you use npm@3.
 
 
-### Bower:
-```sh
-bower install --save https://unpkg.com/react-collapse/bower.zip
-```
-
-or in `bower.json`
-
-```json
-{
-  "dependencies": {
-    "react-collapse": "https://unpkg.com/react-collapse/bower.zip"
-  }
-}
-```
-
-then include as
-```html
-<script src="bower_components/react/react.js"></script>
-<script src="bower_components/react-motion/build/react-motion.js"></script>
-<script src="bower_components/react-collapse/build/react-collapse.js"></script>
-```
-
-
 ### 1998 Script Tag:
 ```html
 <script src="https://unpkg.com/react/dist/react.js"></script>
