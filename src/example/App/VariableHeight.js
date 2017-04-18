@@ -1,17 +1,13 @@
-import React from 'react';
-import reactCreateClass from 'create-react-class';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
+import React, {PureComponent} from 'react';
 import Collapse from '../../Collapse';
 import * as style from './style';
 
 
-const VariableHeight = reactCreateClass({
-  getInitialState() {
-    return {isOpened: false, keepContent: false, height: 100};
-  },
-
-
-  shouldComponentUpdate,
+export default class VariableHeight extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {isOpened: false, keepContent: false, height: 100};
+  }
 
 
   render() {
@@ -56,7 +52,4 @@ const VariableHeight = reactCreateClass({
       </div>
     );
   }
-});
-
-
-export default VariableHeight;
+}

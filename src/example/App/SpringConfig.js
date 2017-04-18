@@ -1,28 +1,25 @@
-import React from 'react';
-import reactCreateClass from 'create-react-class';
+import React, {PureComponent} from 'react';
 import {presets} from 'react-motion';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import Collapse from '../../Collapse';
 import * as style from './style';
 
 
-const VariableHeight = reactCreateClass({
-  getInitialState() {
+export default class VariableHeight extends PureComponent {
+  constructor(props) {
+    super(props);
+
     const preset = 'stiff';
     const {stiffness, damping} = presets[preset];
 
-    return {isOpened: false, keepContent: false, height: 100, preset: 'stiff', stiffness, damping};
-  },
+    this.state = {isOpened: false, keepContent: false, height: 100, preset: 'stiff', stiffness, damping};
+  }
 
 
-  shouldComponentUpdate,
-
-
-  onChangePreset({target: {value: preset}}) {
+  onChangePreset = ({target: {value: preset}}) => {
     const {stiffness, damping} = presets[preset];
 
     this.setState({preset, stiffness, damping});
-  },
+  }
 
 
   render() {
@@ -94,7 +91,4 @@ const VariableHeight = reactCreateClass({
       </div>
     );
   }
-});
-
-
-export default VariableHeight;
+}

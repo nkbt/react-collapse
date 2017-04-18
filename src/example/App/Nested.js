@@ -1,19 +1,13 @@
-import React from 'react';
-import reactCreateClass from 'create-react-class';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
+import React, {PureComponent} from 'react';
 import Collapse from '../../Collapse';
 import * as style from './style';
 import VariableHeight from './VariableHeight';
 
-
-const Nested = reactCreateClass({
-  getInitialState() {
-    return {isOpened: false, keepContent: false};
-  },
-
-
-  shouldComponentUpdate,
-
+export default class Nested extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {isOpened: false, keepContent: false};
+  }
 
   render() {
     const {isOpened, keepContent} = this.state;
@@ -55,7 +49,4 @@ const Nested = reactCreateClass({
       </div>
     );
   }
-});
-
-
-export default Nested;
+}

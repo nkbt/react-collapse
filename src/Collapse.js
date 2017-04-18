@@ -1,7 +1,5 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import reactCreateClass from 'create-react-class';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import {Motion, spring} from 'react-motion';
 import HeightReporter from 'react-height';
 
@@ -12,8 +10,8 @@ const PRECISION = 0.5;
 const stringHeight = height => Math.max(0, parseFloat(height)).toFixed(1);
 
 
-const Collapse = reactCreateClass({
-  propTypes: {
+export default class Collapse extends PureComponent {
+  static propTypes = {
     isOpened: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired,
     fixedHeight: PropTypes.number,
@@ -22,35 +20,32 @@ const Collapse = reactCreateClass({
     keepCollapsedContent: PropTypes.bool,
     onRest: PropTypes.func,
     onHeightReady: PropTypes.func
-  },
+  }
 
 
-  getDefaultProps() {
-    return {
-      fixedHeight: -1,
-      style: {},
-      keepCollapsedContent: false,
-      onHeightReady: () => {} // eslint-disable-line no-empty-function
-    };
-  },
+  static defaultProps = {
+    fixedHeight: -1,
+    style: {},
+    keepCollapsedContent: false,
+    onHeightReady: () => {} // eslint-disable-line no-empty-function
+  }
 
 
-  getInitialState() {
-    return {height: -1, isOpenedChanged: false};
-  },
+  constructor(props) {
+    super(props);
+    this.state = {height: -1, isOpenedChanged: false};
+  }
+
 
   componentWillMount() {
     this.height = stringHeight(0);
     this.renderStatic = true;
-  },
+  }
 
 
   componentWillReceiveProps({isOpened}) {
     this.setState({isOpenedChanged: isOpened !== this.props.isOpened});
-  },
-
-
-  shouldComponentUpdate,
+  }
 
 
   componentDidUpdate({isOpened}) {
@@ -59,10 +54,10 @@ const Collapse = reactCreateClass({
 
       this.props.onHeightReady(report);
     }
-  },
+  }
 
 
-  onHeightReady(height) {
+  onHeightReady = height => {
     const {isOpened, onHeightReady} = this.props;
 
     if (this.renderStatic && isOpened) {
@@ -76,7 +71,7 @@ const Collapse = reactCreateClass({
     if (this.state.height !== reportHeight) {
       onHeightReady(reportHeight);
     }
-  },
+  }
 
 
   getMotionHeight(height) {
@@ -97,7 +92,7 @@ const Collapse = reactCreateClass({
     const instantHeight = isOpened ? Math.max(0, height) : 0;
 
     return skipAnimation ? instantHeight : springHeight;
-  },
+  }
 
 
   renderFixed() {
@@ -143,7 +138,7 @@ const Collapse = reactCreateClass({
         }}
       </Motion>
     );
-  },
+  }
 
 
   render() {
@@ -230,7 +225,4 @@ const Collapse = reactCreateClass({
       </Motion>
     );
   }
-});
-
-
-export default Collapse;
+}

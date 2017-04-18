@@ -1,6 +1,4 @@
-import React from 'react';
-import reactCreateClass from 'create-react-class';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
+import React, {PureComponent} from 'react';
 import VariableText from './VariableText';
 import VariableHeight from './VariableHeight';
 import InitiallyOpened from './InitiallyOpened';
@@ -21,10 +19,7 @@ const style = {
 };
 
 
-const App = reactCreateClass({
-  shouldComponentUpdate,
-
-
+export default class App extends PureComponent {
   render() {
     return (
       <div style={style.container}>
@@ -74,7 +69,4 @@ const App = reactCreateClass({
       </div>
     );
   }
-});
-
-
-export default App;
+}
