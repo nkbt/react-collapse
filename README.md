@@ -157,10 +157,41 @@ import {presets} from 'react-motion';
 </Collapse>
 ```
 
-#### `forceInitialAnimation: PropTypes.boolean
+#### `forceInitialAnimation`: PropTypes.boolean
 
 When initially opened, by default collapse content will be opened without animation, instantly. With this option set to `true` you can enforce initial rendering to be smoothly expanded from 0.
 It is used internally in `Unmount` component implementation.
+
+
+#### `theme`: PropTypes.objectOf(PropTypes.string)
+
+It is possible to set `className` for extra `div` elements that ReactCollapse creates.
+
+Example:
+```js
+<Collapse theme={{collapse: 'foo', content: 'bar'}}>
+  <div>Customly animated container</div>
+</Collapse>
+```
+
+Default values:
+```js
+const theme = {
+  collapse: 'ReactCollapse--collapse',
+  content: 'ReactCollapse--content'
+}
+```
+
+Which ends up in the following markup:
+```html
+<div class="ReactCollapse--collapse">
+  <div class="ReactCollapse--content">
+    {children}
+  </div>
+</div>
+```
+
+NOTE: these are not style objects, but class names!
 
 
 #### `onRest`: PropTypes.func
