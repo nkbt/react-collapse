@@ -25,29 +25,6 @@ npm install --save react react-motion react-collapse
 Don't forget to manually install peer dependencies (`react`, `react-motion`) if you use npm@3.
 
 
-### Bower:
-```sh
-bower install --save https://unpkg.com/react-collapse/bower.zip
-```
-
-or in `bower.json`
-
-```json
-{
-  "dependencies": {
-    "react-collapse": "https://unpkg.com/react-collapse/bower.zip"
-  }
-}
-```
-
-then include as
-```html
-<script src="bower_components/react/react.js"></script>
-<script src="bower_components/react-motion/build/react-motion.js"></script>
-<script src="bower_components/react-collapse/build/react-collapse.js"></script>
-```
-
-
 ### 1998 Script Tag:
 ```html
 <script src="https://unpkg.com/react/dist/react.js"></script>
@@ -157,10 +134,41 @@ import {presets} from 'react-motion';
 </Collapse>
 ```
 
-#### `forceInitialAnimation: PropTypes.boolean
+#### `forceInitialAnimation`: PropTypes.boolean
 
 When initially opened, by default collapse content will be opened without animation, instantly. With this option set to `true` you can enforce initial rendering to be smoothly expanded from 0.
 It is used internally in `Unmount` component implementation.
+
+
+#### `theme`: PropTypes.objectOf(PropTypes.string)
+
+It is possible to set `className` for extra `div` elements that ReactCollapse creates.
+
+Example:
+```js
+<Collapse theme={{collapse: 'foo', content: 'bar'}}>
+  <div>Customly animated container</div>
+</Collapse>
+```
+
+Default values:
+```js
+const theme = {
+  collapse: 'ReactCollapse--collapse',
+  content: 'ReactCollapse--content'
+}
+```
+
+Which ends up in the following markup:
+```html
+<div class="ReactCollapse--collapse">
+  <div class="ReactCollapse--content">
+    {children}
+  </div>
+</div>
+```
+
+NOTE: these are not style objects, but class names!
 
 
 #### `onRest`: PropTypes.func
@@ -222,6 +230,59 @@ All other props are applied to a container that is being resized. So it is possi
 
 - initially opened Collapse elements will be statically rendered with no animation (see #19)
 - it is possible to override `overflow` and `height` styles for Collapse (see #16), and ReactCollapse may behave unexpectedly. Do it only when you definitely know you need it, otherwise, never override `overflow` and `height` styles.
+
+
+## Migrating from v2 to v3
+
+1. Use named exports, it is a preferred way
+
+  V2:
+  ```js
+  import Collapse from 'react-collapse';
+  ```
+  
+  V3
+  ```js
+  import {Collapse} from 'react-collapse';
+  ```
+  
+2. Default behavior changed to never unmount collapsed element. To actually unmount use extra provided component `UnmountCollapsed`
+
+  V2: 
+  ```js
+  import Collapse from 'react-collapse';
+  
+  <Collapse isOpened={true || false}>
+    <div>Random content</div>
+  </Collapse>
+  ```  
+
+  V3: 
+  ```js
+  import {UnmountClosed as Collapse} from 'react-collapse';
+  
+  <Collapse isOpened={true || false}>
+    <div>Random content</div>
+  </Collapse>
+  ```  
+
+3. `onHeightReady` renamed to `onMeasure` which now takes object of shape `{width, height}`
+
+  V2: 
+  ```js
+  <Collapse onHeightReady={height => console.log(height)}>
+    <div>Random content</div>
+  </Collapse>
+  ```  
+
+  V3: 
+  ```js
+  <Collapse onMeasure={({height, width}) => console.log(height, width)}>
+    <div>Random content</div>
+  </Collapse>
+  ```  
+
+4. Some new props/features: `hasNestedCollapse`, `forceInitialAnimation`, `onRender`, etc
 
 
 ## Development and testing
