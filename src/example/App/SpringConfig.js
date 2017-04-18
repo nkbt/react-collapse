@@ -1,27 +1,24 @@
 import React from 'react';
-import createReactClass from 'create-react-class';
 import {presets} from 'react-motion';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import {Collapse} from '../..';
 
 
-export const SpringConfig = createReactClass({
-  getInitialState() {
+export class SpringConfig extends React.PureComponent {
+  constructor(props) {
+    super(props);
+
     const preset = 'stiff';
     const {stiffness, damping} = presets[preset];
 
-    return {isOpened: false, height: 100, preset: 'stiff', stiffness, damping};
-  },
+    this.state = {isOpened: false, height: 100, preset: 'stiff', stiffness, damping};
+  }
 
 
-  shouldComponentUpdate,
-
-
-  onChangePreset({target: {value: preset}}) {
+  onChangePreset = ({target: {value: preset}}) => {
     const {stiffness, damping} = presets[preset];
 
     this.setState({preset, stiffness, damping});
-  },
+  };
 
 
   render() {
@@ -84,4 +81,4 @@ export const SpringConfig = createReactClass({
       </div>
     );
   }
-});
+}

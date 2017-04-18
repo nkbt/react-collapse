@@ -1,8 +1,6 @@
 import React from 'react';
-import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import {Motion, spring} from 'react-motion';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 
 const SPRING_PRECISION = 1;
 
@@ -20,8 +18,8 @@ const css = {
 };
 
 
-export const Collapse = createReactClass({
-  propTypes: {
+export class Collapse extends React.PureComponent {
+  static propTypes = {
     isOpened: PropTypes.bool.isRequired,
     springConfig: PropTypes.objectOf(PropTypes.number),
     forceInitialAnimation: PropTypes.bool,
@@ -38,30 +36,29 @@ export const Collapse = createReactClass({
     onMeasure: PropTypes.func,
 
     children: PropTypes.node.isRequired
-  },
+  };
 
 
-  getDefaultProps() {
-    return {
-      forceInitialAnimation: false,
-      hasNestedCollapse: false,
-      fixedHeight: -1,
-      style: {},
-      theme: css,
-      onRender: noop,
-      onRest: noop,
-      onMeasure: noop
-    };
-  },
+  static defaultProps = {
+    forceInitialAnimation: false,
+    hasNestedCollapse: false,
+    fixedHeight: -1,
+    style: {},
+    theme: css,
+    onRender: noop,
+    onRest: noop,
+    onMeasure: noop
+  };
 
 
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       currentState: IDLING,
       from: 0,
       to: 0
     };
-  },
+  }
 
 
   componentDidMount() {
@@ -76,7 +73,7 @@ export const Collapse = createReactClass({
       }
     }
     onRest();
-  },
+  }
 
 
   componentWillReceiveProps(nextProps) {
@@ -92,10 +89,7 @@ export const Collapse = createReactClass({
     } else if (this.state.currentState === IDLING && (nextProps.isOpened || this.props.isOpened)) {
       this.setState({currentState: WAITING});
     }
-  },
-
-
-  shouldComponentUpdate,
+  }
 
 
   componentDidUpdate(_, prevState) {
@@ -121,41 +115,41 @@ export const Collapse = createReactClass({
     if (this.state.currentState === RESTING) {
       this.setState({currentState: IDLING, from, to});
     }
-  },
+  }
 
 
   componentWillUnmount() {
     cancelAnimationFrame(this.raf);
-  },
+  }
 
 
-  onContentRef(content) {
+  onContentRef = content => {
     this.content = content;
-  },
+  };
 
 
-  onWrapperRef(wrapper) {
+  onWrapperRef = wrapper => {
     this.wrapper = wrapper;
-  },
+  };
 
 
-  onRest() {
+  onRest = () => {
     this.raf = requestAnimationFrame(this.setResting);
-  },
+  };
 
 
-  setResting() {
+  setResting = () => {
     this.setState({currentState: RESTING});
-  },
+  };
 
 
-  getTo() {
+  getTo = () => {
     const {fixedHeight} = this.props;
     return (fixedHeight > -1) ? fixedHeight : this.content.clientHeight;
-  },
+  };
 
 
-  getWrapperStyle(height) {
+  getWrapperStyle = height => {
     if (this.state.currentState === IDLING && this.state.to) {
       const {fixedHeight} = this.props;
       if (fixedHeight > -1) {
@@ -169,10 +163,10 @@ export const Collapse = createReactClass({
     }
 
     return {overflow: 'hidden', height: Math.max(0, height)};
-  },
+  };
 
 
-  getMotionProps() {
+  getMotionProps = () => {
     const {springConfig} = this.props;
 
     return this.state.currentState === IDLING ? {
@@ -184,10 +178,10 @@ export const Collapse = createReactClass({
       defaultStyle: {height: this.state.from},
       style: {height: spring(this.state.to, {precision: SPRING_PRECISION, ...springConfig})}
     };
-  },
+  };
 
 
-  renderContent({height}) { // eslint-disable-line
+  renderContent = ({height}) => { // eslint-disable-line
     const {
       isOpened: _isOpened,
       springConfig: _springConfig,
@@ -220,7 +214,7 @@ export const Collapse = createReactClass({
         <div ref={this.onContentRef} className={theme.content}>{children}</div>
       </div>
     );
-  },
+  };
 
 
   render() {
@@ -231,4 +225,4 @@ export const Collapse = createReactClass({
         children={this.renderContent} />
     );
   }
-});
+}

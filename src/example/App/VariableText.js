@@ -1,5 +1,4 @@
 import React from 'react';
-import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import {Collapse} from '../..';
 import text from './text.json';
@@ -9,22 +8,21 @@ const getText = num => text.slice(0, num)
   .map((p, i) => <p key={i}>{p}</p>);
 
 
-export const VariableText = createReactClass({
-  propTypes: {
+export class VariableText extends React.Component {
+  static propTypes = {
     isOpened: PropTypes.bool
-  },
+  };
 
 
-  getDefaultProps() {
-    return {
-      isOpened: false
-    };
-  },
+  static defaultProps = {
+    isOpened: false
+  };
 
 
-  getInitialState() {
-    return {isOpened: this.props.isOpened, paragraphs: 0};
-  },
+  constructor(props) {
+    super(props);
+    this.state = {isOpened: this.props.isOpened, paragraphs: 0};
+  }
 
 
   render() {
@@ -59,4 +57,4 @@ export const VariableText = createReactClass({
       </div>
     );
   }
-});
+}

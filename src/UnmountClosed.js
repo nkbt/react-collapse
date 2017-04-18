@@ -1,39 +1,33 @@
 import React from 'react';
-import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import {Collapse} from './Collapse';
 
 
-export const UnmountClosed = createReactClass({
-  propTypes: {
+export class UnmountClosed extends React.PureComponent {
+  static propTypes = {
     isOpened: PropTypes.bool.isRequired,
     onRest: PropTypes.func
-  },
+  };
 
-
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       shouldUnmount: !this.props.isOpened,
       forceInitialAnimation: !this.props.isOpened
     };
-  },
+  }
 
-
-  componentWillReceiveProps({isOpened}) {
+  componentWillReceiveProps = ({isOpened}) => {
     if (!this.props.isOpened && isOpened) {
       this.setState({
         forceInitialAnimation: true,
         shouldUnmount: false
       });
     }
-  },
+  };
 
 
-  shouldComponentUpdate,
-
-
-  onRest(...args) {
+  onRest = (...args) => {
     const {isOpened, onRest} = this.props;
 
     if (!isOpened) {
@@ -42,7 +36,7 @@ export const UnmountClosed = createReactClass({
     if (onRest) {
       onRest(...args);
     }
-  },
+  };
 
 
   render() {
@@ -65,4 +59,4 @@ export const UnmountClosed = createReactClass({
         {...props} />
     );
   }
-});
+}

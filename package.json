@@ -51,6 +51,7 @@
     "babel-core": "6.24.1",
     "babel-eslint": "7.2.2",
     "babel-loader": "6.4.1",
+    "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-object-rest-spread": "6.23.0",
     "babel-preset-es2015": "6.24.1",
     "babel-preset-react": "6.24.1",
@@ -66,9 +67,9 @@
     "json-loader": "0.5.4",
     "nightwatch-autorun": "3.1.0",
     "parallelshell": "2.0.0",
+    "react": "15.5.4",
     "react-dom": "15.5.4",
     "react-motion": "0.4.7",
-    "react": "15.5.4",
     "rimraf": "2.6.1",
     "sinon": "2.1.0",
     "style-loader": "0.16.1",
@@ -79,7 +80,6 @@
     "webpack-dev-server": "2.4.2"
   },
   "dependencies": {
-    "create-react-class": "15.5.2",
     "prop-types": "15.5.8"
   }
 }
