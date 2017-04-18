@@ -232,6 +232,59 @@ All other props are applied to a container that is being resized. So it is possi
 - it is possible to override `overflow` and `height` styles for Collapse (see #16), and ReactCollapse may behave unexpectedly. Do it only when you definitely know you need it, otherwise, never override `overflow` and `height` styles.
 
 
+## Migrating from v2 to v3
+
+1. Use named exports, it is a preferred way
+
+  V2:
+  ```js
+  import Collapse from 'react-collapse';
+  ```
+  
+  V3
+  ```js
+  import {Collapse} from 'react-collapse';
+  ```
+  
+2. Default behavior changed to never unmount collapsed element. To actually unmount use extra provided component `UnmountCollapsed`
+
+  V2: 
+  ```js
+  import Collapse from 'react-collapse';
+  
+  <Collapse isOpened={true || false}>
+    <div>Random content</div>
+  </Collapse>
+  ```  
+
+  V3: 
+  ```js
+  import {UnmountClosed as Collapse} from 'react-collapse';
+  
+  <Collapse isOpened={true || false}>
+    <div>Random content</div>
+  </Collapse>
+  ```  
+
+3. `onHeightReady` renamed to `onMeasure` which now takes object of shape `{width, height}`
+
+  V2: 
+  ```js
+  <Collapse onHeightReady={height => console.log(height)}>
+    <div>Random content</div>
+  </Collapse>
+  ```  
+
+  V3: 
+  ```js
+  <Collapse onMeasure={({height, width}) => console.log(height, width)}>
+    <div>Random content</div>
+  </Collapse>
+  ```  
+
+4. Some new props/features: `hasNestedCollapse`, `forceInitialAnimation`, `onRender`, etc
+
+
 ## Development and testing
 
 Currently is being developed and tested with the latest stable `Node 6` on `OSX` and `Windows`.
