@@ -7,7 +7,7 @@
 
   "parser": "babel-eslint",
 
-  "plugins": ["react"],
+  "plugins": ["react", "babel"],
 
   "ecmaFeatures": {
     "arrowFunctions": true,
@@ -104,6 +104,7 @@
     "no-implicit-coercion": 2, // disallow the type conversions with shorter notations
     "no-implicit-globals": 2, // disallow var and named functions in global scope
     "no-implied-eval": 2, // disallow use of eval()-like methods
+    "babel/no-invalid-this": 2, // disallow this keywords outside of classes or class-like objects
     "no-iterator": 2, // disallow usage of __iterator__ property
     "no-labels": 2, // disallow use of labeled statements
     "no-lone-blocks": 2, // disallow unnecessary nested blocks
@@ -212,7 +213,7 @@
     "max-nested-callbacks": [2, 3], // specify the maximum depth callbacks can be nested
     "max-params": [2, 5], // limits the number of parameters that can be used in the function declaration
     "max-statements": 0, // specify the maximum number of statement allowed in a function
-    "new-cap": [2, {"newIsCap": true, "capIsNew": false}], // require a capital letter for constructors
+    "babel/new-cap": [2, {"newIsCap": true, "capIsNew": false}], // require a capital letter for constructors
     "new-parens": 2, // disallow the omission of parentheses when invoking a constructor with no arguments
     "newline-after-var": 0, // require or disallow an empty newline after variable declarations
     "newline-per-chained-call": 0, // enforce newline after each call when chaining the calls
@@ -234,7 +235,7 @@
     "no-underscore-dangle": 2, // disallow dangling underscores in identifiers
     "no-unneeded-ternary": 2, // disallow the use of ternary operators when a simpler alternative exists
     "no-whitespace-before-property": 2, // disallow whitespace before properties
-    "object-curly-spacing": [2, "never"], // require or disallow padding inside curly braces (fixable)
+    "babel/object-curly-spacing": [2, "never"], // require or disallow padding inside curly braces (fixable)
     "one-var": [2, "never"], // require or disallow one variable declaration per function
     "one-var-declaration-per-line": 2, // require or disallow an newline around variable declarations
     "operator-assignment": [2, "never"], // require assignment operator shorthand where possible or prohibit it entirely
@@ -243,7 +244,7 @@
     "quote-props": [2, "as-needed"], // require quotes around object literal property names
     "quotes": [2, "single"], // specify whether backticks, double or single quotes should be used (fixable)
     "require-jsdoc": 0, // Require JSDoc comment
-    "semi": [2, "always"], // require or disallow use of semicolons instead of ASI (fixable)
+    "babel/semi": [2, "always"], // require or disallow use of semicolons instead of ASI (fixable)
     "semi-spacing": [2, {"before": false, "after": true}], // enforce spacing before and after semicolons (fixable)
     "sort-imports": 0, // sort import declarations within module
     "sort-vars": 0, // sort variables within the same declaration block
