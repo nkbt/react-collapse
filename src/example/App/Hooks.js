@@ -1,6 +1,4 @@
 import React from 'react';
-import createReactClass from 'create-react-class';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import {Collapse} from '../..';
 import text from './text.json';
 
@@ -8,9 +6,10 @@ import text from './text.json';
 const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
 
 
-export const Hooks = createReactClass({
-  getInitialState() {
-    return {
+export class Hooks extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
       isOpened: false,
       isResting: false,
       renderHeight: -1,
@@ -19,13 +18,9 @@ export const Hooks = createReactClass({
       width: -1,
       paragraphs: 0
     };
-  },
+  }
 
-
-  shouldComponentUpdate,
-
-
-  onRender({current, from, to}) {
+  onRender = ({current, from, to}) => {
     if (this.ref) {
       this.ref.innerHTML = `
         from: ${from.toFixed(2)},
@@ -33,18 +28,15 @@ export const Hooks = createReactClass({
         current: ${current.toFixed(2)}
       `;
     }
-  },
+  };
 
-
-  onMeasure({height, width}) {
+  onMeasure = ({height, width}) => {
     this.setState({height, width});
-  },
+  };
 
-
-  onRest() {
+  onRest = () => {
     this.setState({isResting: true});
-  },
-
+  };
 
   render() {
     const {isOpened, height, width, paragraphs} = this.state;
@@ -97,4 +89,4 @@ export const Hooks = createReactClass({
       </div>
     );
   }
-});
+}

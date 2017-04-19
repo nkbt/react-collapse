@@ -1,6 +1,4 @@
 import React from 'react';
-import createReactClass from 'create-react-class';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import {Collapse} from '../..';
 
 
@@ -29,23 +27,21 @@ const styles = {
 };
 
 
-export const Issue59 = createReactClass({
-  getInitialState() {
-    return {opened: 1};
-  },
+export class Issue59 extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {opened: 1};
+  }
 
 
-  shouldComponentUpdate,
-
-
-  onClick1() {
+  onClick1 = () => {
     this.setState({opened: 1});
-  },
+  };
 
 
-  onClick2() {
+  onClick2 = () => {
     this.setState({opened: 2}, () => setTimeout(() => this.setState({whatever: 1}), 50));
-  },
+  };
 
 
   render() {
@@ -70,4 +66,4 @@ export const Issue59 = createReactClass({
       </div>
     );
   }
-});
+}
