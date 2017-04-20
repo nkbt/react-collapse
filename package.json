@@ -45,7 +45,7 @@
   "peerDependencies": {
     "react": ">=15.3",
     "react-motion": "^0.4",
-    "react-height": "^2"
+    "react-height": "^3"
   },
   "devDependencies": {
     "babel-cli": "6.24.1",
@@ -72,8 +72,8 @@
     "parallelshell": "2.0.0",
     "react": "15.5.4",
     "react-dom": "15.5.4",
-    "react-height": "2.2.1",
-    "react-motion": "0.4.7",
+    "react-height": "3.0.0",
+    "react-motion": "0.4.8",
     "rimraf": "2.6.1",
     "scroll": "2.0.0",
     "sinon": "2.1.0",
