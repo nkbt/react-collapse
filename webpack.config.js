@@ -62,7 +62,7 @@ const development = {
 
 
 const ghPages = {
-  devtool: '#source-map',
+  devtool: false,
   entry: './src/example/Example.js',
   output: {filename: 'bundle.js', path: path.resolve('example')},
   plugins: [new HtmlWebpackPlugin(), definePlugin],
@@ -84,7 +84,7 @@ const externals = {
 
 
 const dist = {
-  devtool: '#source-map',
+  devtool: false,
   entry: './src/index.js',
   output: {
     filename: `${require('./package.json').name}.js`,
@@ -92,7 +92,10 @@ const dist = {
     library: 'ReactCollapse',
     libraryTarget: 'umd'
   },
-  plugins: [definePlugin],
+  plugins: [
+    definePlugin,
+    new webpack.NormalModuleReplacementPlugin(/^prop-types$/, 'node-noop')
+  ],
   module: {loaders},
   resolve,
   stats,
@@ -101,7 +104,7 @@ const dist = {
 
 
 const min = {
-  devtool: '#source-map',
+  devtool: false,
   entry: './src/index.js',
   output: {
     filename: `${require('./package.json').name}.min.js`,
@@ -111,6 +114,7 @@ const min = {
   },
   plugins: [
     definePlugin,
+    new webpack.NormalModuleReplacementPlugin(/^prop-types$/, 'node-noop'),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false
