@@ -62,7 +62,7 @@ const development = {
 
 
 const ghPages = {
-  devtool: '#source-map',
+  devtool: false,
   entry: './src/example/Example.js',
   output: {filename: 'bundle.js', path: path.resolve('example')},
   plugins: [new HtmlWebpackPlugin(), definePlugin],
@@ -84,7 +84,7 @@ const externals = {
 
 
 const dist = {
-  devtool: '#source-map',
+  devtool: false,
   entry: './src/index.js',
   output: {
     filename: `${require('./package.json').name}.js`,
@@ -101,7 +101,7 @@ const dist = {
 
 
 const min = {
-  devtool: '#source-map',
+  devtool: false,
   entry: './src/index.js',
   output: {
     filename: `${require('./package.json').name}.min.js`,

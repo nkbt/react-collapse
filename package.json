@@ -8,7 +8,7 @@
     "gh-pages": "git checkout gh-pages && git rebase origin/master --force-rebase && npm run build && git add . && git commit --amend --no-edit --no-verify && git push --force --no-verify && git checkout master",
     "build": "parallelshell -w \"npm run build:lib -s\" \"npm run build:ghPages -s\" \"npm run build:dist -s\" \"npm run build:min -s\"",
     "prebuild": "rimraf lib example build",
-    "build:lib": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps --ignore src/example",
+    "build:lib": "cross-env NODE_ENV=production babel src --out-dir lib --ignore src/example",
     "build:ghPages": "cross-env NODE_ENV=production BUILD=ghPages webpack",
     "build:dist": "cross-env NODE_ENV=production BUILD=dist webpack",
     "build:min": "cross-env NODE_ENV=production BUILD=min webpack",
