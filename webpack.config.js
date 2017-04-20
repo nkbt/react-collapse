@@ -92,7 +92,10 @@ const dist = {
     library: 'ReactCollapse',
     libraryTarget: 'umd'
   },
-  plugins: [definePlugin],
+  plugins: [
+    definePlugin,
+    new webpack.NormalModuleReplacementPlugin(/^prop-types$/, 'node-noop')
+  ],
   module: {loaders},
   resolve,
   stats,
@@ -111,6 +114,7 @@ const min = {
   },
   plugins: [
     definePlugin,
+    new webpack.NormalModuleReplacementPlugin(/^prop-types$/, 'node-noop'),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false
