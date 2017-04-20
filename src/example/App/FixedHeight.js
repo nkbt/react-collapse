@@ -1,16 +1,12 @@
 import React from 'react';
-import createReactClass from 'create-react-class';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import {Collapse} from '../..';
 
 
-export const FixedHeight = createReactClass({
-  getInitialState() {
-    return {isOpened: false, height: 100, fixedHeight: 200};
-  },
-
-
-  shouldComponentUpdate,
+export class FixedHeight extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {isOpened: false, height: 100, fixedHeight: 200};
+  }
 
 
   render() {
@@ -53,4 +49,4 @@ export const FixedHeight = createReactClass({
       </div>
     );
   }
-});
+}

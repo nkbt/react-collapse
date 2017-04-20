@@ -1,77 +1,77 @@
 import React from 'react';
-import createReactClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import {UnmountClosed} from '../..';
 
 
-const Test = createReactClass({
-  propTypes: {
+class Test extends React.PureComponent {
+  static propTypes = {
     onMount: PropTypes.func.isRequired,
     onUnmount: PropTypes.func.isRequired
-  },
+  };
 
 
   componentDidMount() {
     this.props.onMount();
-  },
+  }
 
 
   componentWillUnmount() {
     this.props.onUnmount();
-  },
+  }
 
 
   render() {
     return <div>Test</div>;
   }
-});
+}
 
 
-export const AutoUnmount = createReactClass({
-  propTypes: {
+export class AutoUnmount extends React.PureComponent {
+  static propTypes = {
     isOpened: PropTypes.bool.isRequired
-  },
+  };
 
 
-  getInitialState() {
-    return {isOpened: this.props.isOpened, shouldRender: false};
-  },
+  constructor(props) {
+    super(props);
+    this.state = {isOpened: this.props.isOpened, shouldRender: false};
+  }
 
 
   componentWillMount() {
     this.counter = 0;
     this.messages = [];
-  },
+  }
 
 
-  onRef(ref) {
+  onRef = ref => {
     this.ref = ref;
-  },
+  };
 
 
-  onMount() {
+  onMount = () => {
     if (this.ref) {
       this.messages.unshift(`${this.counter}. Mounted`);
       this.messages = this.messages.slice(0, 5);
       this.ref.innerHTML = this.messages.join('<br />');
       this.counter = this.counter + 1;
     }
-  },
+  };
 
 
-  onUnmount() {
+  onUnmount = () => {
     if (this.ref) {
       this.messages.unshift(`${this.counter}. Unmounted`);
       this.messages = this.messages.slice(0, 5);
       this.ref.innerHTML = this.messages.join('<br />');
       this.counter = this.counter + 1;
     }
-  },
+  };
 
 
-  onChange({target: {checked}}) {
+  onChange = ({target: {checked}}) => {
     this.setState({isOpened: checked});
-  },
+  };
 
 
   render() {
@@ -94,4 +94,4 @@ export const AutoUnmount = createReactClass({
       </div>
     );
   }
-});
+}
