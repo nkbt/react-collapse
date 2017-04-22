@@ -93,8 +93,7 @@ const dist = {
     libraryTarget: 'umd'
   },
   plugins: [
-    definePlugin,
-    new webpack.NormalModuleReplacementPlugin(/^prop-types$/, 'node-noop')
+    definePlugin
   ],
   module: {loaders},
   resolve,
@@ -114,7 +113,6 @@ const min = {
   },
   plugins: [
     definePlugin,
-    new webpack.NormalModuleReplacementPlugin(/^prop-types$/, 'node-noop'),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false
