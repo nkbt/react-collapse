@@ -15,15 +15,30 @@ const loaders = [
   {
     test: /\.js$/,
     loader: 'babel-loader',
-    include: [path.resolve('src')]
+    include: [path.resolve('src')],
+    options: {
+      presets: [
+        ['es2015', {modules: false}],
+        'react'
+      ],
+      plugins: [
+        'transform-object-rest-spread',
+        'transform-class-properties'
+      ],
+      env: {
+        production: {
+          plugins: [
+            ['transform-react-remove-prop-types', {removeImport: true}]
+          ]
+        }
+      }
+    }
   }
 ];
 
 
 const definePlugin = new webpack.DefinePlugin({
-  'process.env': {
-    NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-  }
+  'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
 });
 
 
@@ -113,11 +128,7 @@ const min = {
   },
   plugins: [
     definePlugin,
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
-    })
+    new webpack.optimize.UglifyJsPlugin()
   ],
   module: {loaders},
   resolve,
