@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import {findDOMNode} from 'react-dom';
 import Collapse from '../../Collapse';
 import text from './text.json';
@@ -12,7 +12,7 @@ const page = /Firefox/.test(navigator.userAgent) ?
 const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
 
 
-export default class Hooks extends PureComponent {
+export default class Hooks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {isOpened: false, keepContent: false, scrollHook: true, paragraphs: 0};

@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Collapse from '../../Collapse';
 import text from './text.json';
@@ -8,7 +8,7 @@ import * as style from './style';
 const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
 
 
-export default class VariableText extends PureComponent {
+export default class VariableText extends React.Component {
   static propTypes = {
     isOpened: PropTypes.bool
   }

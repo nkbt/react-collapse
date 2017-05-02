@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {Motion, spring} from 'react-motion';
 import HeightReporter from 'react-height';
@@ -10,7 +10,7 @@ const PRECISION = 0.5;
 const stringHeight = height => Math.max(0, parseFloat(height)).toFixed(1);
 
 
-export default class Collapse extends PureComponent {
+export default class Collapse extends React.Component {
   static propTypes = {
     isOpened: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired,
@@ -20,7 +20,7 @@ export default class Collapse extends PureComponent {
     keepCollapsedContent: PropTypes.bool,
     onRest: PropTypes.func,
     onHeightReady: PropTypes.func
-  }
+  };
 
 
   static defaultProps = {
@@ -28,7 +28,7 @@ export default class Collapse extends PureComponent {
     style: {},
     keepCollapsedContent: false,
     onHeightReady: () => {} // eslint-disable-line no-empty-function
-  }
+  };
 
 
   constructor(props) {
@@ -71,7 +71,7 @@ export default class Collapse extends PureComponent {
     if (this.state.height !== reportHeight) {
       onHeightReady(reportHeight);
     }
-  }
+  };
 
 
   getMotionHeight(height) {

@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import VariableText from './VariableText';
 import VariableHeight from './VariableHeight';
 import InitiallyOpened from './InitiallyOpened';
@@ -19,7 +19,7 @@ const style = {
 };
 
 
-export default class App extends PureComponent {
+export default class App extends React.Component {
   render() {
     return (
       <div style={style.container}>

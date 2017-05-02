@@ -1,10 +1,10 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import {presets} from 'react-motion';
 import Collapse from '../../Collapse';
 import * as style from './style';
 
 
-export default class VariableHeight extends PureComponent {
+export default class VariableHeight extends React.Component {
   constructor(props) {
     super(props);
 
