@@ -1,9 +1,9 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import Collapse from '../../Collapse';
 import * as style from './style';
 import VariableHeight from './VariableHeight';
 
-export default class Nested extends PureComponent {
+export default class Nested extends React.Component {
   constructor(props) {
     super(props);
     this.state = {isOpened: false, keepContent: false};

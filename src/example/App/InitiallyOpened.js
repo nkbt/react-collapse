@@ -1,9 +1,9 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import Collapse from '../../Collapse';
 import * as style from './style';
 
 
-export default class InitiallyOpened extends PureComponent {
+export default class InitiallyOpened extends React.Component {
   constructor(props) {
     super(props);
     this.state = {isOpened: true, keepContent: false};

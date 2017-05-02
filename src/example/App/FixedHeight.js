@@ -1,8 +1,8 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import Collapse from '../../Collapse';
 import * as style from './style';
 
-export default class FixedHeight extends PureComponent {
+export default class FixedHeight extends React.Component {
   constructor(props) {
     super(props)
     this.state = {isOpened: false, keepContent: false, height: 100, fixedHeight: 200};
