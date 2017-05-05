@@ -11,6 +11,7 @@ import {AutoUnmount} from './AutoUnmount';
 import {Issue40} from './Issue40';
 import {Issue59} from './Issue59';
 import {Issue66} from './Issue66';
+import {Issue163} from './Issue163';
 
 import {name} from '../../../package.json';
 
@@ -98,6 +99,14 @@ export const App = () => (
       <Issue66 isOpened={true} />
       <p>Closed by default</p>
       <Issue66 isOpened={false} />
+    </section>
+
+    <section className="section">
+      <h2>
+        <a target="_blank" href="https://github.com/nkbt/react-collapse/issues/163">163</a>.
+        Overflow in collapse
+      </h2>
+      <Issue163 />
     </section>
 
   </div>
