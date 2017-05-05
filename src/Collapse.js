@@ -112,7 +112,7 @@ export class Collapse extends React.PureComponent {
       return;
     }
 
-    if (this.state.currentState === RESTING) {
+    if (this.state.currentState === RESTING || this.state.currentState === WAITING) {
       this.setState({currentState: IDLING, from, to});
     }
   }
