@@ -9,31 +9,6 @@
 
   "plugins": ["react", "babel"],
 
-  "ecmaFeatures": {
-    "arrowFunctions": true,
-    "binaryLiterals": true,
-    "blockBindings": true,
-    "classes": true,
-    "defaultParams": true,
-    "destructuring": true,
-    "forOf": true,
-    "generators": true,
-    "modules": true,
-    "objectLiteralComputedProperties": true,
-    "objectLiteralDuplicateProperties": true,
-    "objectLiteralShorthandMethods": true,
-    "objectLiteralShorthandProperties": true,
-    "octalLiterals": true,
-    "regexUFlag": true,
-    "regexYFlag": true,
-    "spread": true,
-    "superInFunctions": true,
-    "templateStrings": true,
-    "unicodeCodePointEscapes": true,
-    "globalReturn": true,
-    "jsx": true
-  },
-
   "rules": {
     //
     //Possible Errors
@@ -326,7 +301,7 @@
     "react/jsx-pascal-case": 2, // Enforce PascalCase for user-defined JSX components
     "react/jsx-sort-prop-types": 0, // Enforce propTypes declarations alphabetical sorting
     "react/jsx-sort-props": 0, // Enforce props alphabetical sorting
-    "react/jsx-space-before-closing": [2, "always"], // Validate spacing before closing bracket in JSX (fixable)
+    "react/jsx-tag-spacing": [2, {"closingSlash": "never", "beforeSelfClosing": "always", "afterOpening": "never"}], // Validate spacing before closing bracket in JSX (fixable)
     "react/jsx-uses-react": 2, // Prevent React to be incorrectly marked as unused
     "react/jsx-uses-vars": 2 // Prevent variables used in JSX to be incorrectly marked as unused
   }
