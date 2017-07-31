@@ -287,16 +287,15 @@ All other props are applied to a container that is being resized. So it is possi
 
 ## Development and testing
 
-Currently is being developed and tested with the latest stable `Node 6` on `OSX` and `Windows`.
-Should be ok with Node 4, but not guaranteed.
+Currently is being developed and tested with the latest stable `Node 8` on `OSX`.
 
-To run example covering all `ReactCollapse` features, use `npm start`, which will compile `src/example/Example.js`
+To run example covering all `ReactCollapse` features, use `yarn start`, which will compile `src/example/Example.js`
 
 ```bash
 git clone git@github.com:nkbt/react-collapse.git
 cd react-collapse
-npm install
-npm start
+yarn install
+yarn start
 
 # then
 open http://localhost:8080
@@ -305,13 +304,13 @@ open http://localhost:8080
 ## Tests
 
 ```bash
-npm test
-
-# to run tests in watch mode for development
-npm run test:dev
+yarn test
 
 # to generate test coverage (./reports/coverage)
-npm run test:cov
+yarn cov
+
+# to run end-to-end smoketest
+yarn e2e
 ```
 
 ## License

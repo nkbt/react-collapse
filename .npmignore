@@ -1,12 +1,1 @@
-/.*/
-/.*
-/example/
-/reports/
 /src/example/
-/src/.*
-/test/
-/test-e2e/
-/circle.yml
-/webpack.config.js
-/nightwatch.json
-/appveyor.yml

@@ -1,6 +1,6 @@
 machine:
   node:
-    version: v7.8.0
+    version: 8
 
 test:
   override:
