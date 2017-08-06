@@ -38,6 +38,10 @@ export class Hooks extends React.PureComponent {
     this.setState({isResting: true});
   };
 
+  onRef = ref => {
+    this.ref = ref;
+  };
+
   render() {
     const {isOpened, height, width, paragraphs} = this.state;
 
@@ -82,7 +86,7 @@ export class Hooks extends React.PureComponent {
           <label className="label">
             resting: {this.state.isResting ? 'true' : 'false'}
           </label>
-          <label className="label" ref={ref => (this.ref = ref)} />
+          <label className="label" ref={this.onRef} />
         </div>
         <Collapse
           isOpened={isOpened}

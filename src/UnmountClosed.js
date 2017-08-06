@@ -9,6 +9,10 @@ export class UnmountClosed extends React.PureComponent {
     onRest: PropTypes.func
   };
 
+  static defaultProps = {
+    onRest: undefined
+  };
+
   constructor(props) {
     super(props);
     this.state = {

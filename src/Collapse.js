@@ -1,3 +1,4 @@
+/* eslint-disable react/no-did-update-set-state,react/no-did-mount-set-state */
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Motion, spring} from 'react-motion';
@@ -40,6 +41,7 @@ export class Collapse extends React.PureComponent {
 
 
   static defaultProps = {
+    springConfig: {},
     forceInitialAnimation: false,
     hasNestedCollapse: false,
     fixedHeight: -1,
@@ -219,10 +221,9 @@ export class Collapse extends React.PureComponent {
 
   render() {
     return (
-      <Motion
-        {...this.getMotionProps()}
-        onRest={this.onRest}
-        children={this.renderContent} />
+      <Motion {...this.getMotionProps()} onRest={this.onRest}>
+        {this.renderContent}
+      </Motion>
     );
   }
 }
