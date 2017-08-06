@@ -1,5 +1,5 @@
 import React from 'react';
-import {Collapse} from '../..';
+import {Collapse} from '../../src';
 import text from './text.json';
 
 
@@ -38,6 +38,10 @@ export class Hooks extends React.PureComponent {
     this.setState({isResting: true});
   };
 
+  onRef = ref => {
+    this.ref = ref;
+  };
+
   render() {
     const {isOpened, height, width, paragraphs} = this.state;
 
@@ -46,7 +50,8 @@ export class Hooks extends React.PureComponent {
         <div className="config">
           <label className="label">
             Opened:
-            <input className="input"
+            <input
+              className="input"
               type="checkbox"
               checked={isOpened}
               onChange={({target: {checked}}) => this.setState({
@@ -57,9 +62,13 @@ export class Hooks extends React.PureComponent {
 
           <label className="label">
             Paragraphs:
-            <input className="input"
+            <input
+              className="input"
               type="range"
-              value={paragraphs} step={1} min={0} max={4}
+              value={paragraphs}
+              step={1}
+              min={0}
+              max={4}
               onChange={({target: {value}}) => this.setState({
                 paragraphs: parseInt(value, 10),
                 isResting: false
@@ -77,7 +86,7 @@ export class Hooks extends React.PureComponent {
           <label className="label">
             resting: {this.state.isResting ? 'true' : 'false'}
           </label>
-          <label className="label" ref={ref => (this.ref = ref)} />
+          <label className="label" ref={this.onRef} />
         </div>
         <Collapse
           isOpened={isOpened}

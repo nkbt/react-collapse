@@ -13,13 +13,11 @@ import {Issue59} from './Issue59';
 import {Issue66} from './Issue66';
 import {Issue163} from './Issue163';
 
-import {name} from '../../../package.json';
-
 
 export const App = () => (
   <div className="app">
 
-    <h1>{name}</h1>
+    <h1>react-collapse</h1>
 
     <section className="section">
       <h2>1. Variable text</h2>
@@ -28,7 +26,7 @@ export const App = () => (
 
     <section className="section">
       <h2>2. Variable text (initially opened)</h2>
-      <VariableText isOpened={true} />
+      <VariableText isOpened />
     </section>
 
     <section className="section">
@@ -67,7 +65,7 @@ export const App = () => (
       <AutoUnmount isOpened={false} />
       <section className="section">
         <p>opened by default</p>
-        <AutoUnmount isOpened={true} />
+        <AutoUnmount isOpened />
       </section>
     </section>
 
@@ -75,7 +73,7 @@ export const App = () => (
 
     <section className="section">
       <h2>
-        <a target="_blank" href="https://github.com/nkbt/react-collapse/issues/40">40</a>.
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/nkbt/react-collapse/issues/40">40</a>.
         Re-render nested components
       </h2>
       <Issue40 />
@@ -84,7 +82,7 @@ export const App = () => (
 
     <section className="section">
       <h2>
-        <a target="_blank" href="https://github.com/nkbt/react-collapse/issues/59">59</a>.
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/nkbt/react-collapse/issues/59">59</a>.
         Instantly collapses if re-rendered during collapse
       </h2>
       <Issue59 />
@@ -92,18 +90,18 @@ export const App = () => (
 
     <section className="section">
       <h2>
-        <a target="_blank" href="https://github.com/nkbt/react-collapse/issues/66">66</a>.
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/nkbt/react-collapse/issues/66">66</a>.
         Unnecessary unmount with keepCollapsedContent
       </h2>
       <p>Opened by default</p>
-      <Issue66 isOpened={true} />
+      <Issue66 isOpened />
       <p>Closed by default</p>
       <Issue66 isOpened={false} />
     </section>
 
     <section className="section">
       <h2>
-        <a target="_blank" href="https://github.com/nkbt/react-collapse/issues/163">163</a>.
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/nkbt/react-collapse/issues/163">163</a>.
         Overflow in collapse
       </h2>
       <Issue163 />

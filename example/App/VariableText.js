@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Collapse} from '../..';
+import {Collapse} from '../../src';
 import text from './text.json';
 
 
@@ -33,7 +33,8 @@ export class VariableText extends React.Component {
         <div className="config">
           <label className="label">
             Opened:
-            <input className="input"
+            <input
+              className="input"
               type="checkbox"
               checked={isOpened}
               onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
@@ -41,9 +42,13 @@ export class VariableText extends React.Component {
 
           <label className="label">
             Paragraphs:
-            <input className="input"
+            <input
+              className="input"
               type="range"
-              value={paragraphs} step={1} min={0} max={4}
+              value={paragraphs}
+              step={1}
+              min={0}
+              max={4}
               onChange={({target: {value}}) => this.setState({paragraphs: parseInt(value, 10)})} />
             {paragraphs}
           </label>

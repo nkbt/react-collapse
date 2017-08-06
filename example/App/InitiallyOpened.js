@@ -1,17 +1,16 @@
 import React from 'react';
-import {Collapse} from '../..';
-import {VariableHeight} from './VariableHeight';
+import {Collapse} from '../../src';
 
 
-export class Issue40 extends React.PureComponent {
+export class InitiallyOpened extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {isOpened: false};
+    this.state = {isOpened: true};
   }
-
 
   render() {
     const {isOpened} = this.state;
+    const height = 100;
 
     return (
       <div>
@@ -25,9 +24,8 @@ export class Issue40 extends React.PureComponent {
               onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
           </label>
         </div>
-
-        <Collapse isOpened={isOpened} hasNestedCollapse={true}>
-          <VariableHeight className="subCollapse" />
+        <Collapse isOpened={isOpened}>
+          <div style={{height}} className="blob" />
         </Collapse>
       </div>
     );

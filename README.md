@@ -3,8 +3,6 @@
 [![Gitter](https://img.shields.io/gitter/room/nkbt/help.svg?style=flat-square)](https://gitter.im/nkbt/help)
 
 [![CircleCI](https://img.shields.io/circleci/project/nkbt/react-collapse.svg?style=flat-square&label=nix-build)](https://circleci.com/gh/nkbt/react-collapse)
-[![AppVeyor](https://img.shields.io/appveyor/ci/nkbt/react-collapse.svg?style=flat-square&label=win-build)](https://ci.appveyor.com/project/nkbt/react-collapse)
-[![Coverage](https://img.shields.io/codecov/c/github/nkbt/react-collapse.svg?style=flat-square)](https://codecov.io/github/nkbt/react-collapse?branch=master)
 [![Dependencies](https://img.shields.io/david/nkbt/react-collapse.svg?style=flat-square)](https://david-dm.org/nkbt/react-collapse)
 [![Dev Dependencies](https://img.shields.io/david/dev/nkbt/react-collapse.svg?style=flat-square)](https://david-dm.org/nkbt/react-collapse#info=devDependencies)
 
@@ -36,7 +34,7 @@ Don't forget to manually install peer dependencies (`react`, `react-motion`) if 
 
 ## Demo
 
-[http://nkbt.github.io/react-collapse/example](http://nkbt.github.io/react-collapse/example)
+[http://nkbt.github.io/react-collapse](http://nkbt.github.io/react-collapse)
 
 ## Codepen demo
 
@@ -289,7 +287,7 @@ All other props are applied to a container that is being resized. So it is possi
 
 Currently is being developed and tested with the latest stable `Node 8` on `OSX`.
 
-To run example covering all `ReactCollapse` features, use `yarn start`, which will compile `src/example/Example.js`
+To run example covering all `ReactCollapse` features, use `yarn start`, which will compile `example/Example.js`
 
 ```bash
 git clone git@github.com:nkbt/react-collapse.git
@@ -304,12 +302,13 @@ open http://localhost:8080
 ## Tests
 
 ```bash
+# to run ESLint check
+yarn lint
+
+# to run tests
 yarn test
 
-# to generate test coverage (./reports/coverage)
-yarn cov
-
-# to run end-to-end smoketest
+# to run end-to-end tests
 yarn e2e
 ```
 

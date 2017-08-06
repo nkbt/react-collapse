@@ -1,11 +1,13 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
-import {Collapse} from '../..';
+import {Collapse} from '../../src';
 
 
 const styles = {
   ba: {
     borderWidth: '1px',
-    borderStyle: 'solid'
+    borderStyle: 'solid',
+    cursor: 'pointer'
   },
   mb3: {
     marginBottom: '1rem'
