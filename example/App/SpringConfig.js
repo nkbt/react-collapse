@@ -1,6 +1,6 @@
 import React from 'react';
 import {presets} from 'react-motion';
-import {Collapse} from '../..';
+import {Collapse} from '../../src';
 
 
 export class SpringConfig extends React.PureComponent {
@@ -29,7 +29,8 @@ export class SpringConfig extends React.PureComponent {
         <div className="config">
           <label className="label">
             Opened:
-            <input className="input"
+            <input
+              className="input"
               type="checkbox"
               checked={isOpened}
               onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
@@ -37,17 +38,25 @@ export class SpringConfig extends React.PureComponent {
 
           <label className="label">
             Content height:
-            <input className="input"
+            <input
+              className="input"
               type="range"
-              value={height} step={50} min={0} max={500}
+              value={height}
+              step={50}
+              min={0}
+              max={500}
               onChange={({target: {value}}) => this.setState({height: parseInt(value, 10)})} />
             {height}
           </label>
 
           <label className="label">
             Preset:
-            <select className="input"
-              value={preset} step={10} min={0} max={300}
+            <select
+              className="input"
+              value={preset}
+              step={10}
+              min={0}
+              max={300}
               onChange={this.onChangePreset}>
               {Object.keys(presets).map(p => <option key={p} value={p}>{p}</option>)}
             </select>
@@ -55,18 +64,26 @@ export class SpringConfig extends React.PureComponent {
 
           <label className="label">
             Stiffness:
-            <input className="input"
+            <input
+              className="input"
               type="range"
-              value={stiffness} step={10} min={0} max={300}
+              value={stiffness}
+              step={10}
+              min={0}
+              max={300}
               onChange={({target: {value}}) => this.setState({stiffness: parseInt(value, 10)})} />
             {stiffness}
           </label>
 
           <label className="label">
             Damping:
-            <input className="input"
+            <input
+              className="input"
               type="range"
-              value={damping} step={5} min={0} max={40}
+              value={damping}
+              step={5}
+              min={0}
+              max={40}
               onChange={({target: {value}}) => this.setState({damping: parseInt(value, 10)})} />
             {damping}
           </label>

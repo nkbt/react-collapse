@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Collapse} from '../..';
+import {Collapse} from '../../src';
 
 
 class Test extends React.Component {

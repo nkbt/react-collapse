@@ -13,13 +13,11 @@ import {Issue59} from './Issue59';
 import {Issue66} from './Issue66';
 import {Issue163} from './Issue163';
 
-import {name} from '../../../package.json';
-
 
 export const App = () => (
   <div className="app">
 
-    <h1>{name}</h1>
+    <h1>react-collapse</h1>
 
     <section className="section">
       <h2>1. Variable text</h2>
@@ -28,7 +26,7 @@ export const App = () => (
 
     <section className="section">
       <h2>2. Variable text (initially opened)</h2>
-      <VariableText isOpened={true} />
+      <VariableText isOpened />
     </section>
 
     <section className="section">
@@ -67,7 +65,7 @@ export const App = () => (
       <AutoUnmount isOpened={false} />
       <section className="section">
         <p>opened by default</p>
-        <AutoUnmount isOpened={true} />
+        <AutoUnmount isOpened />
       </section>
     </section>
 
@@ -96,7 +94,7 @@ export const App = () => (
         Unnecessary unmount with keepCollapsedContent
       </h2>
       <p>Opened by default</p>
-      <Issue66 isOpened={true} />
+      <Issue66 isOpened />
       <p>Closed by default</p>
       <Issue66 isOpened={false} />
     </section>

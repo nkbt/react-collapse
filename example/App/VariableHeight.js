@@ -1,5 +1,5 @@
 import React from 'react';
-import {Collapse} from '../..';
+import {Collapse} from '../../src';
 
 
 export class VariableHeight extends React.PureComponent {
@@ -17,7 +17,8 @@ export class VariableHeight extends React.PureComponent {
         <div className="config">
           <label className="label">
             Opened:
-            <input className="input"
+            <input
+              className="input"
               type="checkbox"
               checked={isOpened}
               onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
@@ -25,9 +26,13 @@ export class VariableHeight extends React.PureComponent {
 
           <label className="label">
             Content height:
-            <input className="input"
+            <input
+              className="input"
               type="range"
-              value={height} step={50} min={0} max={500}
+              value={height}
+              step={50}
+              min={0}
+              max={500}
               onChange={({target: {value}}) => this.setState({height: parseInt(value, 10)})} />
             {height}
           </label>
