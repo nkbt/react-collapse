@@ -226,8 +226,8 @@ All other props are applied to a container that is being resized. So it is possi
 
 ## Behaviour notes
 
-- initially opened Collapse elements will be statically rendered with no animation (see #19)
-- it is possible to override `overflow` and `height` styles for Collapse (see #16), and ReactCollapse may behave unexpectedly. Do it only when you definitely know you need it, otherwise, never override `overflow` and `height` styles.
+- initially opened Collapse elements will be statically rendered with no animation (see [#19](https://github.com/nkbt/react-collapse/pull/19))
+- it is possible to override `overflow` and `height` styles for Collapse (see [#16](https://github.com/nkbt/react-collapse/pull/16)), and ReactCollapse may behave unexpectedly. Do it only when you definitely know you need it, otherwise, never override `overflow` and `height` styles.
 
 
 ## Migrating from v2 to v3
