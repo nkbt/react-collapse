@@ -9,7 +9,7 @@
 Component-wrapper for collapse animation with react-motion for elements with variable (and dynamic) height
 
 
-![React Collapse](src/example/react-collapse.gif)
+![React Collapse](example/react-collapse.gif)
 
 
 ## Installation
