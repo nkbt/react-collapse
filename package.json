@@ -3,6 +3,7 @@
   "version": "4.0.3",
   "description": "Component-wrapper for collapse animation with react-motion for elements with variable (and dynamic) height",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "config": {
     "component": "ReactCollapse",
     "externals": {
@@ -45,7 +46,8 @@
   "homepage": "https://github.com/nkbt/react-collapse",
   "peerDependencies": {
     "react": ">=15.3",
-    "react-motion": "^0.4 || ^0.5"
+    "react-motion": "^0.4 || ^0.5",
+	"@types/react-motion": "latest"
   },
   "dependencies": {
     "prop-types": "^15.5.8"

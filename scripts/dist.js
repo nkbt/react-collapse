@@ -10,6 +10,10 @@ npm(`webpack --config ${require.resolve(`./utils/webpack/dist.config.js`)}`, {
   cwd: CWD,
   env: {NODE_ENV: `production`}
 });
+npm(`webpack --config ${require.resolve(`./utils/webpack/types.config.js`)}`, {
+  cwd: CWD,
+  env: {NODE_ENV: `production`}
+});
 npm(`webpack --config ${require.resolve(`./utils/webpack/min.config.js`)}`, {
   cwd: CWD,
   env: {NODE_ENV: `production`}
