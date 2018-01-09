@@ -9,7 +9,12 @@
       "react": "React",
       "react-dom": "ReactDOM",
       "react-motion": "ReactMotion"
-    }
+    },
+    "include": [
+      "https://unpkg.com/react/umd/react.production.min.js",
+      "https://unpkg.com/react-dom/umd/react-dom.production.min.js",
+      "https://unpkg.com/react-motion/build/react-motion.js"
+    ]
   },
   "scripts": {
     "build": "scripts/build.js",
