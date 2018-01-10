@@ -12,8 +12,6 @@ export class Hooks extends React.PureComponent {
     this.state = {
       isOpened: false,
       isResting: false,
-      renderHeight: -1,
-      keepContent: false,
       height: -1,
       width: -1,
       paragraphs: 0
@@ -43,7 +41,12 @@ export class Hooks extends React.PureComponent {
   };
 
   render() {
-    const {isOpened, height, width, paragraphs} = this.state;
+    const {
+      isOpened,
+      height,
+      width,
+      paragraphs
+    } = this.state;
 
     return (
       <div>

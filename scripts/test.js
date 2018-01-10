@@ -2,12 +2,12 @@
 'use strict';
 
 
-const path = require(`path`);
-const glob = require(`glob`);
-const {CWD} = require(`./utils/bash`);
+const path = require('path');
+const glob = require('glob');
+const {CWD} = require('./utils/bash');
 
 
-require(`babel-register`)({
+require('babel-register')({
   babelrc: false,
   plugins: [
     `transform-object-rest-spread`,

@@ -1,7 +1,7 @@
 'use strict';
 
 
-const ExtractTextPlugin = require(`extract-text-webpack-plugin`);
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const {
   pathTo,
@@ -9,8 +9,9 @@ const {
   loaders,
   resolve,
   stats,
-  externals
-} = require(`./common`);
+  externals,
+  INCLUDE_JS
+} = require('./common');
 
 
 module.exports = {
@@ -23,12 +24,7 @@ module.exports = {
   plugins: [
     plugins.define,
     plugins.html,
-    plugins.include([
-      `https://unpkg.com/react/dist/react.min.js`,
-      `https://unpkg.com/react-dom/dist/react-dom.min.js`,
-      `https://unpkg.com/react-motion/build/react-motion.js`,
-      `styles.css`
-    ]),
+    plugins.include(INCLUDE_JS.concat([`styles.css`])),
     new ExtractTextPlugin(`styles.css`)
   ],
   module: {

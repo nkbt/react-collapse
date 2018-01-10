@@ -3,15 +3,11 @@ import {Collapse} from '../../src';
 
 
 export class Issue163 extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpened: true,
-      isOverflowOpened: true
-    };
-  }
+  state = {
+    isOpened: true,
+    isOverflowOpened: true
+  };
 
-  onClick = () => this.setState({opened: !this.state.opened});
 
   render() {
     const {isOpened, isOverflowOpened} = this.state;
@@ -41,7 +37,9 @@ export class Issue163 extends React.PureComponent {
                   onChange={({target: {checked}}) => this.setState({isOverflowOpened: checked})} />
               </label>
               {isOverflowOpened && (
-                <div style={{width: 200, height: 200, background: 'black', position: 'absolute'}} />
+                <div style={{
+                  width: 200, height: 200, background: 'black', position: 'absolute'
+                }} />
               )}
             </div>
           </div>

@@ -28,6 +28,7 @@
     "babel/semi": 2,
     "jsx-a11y/href-no-hash": 0,
     "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
     "react/forbid-prop-types": 0,
     "react/jsx-filename-extension": [2, {"extensions": [".js"]}],
     "react/jsx-closing-bracket-location": [2, {"nonEmpty": "after-props", "selfClosing": "after-props"}],

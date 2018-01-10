@@ -7,7 +7,7 @@ const {
   loaders,
   resolve,
   stats
-} = require(`./common`);
+} = require('./common');
 
 
 module.exports = {

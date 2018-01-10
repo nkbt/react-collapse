@@ -1,8 +1,8 @@
 'use strict';
 
 
-const {execSync} = require(`child_process`);
-const {resolve} = require(`path`);
+const {execSync} = require('child_process');
+const {resolve} = require('path');
 
 
 const {NODE_DEBUG = ``} = process.env;
@@ -26,7 +26,8 @@ const bash = (cmd, options = {}) => {
   const result = execSync(cleanCmd, Object.assign(
     {stdio: `inherit`},
     options,
-    {env: Object.assign({}, process.env, options.env)}));
+    {env: Object.assign({}, process.env, options.env)}
+  ));
   const stringResult = result ? result.toString().trim() : ``;
   debug(`<<`, stringResult);
   return stringResult;

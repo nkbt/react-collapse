@@ -2,13 +2,13 @@
 'use strict';
 
 
-const path = require(`path`);
-const nightwatch = require(`nightwatch`);
-const finalhandler = require(`finalhandler`);
-const http = require(`http`);
-const serveStatic = require(`serve-static`);
-const {CWD} = require(`./utils/bash`);
-const portfinder = require(`portfinder`);
+const path = require('path');
+const nightwatch = require('nightwatch');
+const finalhandler = require('finalhandler');
+const http = require('http');
+const serveStatic = require('serve-static');
+const {CWD} = require('./utils/bash');
+const portfinder = require('portfinder');
 
 
 const {
@@ -101,7 +101,7 @@ const run = async ({cwd}) => {
 };
 
 
-require(`./pub`);
+require('./pub');
 
 
 run({cwd: CWD});

@@ -4,14 +4,13 @@ import {Collapse} from '../../src';
 
 
 export class SpringConfig extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    const preset = 'stiff';
-    const {stiffness, damping} = presets[preset];
-
-    this.state = {isOpened: false, height: 100, preset: 'stiff', stiffness, damping};
-  }
+  state = {
+    isOpened: false,
+    height: 100,
+    preset: 'stiff',
+    stiffness: presets.stiff.stiffness,
+    damping: presets.stiff.damping
+  };
 
 
   onChangePreset = ({target: {value: preset}}) => {
@@ -22,7 +21,13 @@ export class SpringConfig extends React.PureComponent {
 
 
   render() {
-    const {isOpened, height, preset, stiffness, damping} = this.state;
+    const {
+      isOpened,
+      height,
+      preset,
+      stiffness,
+      damping
+    } = this.state;
 
     return (
       <div>

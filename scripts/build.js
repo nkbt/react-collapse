@@ -2,5 +2,5 @@
 'use strict';
 
 
-require(`./lib`);
-require(`./dist`);
+require('./lib');
+require('./dist');
