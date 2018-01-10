@@ -10,7 +10,7 @@ const {
   resolve,
   stats,
   externals
-} = require(`./common`);
+} = require('./common');
 
 
 module.exports = {

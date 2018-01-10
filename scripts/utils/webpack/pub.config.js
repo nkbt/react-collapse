@@ -1,7 +1,7 @@
 'use strict';
 
 
-const ExtractTextPlugin = require(`extract-text-webpack-plugin`);
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const {
   pathTo,
@@ -11,7 +11,7 @@ const {
   stats,
   externals,
   INCLUDE_JS
-} = require(`./common`);
+} = require('./common');
 
 
 module.exports = {

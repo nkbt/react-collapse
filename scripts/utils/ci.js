@@ -1,7 +1,7 @@
 'use strict';
 
 
-const {CWD: SRC, bash} = require(`./bash`);
+const {CWD: SRC, bash} = require('./bash');
 
 
 const BUILD_HASH = bash(`git rev-parse --short HEAD`, {stdio: `pipe`});

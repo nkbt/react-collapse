@@ -2,7 +2,7 @@
 'use strict';
 
 
-const {npm, CWD} = require(`./utils/bash`);
+const {npm, CWD} = require('./utils/bash');
 
 
 npm(`rimraf build`, {cwd: CWD});

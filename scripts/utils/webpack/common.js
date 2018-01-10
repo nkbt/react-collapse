@@ -1,11 +1,11 @@
 'use strict';
 
 
-const webpack = require(`webpack`);
-const HtmlWebpackPlugin = require(`html-webpack-plugin`);
-const HtmlWebpackIncludeAssetsPlugin = require(`html-webpack-include-assets-plugin`);
-const path = require(`path`);
-const BabiliPlugin = require(`babili-webpack-plugin`);
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
+const path = require('path');
+const BabiliPlugin = require('babili-webpack-plugin');
 
 
 const {NODE_ENV = `development`} = process.env;

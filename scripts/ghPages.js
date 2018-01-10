@@ -2,12 +2,12 @@
 'use strict';
 
 
-const path = require(`path`);
-const {publish} = require(`gh-pages`);
-const {CWD} = require(`./utils/bash`);
+const path = require('path');
+const {publish} = require('gh-pages');
+const {CWD} = require('./utils/bash');
 
 
-require(`./pub`);
+require('./pub');
 
 
 const {name} = require(path.join(CWD, `package.json`));

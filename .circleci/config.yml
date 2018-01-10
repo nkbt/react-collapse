@@ -3,9 +3,9 @@ version: 2
 
 jobs:
   build:
-    working_directory: ~/react-collapse
+    working_directory: ~/app
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:8.4.0
       - image: selenium/standalone-firefox:3.4.0
 
     steps:

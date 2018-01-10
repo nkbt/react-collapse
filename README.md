@@ -25,7 +25,7 @@ Don't forget to manually install peer dependencies (`react`, `react-motion`) if 
 
 ### 1998 Script Tag:
 ```html
-<script src="https://unpkg.com/react/dist/react.js"></script>
+<script src="https://unpkg.com/react/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-motion/build/react-motion.js"></script>
 <script src="https://unpkg.com/react-collapse/build/react-collapse.js"></script>
 (Module exposed as `ReactCollapse`)
@@ -309,6 +309,9 @@ yarn lint
 yarn test
 
 # to run end-to-end tests
+# first, run `selenium/standalone-firefox:3.4.0` docker image
+docker run -p 4444:4444 selenium/standalone-firefox:3.4.0
+# then run test
 yarn e2e
 ```
 
