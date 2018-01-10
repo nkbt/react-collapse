@@ -1130,21 +1130,32 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var SpringConfig = function (_React$PureComponent) {
   _inherits(SpringConfig, _React$PureComponent);
 
-  function SpringConfig(props) {
+  function SpringConfig() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, SpringConfig);
 
-    var _this = _possibleConstructorReturn(this, (SpringConfig.__proto__ || Object.getPrototypeOf(SpringConfig)).call(this, props));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-    _initialiseProps.call(_this);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SpringConfig.__proto__ || Object.getPrototypeOf(SpringConfig)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      isOpened: false,
+      height: 100,
+      preset: 'stiff',
+      stiffness: __WEBPACK_IMPORTED_MODULE_1_react_motion__["presets"].stiff.stiffness,
+      damping: __WEBPACK_IMPORTED_MODULE_1_react_motion__["presets"].stiff.damping
+    }, _this.onChangePreset = function (_ref2) {
+      var preset = _ref2.target.value;
+      var _presets$preset = __WEBPACK_IMPORTED_MODULE_1_react_motion__["presets"][preset],
+          stiffness = _presets$preset.stiffness,
+          damping = _presets$preset.damping;
 
-    var preset = 'stiff';
-    var _presets$preset = __WEBPACK_IMPORTED_MODULE_1_react_motion__["presets"][preset],
-        stiffness = _presets$preset.stiffness,
-        damping = _presets$preset.damping;
 
-
-    _this.state = { isOpened: false, height: 100, preset: 'stiff', stiffness: stiffness, damping: damping };
-    return _this;
+      _this.setState({ preset: preset, stiffness: stiffness, damping: damping });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(SpringConfig, [{
@@ -1174,8 +1185,8 @@ var SpringConfig = function (_React$PureComponent) {
               className: 'input',
               type: 'checkbox',
               checked: isOpened,
-              onChange: function onChange(_ref) {
-                var checked = _ref.target.checked;
+              onChange: function onChange(_ref3) {
+                var checked = _ref3.target.checked;
                 return _this2.setState({ isOpened: checked });
               } })
           ),
@@ -1190,8 +1201,8 @@ var SpringConfig = function (_React$PureComponent) {
               step: 50,
               min: 0,
               max: 500,
-              onChange: function onChange(_ref2) {
-                var value = _ref2.target.value;
+              onChange: function onChange(_ref4) {
+                var value = _ref4.target.value;
                 return _this2.setState({ height: parseInt(value, 10) });
               } }),
             height
@@ -1229,8 +1240,8 @@ var SpringConfig = function (_React$PureComponent) {
               step: 10,
               min: 0,
               max: 300,
-              onChange: function onChange(_ref3) {
-                var value = _ref3.target.value;
+              onChange: function onChange(_ref5) {
+                var value = _ref5.target.value;
                 return _this2.setState({ stiffness: parseInt(value, 10) });
               } }),
             stiffness
@@ -1246,8 +1257,8 @@ var SpringConfig = function (_React$PureComponent) {
               step: 5,
               min: 0,
               max: 40,
-              onChange: function onChange(_ref4) {
-                var value = _ref4.target.value;
+              onChange: function onChange(_ref6) {
+                var value = _ref6.target.value;
                 return _this2.setState({ damping: parseInt(value, 10) });
               } }),
             damping
@@ -1267,20 +1278,6 @@ var SpringConfig = function (_React$PureComponent) {
 
   return SpringConfig;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.PureComponent);
-
-var _initialiseProps = function _initialiseProps() {
-  var _this3 = this;
-
-  this.onChangePreset = function (_ref5) {
-    var preset = _ref5.target.value;
-    var _presets$preset2 = __WEBPACK_IMPORTED_MODULE_1_react_motion__["presets"][preset],
-        stiffness = _presets$preset2.stiffness,
-        damping = _presets$preset2.damping;
-
-
-    _this3.setState({ preset: preset, stiffness: stiffness, damping: damping });
-  };
-};
 
 /***/ }),
 /* 14 */
@@ -1429,8 +1426,6 @@ var Hooks = function (_React$PureComponent) {
     _this.state = {
       isOpened: false,
       isResting: false,
-      renderHeight: -1,
-      keepContent: false,
       height: -1,
       width: -1,
       paragraphs: 0
@@ -1633,7 +1628,7 @@ var AutoUnmount = function (_React$PureComponent2) {
       _this2.setState({ isOpened: checked });
     };
 
-    _this2.state = { isOpened: _this2.props.isOpened, shouldRender: false };
+    _this2.state = { isOpened: _this2.props.isOpened };
     return _this2;
   }
 
@@ -1802,30 +1797,35 @@ var styles = {
 var Issue59 = function (_React$PureComponent) {
   _inherits(Issue59, _React$PureComponent);
 
-  function Issue59(props) {
+  function Issue59() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, Issue59);
 
-    var _this = _possibleConstructorReturn(this, (Issue59.__proto__ || Object.getPrototypeOf(Issue59)).call(this, props));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-    _this.onClick1 = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Issue59.__proto__ || Object.getPrototypeOf(Issue59)).call.apply(_ref, [this].concat(args))), _this), _this.state = { opened: 1, whatever: 'b' }, _this.onClick1 = function () {
       _this.setState({ opened: 1 });
-    };
-
-    _this.onClick2 = function () {
+    }, _this.onClick2 = function () {
       _this.setState({ opened: 2 }, function () {
         return setTimeout(function () {
-          return _this.setState({ whatever: 1 });
+          return _this.setState({ whatever: 'bb' });
         }, 50);
       });
-    };
-
-    _this.state = { opened: 1 };
-    return _this;
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Issue59, [{
     key: 'render',
     value: function render() {
+      var _state = this.state,
+          opened = _state.opened,
+          whatever = _state.whatever;
+
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         null,
@@ -1839,7 +1839,7 @@ var Issue59 = function (_React$PureComponent) {
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_1__src__["Collapse"],
-            { isOpened: this.state.opened === 1 },
+            { isOpened: opened === 1 },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { style: _extends({}, styles.ba, styles.pa3) },
@@ -1861,14 +1861,14 @@ var Issue59 = function (_React$PureComponent) {
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_1__src__["Collapse"],
-            { isOpened: this.state.opened === 2 },
+            { isOpened: opened === 2 },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { style: _extends({}, styles.ba, styles.pa3) },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { style: _extends({}, styles.h3, styles.w3, styles.bgBlack) },
-                'b'
+                whatever
               )
             )
           )
@@ -2037,20 +2037,21 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Issue163 = function (_React$PureComponent) {
   _inherits(Issue163, _React$PureComponent);
 
-  function Issue163(props) {
+  function Issue163() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, Issue163);
 
-    var _this = _possibleConstructorReturn(this, (Issue163.__proto__ || Object.getPrototypeOf(Issue163)).call(this, props));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-    _this.onClick = function () {
-      return _this.setState({ opened: !_this.state.opened });
-    };
-
-    _this.state = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Issue163.__proto__ || Object.getPrototypeOf(Issue163)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       isOpened: true,
       isOverflowOpened: true
-    };
-    return _this;
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Issue163, [{
@@ -2077,8 +2078,8 @@ var Issue163 = function (_React$PureComponent) {
               className: 'input',
               type: 'checkbox',
               checked: isOpened,
-              onChange: function onChange(_ref) {
-                var checked = _ref.target.checked;
+              onChange: function onChange(_ref2) {
+                var checked = _ref2.target.checked;
                 return _this2.setState({ isOpened: checked });
               } })
           )
@@ -2100,12 +2101,14 @@ var Issue163 = function (_React$PureComponent) {
                   className: 'input',
                   type: 'checkbox',
                   checked: isOverflowOpened,
-                  onChange: function onChange(_ref2) {
-                    var checked = _ref2.target.checked;
+                  onChange: function onChange(_ref3) {
+                    var checked = _ref3.target.checked;
                     return _this2.setState({ isOverflowOpened: checked });
                   } })
               ),
-              isOverflowOpened && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { style: { width: 200, height: 200, background: 'black', position: 'absolute' } })
+              isOverflowOpened && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { style: {
+                  width: 200, height: 200, background: 'black', position: 'absolute'
+                } })
             )
           )
         )
