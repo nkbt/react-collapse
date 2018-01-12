@@ -83,8 +83,7 @@ export class Collapse extends React.PureComponent {
     const {currentState, to, resizingFrom} = this.state;
     if (currentState === RESIZING && nextProps.isOpened !== this.props.isOpened) {
       this.setState({from: this.currentHeight, to: resizingFrom, resizingFrom: to});
-    }
-    else if (nextProps.hasNestedCollapse) {
+    } else if (nextProps.hasNestedCollapse) {
       // For nested collapses we do not need to change to waiting state
       // and should keep `height:auto`
       // Because children will be animated and height will not jump anyway
@@ -117,11 +116,13 @@ export class Collapse extends React.PureComponent {
       const to = isOpened ? this.getTo() : 0;
 
       if (from !== to) {
-          this.setState({currentState: RESIZING, from, to, resizingFrom: from});
+        this.setState({
+          currentState: RESIZING, from, to, resizingFrom: from
+        });
         return;
       }
 
-        if (currentState === RESTING || currentState === WAITING) {
+      if (currentState === RESTING || currentState === WAITING) {
         this.setState({currentState: IDLING, from, to});
       }
     }
