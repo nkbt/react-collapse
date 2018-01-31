@@ -24,6 +24,7 @@ export class Collapse extends React.PureComponent {
     isOpened: PropTypes.bool.isRequired,
     springConfig: PropTypes.objectOf(PropTypes.number),
     forceInitialAnimation: PropTypes.bool,
+    animateContentChanges: PropTypes.bool,
 
     hasNestedCollapse: PropTypes.bool,
 
@@ -44,6 +45,7 @@ export class Collapse extends React.PureComponent {
     springConfig: {},
     forceInitialAnimation: false,
     hasNestedCollapse: false,
+    animateContentChanges: true,
     fixedHeight: -1,
     style: {},
     theme: css,
@@ -81,19 +83,24 @@ export class Collapse extends React.PureComponent {
 
   componentWillReceiveProps(nextProps) {
     const {currentState, to, resizingFrom} = this.state;
-    if (currentState === RESIZING && nextProps.isOpened !== this.props.isOpened) {
+    const {isOpened, animateContentChanges} = this.props;
+    const openedChanged = nextProps.isOpened !== isOpened;
+
+    if (currentState === RESIZING && openedChanged) {
       this.setState({from: this.currentHeight, to: resizingFrom, resizingFrom: to});
     } else if (nextProps.hasNestedCollapse) {
       // For nested collapses we do not need to change to waiting state
       // and should keep `height:auto`
       // Because children will be animated and height will not jump anyway
       // See https://github.com/nkbt/react-collapse/issues/76 for more details
-      if (nextProps.isOpened !== this.props.isOpened) {
+      if (openedChanged) {
         // Still go to WAITING state if own isOpened was changed
         this.setState({currentState: WAITING});
       }
-    } else if (currentState === IDLING && (nextProps.isOpened || this.props.isOpened)) {
-      this.setState({currentState: WAITING});
+    } else if (currentState === IDLING) {
+      if (openedChanged || (isOpened && animateContentChanges)) {
+        this.setState({currentState: WAITING});
+      }
     }
   }
 
@@ -198,6 +205,7 @@ export class Collapse extends React.PureComponent {
       isOpened: _isOpened,
       springConfig: _springConfig,
       forceInitialAnimation: _forceInitialAnimation,
+      animateContentChanges: _animateContentChanges,
       hasNestedCollapse: _hasNestedCollapse,
       fixedHeight: _fixedHeight,
       theme,
