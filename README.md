@@ -88,7 +88,7 @@ One or multiple children with static, variable or dynamic height.
 
 #### `hasNestedCollapse`: PropTypes.bool (default: false)
 
-If Collapse component has more Collapse components inside, it needs `hasNestedCollapse` to be set 
+If Collapse component has more Collapse components inside, it needs `hasNestedCollapse` to be set
 to avoid delayed animations. See https://github.com/nkbt/react-collapse/issues/76 for tech details.
 
 ```js
@@ -199,7 +199,7 @@ Callback function for every re-render while animating.
 Passes `current` height, as well as `from`/`to` heights.
 
 **DANGEROUS** use with caution, may have huge performance impact if used improperly. Never do `setState` with it, since it is running while rendering and React will shoot Warning.
- 
+
 Possible usage: synchronous scrolling of some other component
 ```js
 <Collapse onRender={({current, from, to}) => (this.anotherComponent.scrollTop = current)}>
@@ -238,47 +238,47 @@ All other props are applied to a container that is being resized. So it is possi
   ```js
   import Collapse from 'react-collapse';
   ```
-  
+
   V3
   ```js
   import {Collapse} from 'react-collapse';
   ```
-  
+
 2. Default behavior changed to never unmount collapsed element. To actually unmount use extra provided component `UnmountCollapsed`
 
-  V2: 
+  V2:
   ```js
   import Collapse from 'react-collapse';
-  
+
   <Collapse isOpened={true || false}>
     <div>Random content</div>
   </Collapse>
-  ```  
+  ```
 
-  V3: 
+  V3:
   ```js
   import {UnmountClosed as Collapse} from 'react-collapse';
-  
+
   <Collapse isOpened={true || false}>
     <div>Random content</div>
   </Collapse>
-  ```  
+  ```
 
 3. `onHeightReady` renamed to `onMeasure` which now takes object of shape `{width, height}`
 
-  V2: 
+  V2:
   ```js
   <Collapse onHeightReady={height => console.log(height)}>
     <div>Random content</div>
   </Collapse>
-  ```  
+  ```
 
-  V3: 
+  V3:
   ```js
   <Collapse onMeasure={({height, width}) => console.log(height, width)}>
     <div>Random content</div>
   </Collapse>
-  ```  
+  ```
 
 4. Some new props/features: `hasNestedCollapse`, `forceInitialAnimation`, `onRender`, etc
 
