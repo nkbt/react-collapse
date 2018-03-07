@@ -228,7 +228,7 @@ All other props are applied to a container that is being resized. So it is possi
 
 - initially opened Collapse elements will be statically rendered with no animation (see [#19](https://github.com/nkbt/react-collapse/pull/19))
 - it is possible to override `overflow` and `height` styles for Collapse (see [#16](https://github.com/nkbt/react-collapse/pull/16)), and ReactCollapse may behave unexpectedly. Do it only when you definitely know you need it, otherwise, never override `overflow` and `height` styles.
-
+- Due to the complexity of margins and their potentially collapsible nature, ReactCollapse does not support (vertical) margins on their children. It might lead to the animation "jumping" to its correct height at the end of expanding. To avoid this, use padding instead of margin. (see [#101](https://github.com/nkbt/react-collapse/issues/101))
 
 ## Migrating from v2 to v3
 
