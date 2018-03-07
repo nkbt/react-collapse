@@ -167,6 +167,13 @@ export class Collapse extends React.PureComponent {
     return {overflow: 'hidden', height: Math.max(0, height)};
   };
 
+  getContentStyle = () => {
+    if (this.state.currentState === IDLING && this.props.isOpened) {
+      return null;
+    }
+    return {overflowY: 'auto'};
+  };
+
 
   getMotionProps = () => {
     const {springConfig} = this.props;
@@ -213,7 +220,12 @@ export class Collapse extends React.PureComponent {
         className={theme.collapse}
         style={{...this.getWrapperStyle(Math.max(0, height)), ...style}}
         {...props}>
-        <div ref={this.onContentRef} className={theme.content}>{children}</div>
+        <div
+          ref={this.onContentRef}
+          className={theme.content}
+          style={this.getContentStyle()}>
+          {children}
+        </div>
       </div>
     );
   };

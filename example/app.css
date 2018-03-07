@@ -16,8 +16,8 @@
 }
 
 .text p {
-  margin: 0;
-  padding: 10px;
+  margin: 10px 0;
+  padding: 0 10px;
 }
 
 .config {
