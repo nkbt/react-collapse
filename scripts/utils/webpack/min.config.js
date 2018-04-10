@@ -25,12 +25,11 @@ module.exports = {
   },
   plugins: [
     plugins.define,
-    plugins.uglify,
     plugins.loaderOptions
   ],
   module: {
     rules: [
-      loaders.babel
+      loaders.babelProd
     ]
   },
   resolve,

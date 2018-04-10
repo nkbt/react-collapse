@@ -5,7 +5,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 const path = require('path');
-const BabiliPlugin = require('babili-webpack-plugin');
 
 
 const {NODE_ENV = `development`} = process.env;
@@ -54,29 +53,28 @@ exports.loaders = {
     include: [pathTo(`src`), pathTo(`example`)],
     options: {
       babelrc: false,
-      presets: [
-        `react`,
-        [`env`, {modules: false}]
-      ],
+      presets: [`react`, [`env`, {modules: false}]],
       plugins: [
         `transform-object-rest-spread`,
         `transform-class-properties`
-      ],
-      env: {
-        production: {
-          plugins: [
-            [`transform-react-remove-prop-types`, {removeImport: true}]
-          ]
-        }
-      }
+      ]
+    }
+  },
+  babelProd: {
+    test: /\.js$/,
+    loader: `babel-loader`,
+    include: [pathTo(`src`), pathTo(`example`)],
+    options: {
+      babelrc: false,
+      presets: [`react`, [`env`, {modules: false}]],
+      plugins: [
+        `transform-object-rest-spread`,
+        `transform-class-properties`,
+        [`transform-react-remove-prop-types`, {removeImport: true}]
+      ]
     }
   }
 };
-
-
-const babiliPlugin = new BabiliPlugin({
-  mergeVars: false
-}, {sourceMap: false});
 
 
 exports.plugins = {
@@ -84,7 +82,6 @@ exports.plugins = {
     'process.env.NODE_ENV': JSON.stringify(NODE_ENV)
   }),
   html: new HtmlWebpackPlugin(),
-  uglify: babiliPlugin,
   include: assets => new HtmlWebpackIncludeAssetsPlugin({
     assets,
     append: false
