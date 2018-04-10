@@ -24,7 +24,7 @@
     "lint": "scripts/lint.js",
     "pub": "scripts/pub.js",
     "test": "scripts/test.js",
-    "prepublish": "yarn build",
+    "prepare": "yarn build",
     "postversion": "git push --follow-tags"
   },
   "repository": {
