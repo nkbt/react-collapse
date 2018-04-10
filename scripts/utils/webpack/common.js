@@ -78,9 +78,6 @@ exports.loaders = {
 
 
 exports.plugins = {
-  define: new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify(NODE_ENV)
-  }),
   html: new HtmlWebpackPlugin(),
   include: assets => new HtmlWebpackIncludeAssetsPlugin({
     assets,

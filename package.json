@@ -69,7 +69,7 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
-    "extract-text-webpack-plugin": "^3.0.2",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "finalhandler": "^1.1.0",
     "gh-pages": "^1.1.0",
     "glob": "^7.1.2",

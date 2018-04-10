@@ -23,8 +23,7 @@ module.exports = {
     path: pathTo(`dev`)
   },
   plugins: [
-    plugins.html,
-    plugins.define
+    plugins.html
   ],
   module: {
     rules: [

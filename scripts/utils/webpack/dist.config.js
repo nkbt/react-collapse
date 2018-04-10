@@ -23,9 +23,6 @@ module.exports = {
     library: COMPONENT_NAME,
     libraryTarget: `umd`
   },
-  plugins: [
-    plugins.define
-  ],
   module: {
     rules: [
       loaders.babel

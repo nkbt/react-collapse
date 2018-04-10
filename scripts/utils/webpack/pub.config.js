@@ -23,14 +23,13 @@ module.exports = {
     path: pathTo(`pub`)
   },
   plugins: [
-    plugins.define,
     plugins.html,
     plugins.include(INCLUDE_JS.concat([`styles.css`])),
     new ExtractTextPlugin(`styles.css`)
   ],
   module: {
     rules: [
-      loaders.babel,
+      loaders.babelProd,
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
