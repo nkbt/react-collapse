@@ -5,8 +5,5 @@ const {Collapse} = require('./Collapse');
 const {UnmountClosed} = require('./UnmountClosed');
 
 
-UnmountClosed.Collapse = Collapse;
-UnmountClosed.UnmountClosed = UnmountClosed;
-
-
+Object.assign(UnmountClosed, {Collapse, UnmountClosed});
 module.exports = UnmountClosed;

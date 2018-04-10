@@ -2,10 +2,10 @@
 
 
 const {
+  mode,
   pathTo,
   PACKAGE_NAME,
   COMPONENT_NAME,
-  plugins,
   loaders,
   resolve,
   stats,
@@ -14,6 +14,7 @@ const {
 
 
 module.exports = {
+  mode,
   devtool: false,
   entry: pathTo(`src`, `index.js`),
   output: {
@@ -22,9 +23,6 @@ module.exports = {
     library: COMPONENT_NAME,
     libraryTarget: `umd`
   },
-  plugins: [
-    plugins.define
-  ],
   module: {
     rules: [
       loaders.babel

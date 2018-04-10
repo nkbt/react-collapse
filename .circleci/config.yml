@@ -5,7 +5,7 @@ jobs:
   build:
     working_directory: ~/app
     docker:
-      - image: circleci/node:8.4.0
+      - image: circleci/node:8.11.1
       - image: selenium/standalone-firefox:3.4.0
 
     steps:
