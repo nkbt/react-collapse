@@ -14,6 +14,7 @@ const {
 
 
 module.exports = {
+  mode: 'production',
   devtool: false,
   entry: pathTo(`src`, `index.js`),
   output: {

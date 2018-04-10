@@ -3,7 +3,6 @@ import {VariableText} from './VariableText';
 import {VariableHeight} from './VariableHeight';
 import {FixedHeight} from './FixedHeight';
 import {InitiallyOpened} from './InitiallyOpened';
-import {SpringConfig} from './SpringConfig';
 import {Nested} from './Nested';
 import {Hooks} from './Hooks';
 import {AutoUnmount} from './AutoUnmount';
@@ -42,11 +41,6 @@ export const App = () => (
     <section className="section">
       <h2>4. Initially opened</h2>
       <InitiallyOpened />
-    </section>
-
-    <section className="section">
-      <h2>5. Custom spring configuration</h2>
-      <SpringConfig />
     </section>
 
     <section className="section">
