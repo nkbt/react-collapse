@@ -13,9 +13,6 @@ import {Issue66} from './Issue66';
 import {Issue163} from './Issue163';
 
 
-console.log(`VariableText`, VariableText)
-
-
 export const App = () => (
   <div className="app">
 

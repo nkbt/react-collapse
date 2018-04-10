@@ -4,6 +4,7 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const {
+  mode,
   pathTo,
   plugins,
   loaders,
@@ -15,7 +16,7 @@ const {
 
 
 module.exports = {
-  mode: 'production',
+  mode,
   devtool: false,
   entry: pathTo(`example`, `index.js`),
   output: {

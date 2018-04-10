@@ -2,6 +2,7 @@
 
 
 const {
+  mode,
   pathTo,
   PACKAGE_NAME,
   COMPONENT_NAME,
@@ -14,7 +15,7 @@ const {
 
 
 module.exports = {
-  mode: 'production',
+  mode,
   devtool: false,
   entry: pathTo(`src`, `index.js`),
   output: {

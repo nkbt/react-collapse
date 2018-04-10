@@ -2,6 +2,7 @@
 
 
 const {
+  mode,
   pathTo,
   plugins,
   loaders,
@@ -11,7 +12,7 @@ const {
 
 
 module.exports = {
-  mode: 'development',
+  mode,
   devtool: `#source-map`,
 
   entry: [

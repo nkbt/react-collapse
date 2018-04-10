@@ -2,10 +2,10 @@
 
 
 const {
+  mode,
   pathTo,
   PACKAGE_NAME,
   COMPONENT_NAME,
-  plugins,
   loaders,
   resolve,
   stats,
@@ -14,7 +14,7 @@ const {
 
 
 module.exports = {
-  mode: 'development',
+  mode,
   devtool: false,
   entry: pathTo(`src`, `index.js`),
   output: {

@@ -96,3 +96,6 @@ exports.stats = {colors: true};
 
 
 exports.externals = COMPONENT_EXTERNALS;
+
+
+exports.mode = NODE_ENV;
