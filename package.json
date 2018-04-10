@@ -1,5 +1,5 @@
 {
-  "name": "react-collapse",
+  "name": "@nkbt/react-collapse",
   "version": "5.0.0-alpha.0",
   "description": "Component-wrapper for collapse animation for elements with variable (and dynamic) height",
   "main": "lib/index.js",
