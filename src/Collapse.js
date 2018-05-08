@@ -94,6 +94,7 @@ export class Collapse extends React.Component {
           className={theme.content}>
           <iframe
             ref={this.onSensorRef}
+            tabIndex="-1"
             title="Element resize sensor"
             style={{
               display: 'block',
