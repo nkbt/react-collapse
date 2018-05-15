@@ -17,14 +17,15 @@ const {
 module.exports = {
   mode,
   devtool: false,
-  entry: pathTo(`src`, `index.js`),
+  entry: pathTo('src', 'index.js'),
   output: {
     filename: `${PACKAGE_NAME}.min.js`,
-    path: pathTo(`build`),
+    path: pathTo('build'),
     library: COMPONENT_NAME,
-    libraryTarget: `umd`
+    libraryTarget: 'umd'
   },
   plugins: [
+    plugins.emptyPropTypes,
     plugins.loaderOptions
   ],
   module: {

@@ -17,7 +17,7 @@ const {
 
 
 if (!DOCKER_IP) {
-  console.error(new Error(`DOCKER_IP ENV is required`));
+  console.error(new Error('DOCKER_IP ENV is required'));
 }
 
 
@@ -27,13 +27,13 @@ const nextTick = () => new Promise(resolve => process.nextTick(resolve));
 let count = 0;
 const listen = server => new Promise(async (resolve, reject) => {
   const port = await portfinder.getPortPromise({port: 3000});
-  server.listen(port, `0.0.0.0`, err => {
+  server.listen(port, '0.0.0.0', err => {
     if (!err) {
       Object.assign(server, {port});
       return resolve();
     }
 
-    if (!err.message.includes(`EADDRINUSE`) || count > 10) {
+    if (!err.message.includes('EADDRINUSE') || count > 10) {
       return reject(err);
     }
 
@@ -68,13 +68,13 @@ const run = async ({cwd}) => {
   };
 
 
-  process.on(`uncaughtException`, die);
-  process.on(`unhandledRejection`, die);
+  process.on('uncaughtException', die);
+  process.on('unhandledRejection', die);
 
 
   const client = nightwatch.initClient({
     selenium_port: 4444,
-    selenium_host: `localhost`,
+    selenium_host: 'localhost',
     silent: true,
     output: true,
     detailed_output: true
@@ -85,8 +85,8 @@ const run = async ({cwd}) => {
 
   browser
     .url(`http://${DOCKER_IP}:${server.port}`)
-    .waitForElementVisible(`body`, 1000)
-    .assert.containsText(`body`, require(`${cwd}/package.json`).name)
+    .waitForElementVisible('body', 1000)
+    .assert.containsText('body', require(`${cwd}/package.json`).name)
     .end();
 
   try {

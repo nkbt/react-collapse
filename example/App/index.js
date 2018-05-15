@@ -16,7 +16,7 @@ import {Issue163} from './Issue163';
 export const App = () => (
   <div className="app">
 
-    <h1>react-collapse</h1>
+    <h1>@nkbt/react-collapse</h1>
 
     <section className="section">
       <h2>1. Variable text</h2>
