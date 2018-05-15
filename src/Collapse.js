@@ -15,11 +15,11 @@ export class Collapse extends React.Component {
 
 
   static defaultProps = {
-    theme: PropTypes.shape({
+    theme: {
       container: 'ReactCollapse--container',
       content: 'ReactCollapse--content',
       sensor: 'ReactCollapse--sensor'
-    })
+    }
   };
 
 
