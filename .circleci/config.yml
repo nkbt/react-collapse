@@ -34,5 +34,6 @@ jobs:
       - run:
           name: yarn e2e
           command: |
-            export DOCKER_IP=$(ifconfig | grep "inet addr:" | grep "Bcast:0.0.0.0" | cut -d: -f2 | awk '{ print $1}')
+            export DOCKER_IP=$(ifconfig | grep "inet addr:" | grep "Bcast:" | cut -d: -f2 | awk '{print $1}')
+            echo DOCKER_IP=${DOCKER_IP}
             yarn e2e
