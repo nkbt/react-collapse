@@ -13,15 +13,15 @@ const {
 
 module.exports = {
   mode,
-  devtool: `#source-map`,
+  devtool: '#source-map',
 
   entry: [
-    pathTo(`example`, `index.js`),
-    `webpack-dev-server/client?http://localhost:8080`
+    pathTo('example', 'index.js'),
+    'webpack-dev-server/client?http://localhost:8080'
   ],
   output: {
-    filename: `bundle.js`,
-    path: pathTo(`dev`)
+    filename: 'bundle.js',
+    path: pathTo('dev')
   },
   plugins: [
     plugins.html

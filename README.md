@@ -281,7 +281,7 @@ All other props are applied to a container that is being resized. So it is possi
 
 ## Development and testing
 
-Currently is being developed and tested with the latest stable `Node 8` on `OSX`.
+Currently is being developed and tested with the latest stable `Node` on `OSX`.
 
 To run example covering all `ReactCollapse` features, use `yarn start`, which will compile `example/Example.js`
 

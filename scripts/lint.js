@@ -4,5 +4,4 @@
 
 const {npm, CWD} = require('./utils/bash');
 
-
-npm(`eslint .`, {cwd: CWD});
+npm(`eslint . ${process.argv.slice(2).join(' ')}`, {cwd: CWD});

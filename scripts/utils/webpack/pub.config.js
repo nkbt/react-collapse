@@ -1,10 +1,8 @@
 'use strict';
 
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const {
-  mode,
   pathTo,
   plugins,
   loaders,
@@ -16,27 +14,30 @@ const {
 
 
 module.exports = {
-  mode,
+  mode: 'development',
   devtool: false,
-  entry: pathTo(`example`, `index.js`),
+  entry: pathTo('example', 'index.js'),
   output: {
-    filename: `bundle.js`,
-    path: pathTo(`pub`)
+    filename: 'bundle.js',
+    path: pathTo('pub')
+  },
+  optimization: {
+    minimize: false
   },
   plugins: [
     plugins.html,
-    plugins.include(INCLUDE_JS.concat([`styles.css`])),
-    new ExtractTextPlugin(`styles.css`)
+    plugins.include(INCLUDE_JS.concat(['styles.css'])),
+    new MiniCssExtractPlugin({filename: 'styles.css'})
   ],
   module: {
     rules: [
-      loaders.babelProd,
+      loaders.babel,
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: `style-loader`,
-          use: `css-loader`
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          {loader: 'css-loader'}
+        ]
       }
     ]
   },
