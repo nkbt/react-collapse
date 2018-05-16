@@ -32,15 +32,13 @@ export class Issue66 extends React.Component {
   };
 
 
+  counter = 0;
+  messages = [];
+
+
   constructor(props) {
     super(props);
     this.state = {shouldRender: false};
-  }
-
-
-  componentWillMount() {
-    this.counter = 0;
-    this.messages = [];
   }
 
 
@@ -69,11 +67,6 @@ export class Issue66 extends React.Component {
   };
 
 
-  onChange = ({target: {checked}}) => {
-    this.setState({shouldRender: checked});
-  };
-
-
   render() {
     return (
       <div>
@@ -83,7 +76,7 @@ export class Issue66 extends React.Component {
             <input
               type="checkbox"
               checked={this.state.shouldRender}
-              onChange={this.onChange} />
+              onChange={({target: {checked}}) => this.setState({shouldRender: checked})} />
           </label>
         </div>
 

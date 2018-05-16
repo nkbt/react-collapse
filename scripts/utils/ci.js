@@ -1,4 +1,3 @@
-'use strict';
 
 
 const {CWD: SRC, bash} = require('./bash');

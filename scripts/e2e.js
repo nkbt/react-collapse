@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-'use strict';
 
 
 const path = require('path');
@@ -54,7 +53,7 @@ const createServer = async ({cwd}) => {
 
 
 const wait = func =>
-  new Promise((resolve, reject) => func((err, ...args) => err ? reject(err) : resolve(...args)));
+  new Promise((resolve, reject) => func((err, ...args) => (err ? reject(err) : resolve(...args))));
 
 
 const run = async ({cwd}) => {
