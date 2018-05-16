@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-'use strict';
 
 
 const path = require('path');
@@ -12,7 +11,7 @@ require('./pub');
 
 const {name} = require(path.join(CWD, 'package.json'));
 publish(path.join(CWD, 'pub'), {
-  repo: `https://github.com/nkbt/react-collapse.git`,
+  repo: 'https://github.com/nkbt/react-collapse.git',
   branch: 'gh-pages',
   message: 'Publish examples',
   user: {
@@ -21,4 +20,4 @@ publish(path.join(CWD, 'pub'), {
   },
   clone: path.relative(CWD, `/tmp/${name}`),
   logger: message => console.log(message)
-}, err => err ? console.error(err) : console.log('Published'));
+}, err => (err ? console.error(err) : console.log('Published')));
