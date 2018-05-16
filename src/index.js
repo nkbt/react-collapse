@@ -1,6 +1,3 @@
-'use strict';
-
-
 const {Collapse} = require('./Collapse');
 const {UnmountClosed} = require('./UnmountClosed');
 
