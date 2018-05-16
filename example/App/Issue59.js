@@ -5,8 +5,11 @@ import {Collapse} from '../../src';
 
 const styles = {
   ba: {
-    borderWidth: '1px',
-    borderStyle: 'solid',
+    display: 'block',
+    background: 'none',
+    border: 'none',
+    width: '100%',
+    textAlign: 'left',
     cursor: 'pointer'
   },
   mb3: {
@@ -48,7 +51,7 @@ export class Issue59 extends React.PureComponent {
     return (
       <div>
         <div style={styles.mb3}>
-          <div style={styles.ba} onClick={this.onClick1}>Header 1</div>
+          <button style={styles.ba} onClick={this.onClick1}>Header 1</button>
           <Collapse isOpened={opened === 1}>
             <div style={{...styles.ba, ...styles.pa3}}>
               <div style={{...styles.h3, ...styles.w3, ...styles.bgBlack}}>a</div>
@@ -56,7 +59,7 @@ export class Issue59 extends React.PureComponent {
           </Collapse>
         </div>
         <div style={styles.mb3}>
-          <div style={styles.ba} onClick={this.onClick2}>Header 2</div>
+          <button style={styles.ba} onClick={this.onClick2}>Header 2</button>
           <Collapse isOpened={opened === 2}>
             <div style={{...styles.ba, ...styles.pa3}}>
               <div style={{...styles.h3, ...styles.w3, ...styles.bgBlack}}>

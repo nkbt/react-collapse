@@ -82,7 +82,11 @@ export class AutoUnmount extends React.PureComponent {
         <div className="config">
           <label className="label">
             Opened:
-            <input className="input" type="checkbox" checked={isOpened} onChange={this.onChange} />
+            <input
+              className="input"
+              type="checkbox"
+              checked={isOpened}
+              onChange={this.onChange} />
           </label>
         </div>
 

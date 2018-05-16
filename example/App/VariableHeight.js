@@ -41,7 +41,6 @@ export class VariableHeight extends React.PureComponent {
         <Collapse isOpened={isOpened}>
           <div style={{height}} className="blob" />
         </Collapse>
-
       </div>
     );
   }

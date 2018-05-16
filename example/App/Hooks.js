@@ -3,50 +3,19 @@ import {Collapse} from '../../src';
 import text from './text.json';
 
 
-const getText = num => text.slice(0, num).map((p, i) => <p key={i}>{p}</p>);
+const getText = num => text.slice(0, num).map(p => <p key={p}>{p}</p>);
 
 
 export class Hooks extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpened: false,
-      isResting: false,
-      height: -1,
-      width: -1,
-      paragraphs: 0
-    };
-  }
-
-  onRender = ({current, from, to}) => {
-    if (this.ref) {
-      this.ref.innerHTML = `
-        from: ${from.toFixed(2)},
-        to: ${to.toFixed(2)},
-        current: ${current.toFixed(2)}
-      `;
-    }
+  state = {
+    isOpened: false,
+    isResting: false,
+    paragraphs: 0
   };
 
-  onMeasure = ({height, width}) => {
-    this.setState({height, width});
-  };
-
-  onRest = () => {
-    this.setState({isResting: true});
-  };
-
-  onRef = ref => {
-    this.ref = ref;
-  };
 
   render() {
-    const {
-      isOpened,
-      height,
-      width,
-      paragraphs
-    } = this.state;
+    const {isOpened, paragraphs, params} = this.state;
 
     return (
       <div>
@@ -57,10 +26,7 @@ export class Hooks extends React.PureComponent {
               className="input"
               type="checkbox"
               checked={isOpened}
-              onChange={({target: {checked}}) => this.setState({
-                isOpened: checked,
-                isResting: false
-              })} />
+              onChange={({target: {checked}}) => this.setState({isOpened: checked})} />
           </label>
 
           <label className="label">
@@ -72,30 +38,22 @@ export class Hooks extends React.PureComponent {
               step={1}
               min={0}
               max={4}
-              onChange={({target: {value}}) => this.setState({
-                paragraphs: parseInt(value, 10),
-                isResting: false
-              })} />
+              onChange={({target: {value}}) => this.setState({paragraphs: parseInt(value, 10)})} />
             {paragraphs}
           </label>
         </div>
         <div className="config">
-          <label className="label">
-            height: {height}px
-          </label>
-          <label className="label">
-            width: {width}px
-          </label>
-          <label className="label">
-            resting: {this.state.isResting ? 'true' : 'false'}
-          </label>
-          <label className="label" ref={this.onRef} />
+          <span className="label">
+            Resting: {this.state.isResting ? 'true' : 'false'}
+          </span>
+          <span className="label">
+            onRest/onWork arguments: {params}
+          </span>
         </div>
         <Collapse
           isOpened={isOpened}
-          onRender={this.onRender}
-          onMeasure={this.onMeasure}
-          onRest={this.onRest}>
+          onWork={p => this.setState({isResting: false, params: JSON.stringify(p)})}
+          onRest={p => this.setState({isResting: true, params: JSON.stringify(p)})}>
           <div className="text">{paragraphs ? getText(paragraphs) : <p>No text</p>}</div>
         </Collapse>
       </div>

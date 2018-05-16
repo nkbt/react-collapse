@@ -4,8 +4,7 @@ import {Collapse} from '../../src';
 import text from './text.json';
 
 
-const getText = num => text.slice(0, num)
-  .map((p, i) => <p key={i}>{p}</p>);
+const getText = num => text.slice(0, num).map(p => <p key={p}>{p}</p>);
 
 
 export class VariableText extends React.Component {
