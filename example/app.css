@@ -54,6 +54,7 @@ body {
   border: 1px solid rgba(3, 169, 244, 0.3);
   border-radius: 10px;
   background-color: rgba(100, 255, 100, 0.1);
+  transition: height 500ms;
 }
 
 .ReactCollapse--content {
