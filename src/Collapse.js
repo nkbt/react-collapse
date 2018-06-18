@@ -109,7 +109,18 @@ export class Collapse extends React.PureComponent {
     const from = this.wrapper.clientHeight;
     const to = isOpened ? this.getTo() : 0;
 
-    if (from !== to) {
+    // if browser zoomed, its possible for measured from/to values to have 1px rounding difference
+    // even when in `WAITING` / `RESTING` state before animation has started, or after has completed
+    // this is due to `clientHeight` potentially rounding one direction for `content` and the other
+    // direction for `wrapper` if their respective subpixel values vary ever so slightly
+    // Therefore if only comparing clientHeights before attempting resize, in such a state it cannot
+    // reach `IDLING` and not apply `height: auto;`, causing content to become cut off or remain too
+    // far open should any nested elements in turn expand/collapse
+    // https://github.com/nkbt/react-collapse/issues/186 for more info
+    const subPixelDiscrepency = [WAITING, RESTING].indexOf(this.state.currentState) !== -1
+                                && Math.abs(to - from) === 1;
+
+    if (from !== to && !subPixelDiscrepency) {
       this.setState({currentState: RESIZING, from, to});
       return;
     }
