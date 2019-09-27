@@ -33,7 +33,9 @@ export class Collapse extends React.Component {
 
 
   timeout = undefined;
+
   container = undefined;
+
   content = undefined;
 
 
@@ -42,9 +44,9 @@ export class Collapse extends React.Component {
     if (props.initialStyle) {
       this.initialStyle = props.initialStyle;
     } else {
-      this.initialStyle = props.isOpened ?
-        {height: 'auto', overflow: 'initial'} :
-        {height: '0px', overflow: 'hidden'};
+      this.initialStyle = props.isOpened
+        ? {height: 'auto', overflow: 'initial'}
+        : {height: '0px', overflow: 'hidden'};
     }
   }
 

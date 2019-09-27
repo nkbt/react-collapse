@@ -1,5 +1,4 @@
 
-
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const {
   pathTo,

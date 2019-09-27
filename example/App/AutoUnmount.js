@@ -11,12 +11,14 @@ class Test extends React.PureComponent {
 
 
   componentDidMount() {
-    this.props.onMount();
+    const {onMount} = this.props;
+    onMount();
   }
 
 
   componentWillUnmount() {
-    this.props.onUnmount();
+    const {onUnmount} = this.props;
+    onUnmount();
   }
 
 
@@ -34,11 +36,8 @@ export class AutoUnmount extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = {isOpened: this.props.isOpened};
-  }
-
-
-  componentWillMount() {
+    const {isOpened} = this.props;
+    this.state = {isOpened};
     this.counter = 0;
     this.messages = [];
   }

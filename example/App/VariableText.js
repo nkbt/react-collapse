@@ -20,7 +20,8 @@ export class VariableText extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {isOpened: this.props.isOpened, paragraphs: 0};
+    const {isOpened} = this.props;
+    this.state = {isOpened, paragraphs: 0};
   }
 
 

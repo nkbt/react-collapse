@@ -11,12 +11,14 @@ class Test extends React.Component {
 
 
   componentDidMount() {
-    this.props.onMount();
+    const {onMount} = this.props;
+    onMount();
   }
 
 
   componentWillUnmount() {
-    this.props.onUnmount();
+    const {onUnmount} = this.props;
+    onUnmount();
   }
 
 
@@ -33,6 +35,7 @@ export class Issue66 extends React.Component {
 
 
   counter = 0;
+
   messages = [];
 
 
@@ -68,6 +71,9 @@ export class Issue66 extends React.Component {
 
 
   render() {
+    const {shouldRender} = this.state;
+    const {isOpened} = this.props;
+
     return (
       <div>
         <div className="config">
@@ -75,15 +81,15 @@ export class Issue66 extends React.Component {
             Should render:
             <input
               type="checkbox"
-              checked={this.state.shouldRender}
+              checked={shouldRender}
               onChange={({target: {checked}}) => this.setState({shouldRender: checked})} />
           </label>
         </div>
 
         <div className="log" ref={this.onRef} />
 
-        {this.state.shouldRender ? (
-          <Collapse isOpened={this.props.isOpened}>
+        {shouldRender ? (
+          <Collapse isOpened={isOpened}>
             <Test onMount={this.onMount} onUnmount={this.onUnmount} />
           </Collapse>
         ) : null}

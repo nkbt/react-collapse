@@ -7,15 +7,20 @@ const getText = num => text.slice(0, num).map(p => <p key={p}>{p}</p>);
 
 
 export class Hooks extends React.PureComponent {
-  state = {
-    isOpened: false,
-    isResting: false,
-    paragraphs: 0
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpened: false,
+      isResting: false,
+      paragraphs: 0
+    };
+  }
 
 
   render() {
-    const {isOpened, paragraphs, params} = this.state;
+    const {
+      isResting, isOpened, paragraphs, params
+    } = this.state;
 
     return (
       <div>
@@ -44,10 +49,14 @@ export class Hooks extends React.PureComponent {
         </div>
         <div className="config">
           <span className="label">
-            Resting: {this.state.isResting ? 'true' : 'false'}
+            Resting:
+            {' '}
+            {isResting ? 'true' : 'false'}
           </span>
           <span className="label">
-            onRest/onWork arguments: {params}
+            onRest/onWork arguments:
+            {' '}
+            {params}
           </span>
         </div>
         <Collapse
