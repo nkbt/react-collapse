@@ -22,7 +22,7 @@ jobs:
 
       - run:
           name: Check dependencies
-          command: yarn depcheck
+          command: yarn deps
 
 
       - save_cache:
