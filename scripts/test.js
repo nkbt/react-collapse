@@ -6,17 +6,17 @@ const glob = require('glob');
 const {CWD} = require('./utils/bash');
 
 
-require('babel-register')({
+require('@babel/register')({
   babelrc: false,
   plugins: [
-    'transform-object-rest-spread',
-    'transform-class-properties'
+    require.resolve('@babel/plugin-proposal-object-rest-spread'),
+    require.resolve('@babel/plugin-proposal-class-properties')
   ],
   presets: [
-    require.resolve('babel-preset-react'),
-    [require.resolve('babel-preset-env'), {
+    require.resolve('@babel/preset-react'),
+    [require.resolve('@babel/preset-env'), {
       targets: {
-        node: '7'
+        node: '10'
       },
       modules: 'commonjs',
       loose: true,

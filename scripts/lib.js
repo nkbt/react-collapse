@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 
 
-const {npm, CWD} = require('./utils/bash');
+const {bash, CWD} = require('./utils/bash');
 
 
-npm('rimraf lib', {cwd: CWD});
-npm('babel src --out-dir lib', {
+const rimraf = require.resolve('rimraf/bin');
+const babel = require.resolve('@babel/cli/bin/babel');
+
+bash(`${rimraf} lib`, {cwd: CWD});
+bash(`${babel} src --out-dir lib`, {
   cwd: CWD,
   env: {NODE_ENV: 'production'}
 });

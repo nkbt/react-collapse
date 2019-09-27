@@ -1,15 +1,17 @@
 #!/usr/bin/env node
 
 
-const {npm, CWD} = require('./utils/bash');
+const {bash, CWD} = require('./utils/bash');
 
+const webpack = require.resolve('webpack-cli/bin/cli');
+const rimraf = require.resolve('rimraf/bin');
 
-npm('rimraf build', {cwd: CWD});
-npm(`webpack --config ${require.resolve('./utils/webpack/dist.config.js')}`, {
+bash(`${rimraf} build`, {cwd: CWD});
+bash(`${webpack} --config ${require.resolve('./utils/webpack/dist.config.js')}`, {
   cwd: CWD,
   env: {NODE_ENV: 'production'}
 });
-npm(`webpack --config ${require.resolve('./utils/webpack/min.config.js')}`, {
+bash(`${webpack} --config ${require.resolve('./utils/webpack/min.config.js')}`, {
   cwd: CWD,
   env: {NODE_ENV: 'production'}
 });

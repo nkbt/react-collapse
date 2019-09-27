@@ -1,5 +1,3 @@
-
-
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
@@ -43,33 +41,40 @@ exports.PACKAGE_NAME = PACKAGE_NAME;
 exports.loaders = {
   css: {
     test: /\.css$/,
-    loader: 'style-loader!css-loader',
+    use: [
+      require.resolve('style-loader'),
+      require.resolve('css-loader')
+    ],
     include: [pathTo('src'), pathTo('example')]
   },
   babel: {
     test: /\.js$/,
-    loader: 'babel-loader',
+    loader: require.resolve('babel-loader'),
     include: [pathTo('src'), pathTo('example')],
     options: {
       babelrc: false,
-      presets: ['react', ['env', {modules: false}]],
+      presets: [
+        require.resolve('@babel/preset-react'), [
+          require.resolve('@babel/preset-env'), {modules: false}]],
       plugins: [
-        'transform-object-rest-spread',
-        'transform-class-properties'
+        require.resolve('@babel/plugin-proposal-object-rest-spread'),
+        require.resolve('@babel/plugin-proposal-class-properties')
       ]
     }
   },
   babelProd: {
     test: /\.js$/,
-    loader: 'babel-loader',
+    loader: require.resolve('babel-loader'),
     include: [pathTo('src'), pathTo('example')],
     options: {
       babelrc: false,
-      presets: ['react', ['env', {modules: false}]],
+      presets: [
+        require.resolve('@babel/preset-react'), [
+          require.resolve('@babel/preset-env'), {modules: false}]],
       plugins: [
-        'transform-object-rest-spread',
-        'transform-class-properties',
-        ['transform-react-remove-prop-types', {removeImport: true}]
+        require.resolve('@babel/plugin-proposal-object-rest-spread'),
+        require.resolve('@babel/plugin-proposal-class-properties'),
+        [require.resolve('babel-plugin-transform-react-remove-prop-types'), {removeImport: true}]
       ]
     }
   }
