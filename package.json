@@ -1,6 +1,6 @@
 {
   "name": "@nkbt/react-collapse",
-  "version": "5.0.0-alpha.2",
+  "version": "5.0.0-alpha.3",
   "description": "Component-wrapper for collapse animation for elements with variable (and dynamic) height",
   "main": "lib/index.js",
   "config": {
@@ -23,7 +23,6 @@
     "ghPages": "gh-pages --dist ./pub --repo git@github.com:nkbt/react-collapse.git --user nik@butenko.me --branch gh-pages --message 'Publish examples' ",
     "prelib": "rm -rf ./lib",
     "lib": "NODE_ENV=production babel src --out-dir lib",
-
     "lint": "eslint .",
     "prepub": "rm -rf ./pub",
     "pub": "NODE_ENV=production webpack-cli --config ./webpack/pub.config.js",
