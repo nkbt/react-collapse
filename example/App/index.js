@@ -15,7 +15,6 @@ export const App = () => (
   <div className="app">
 
     <h1>@nkbt/react-collapse</h1>
-
     <section className="section">
       <h2>Variable text</h2>
       <VariableText />
@@ -87,6 +86,5 @@ export const App = () => (
       </h2>
       <Issue163 />
     </section>
-
   </div>
 );
