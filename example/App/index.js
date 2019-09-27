@@ -60,7 +60,8 @@ export const App = () => (
 
     <section className="section">
       <h2>
-        <a target="_blank" rel="noopener noreferrer" href="https://github.com/nkbt/react-collapse/issues/59">59</a>.
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/nkbt/react-collapse/issues/59">59</a>
+.
         Instantly collapses if re-rendered during collapse (Accordion component)
       </h2>
       <Issue59 />
@@ -68,7 +69,8 @@ export const App = () => (
 
     <section className="section">
       <h2>
-        <a target="_blank" rel="noopener noreferrer" href="https://github.com/nkbt/react-collapse/issues/66">66</a>.
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/nkbt/react-collapse/issues/66">66</a>
+.
         Unnecessary unmount with keepCollapsedContent
       </h2>
       <p>Opened by default</p>
@@ -79,7 +81,8 @@ export const App = () => (
 
     <section className="section" style={{minHeight: 400}}>
       <h2>
-        <a target="_blank" rel="noopener noreferrer" href="https://github.com/nkbt/react-collapse/issues/163">163</a>.
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/nkbt/react-collapse/issues/163">163</a>
+.
         Overflow in collapse
       </h2>
       <Issue163 />

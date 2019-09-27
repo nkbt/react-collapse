@@ -28,6 +28,12 @@ module.exports = {
       nonEmpty: 'after-props',
       selfClosing: 'after-props'
     }],
-    'jsx-a11y/label-has-for': 'off'
+    'jsx-a11y/label-has-for': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
+
+    'max-classes-per-file': 'off',
+    'react/static-property-placement': 'off',
+    'react/jsx-props-no-spreading': 'off'
+
   }
 };

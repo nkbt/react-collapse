@@ -53,9 +53,9 @@ export class UnmountClosed extends React.PureComponent {
   getInitialStyle = () => {
     const {isOpened, isInitialRender} = this.state;
     if (isInitialRender) {
-      return isOpened ?
-        {height: 'auto', overflow: 'initial'} :
-        {height: '0px', overflow: 'hidden'};
+      return isOpened
+        ? {height: 'auto', overflow: 'initial'}
+        : {height: '0px', overflow: 'hidden'};
     }
 
     return {height: '0px', overflow: 'hidden'};

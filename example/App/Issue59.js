@@ -33,7 +33,10 @@ const styles = {
 
 
 export class Issue59 extends React.PureComponent {
-  state = {opened: 1, whatever: 'b'};
+  constructor(props) {
+    super(props);
+    this.state = {opened: 1, whatever: 'b'};
+  }
 
 
   onClick1 = () => {
@@ -51,7 +54,7 @@ export class Issue59 extends React.PureComponent {
     return (
       <div>
         <div style={styles.mb3}>
-          <button style={styles.ba} onClick={this.onClick1}>Header 1</button>
+          <button type="button" style={styles.ba} onClick={this.onClick1}>Header 1</button>
           <Collapse isOpened={opened === 1}>
             <div style={{...styles.ba, ...styles.pa3}}>
               <div style={{...styles.h3, ...styles.w3, ...styles.bgBlack}}>a</div>
@@ -59,7 +62,7 @@ export class Issue59 extends React.PureComponent {
           </Collapse>
         </div>
         <div style={styles.mb3}>
-          <button style={styles.ba} onClick={this.onClick2}>Header 2</button>
+          <button type="button" style={styles.ba} onClick={this.onClick2}>Header 2</button>
           <Collapse isOpened={opened === 2}>
             <div style={{...styles.ba, ...styles.pa3}}>
               <div style={{...styles.h3, ...styles.w3, ...styles.bgBlack}}>
