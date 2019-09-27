@@ -56,9 +56,13 @@ h2 {
   font-size: 1.6em;
   padding: 0.5em 0;
 }
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .app {
   padding: 20px;
-  min-height: 5000px;
 }
 
 .section {
@@ -108,8 +112,10 @@ h2 {
   border: 1px solid rgba(3, 169, 244, 0.3);
   border-radius: 10px;
   background-color: rgba(100, 255, 100, 0.1);
+  transition: height 500ms;
 }
 
 .ReactCollapse--content {
 }
+
 
