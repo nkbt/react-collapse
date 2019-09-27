@@ -16,17 +16,18 @@ export class UnmountClosed extends React.PureComponent {
   };
 
 
-  static getDerivedStateFromProps(nextProps) {
-    return {
-      isResting: false,
-      isOpened: nextProps.isOpened
-    };
-  }
-
-
   constructor(props) {
     super(props);
     this.state = {isResting: true, isOpened: props.isOpened, isInitialRender: true};
+  }
+
+
+  componentDidUpdate(prevProps) {
+    const {isOpened} = this.props;
+    if (prevProps.isOpened !== isOpened) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({isResting: false, isOpened, isInitialRender: false});
+    }
   }
 
 
