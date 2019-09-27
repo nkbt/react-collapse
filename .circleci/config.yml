@@ -9,30 +9,17 @@ jobs:
 
     steps:
       - checkout
-
-
       - restore_cache:
           key: deps-{{ checksum "yarn.lock" }}
-
-
-      - run:
-          name: Install deps
-          command: yarn install --pure-lockfile --offline
-
-
-      - run:
-          name: Check dependencies
-          command: yarn deps
-
-
+      - run: yarn install --pure-lockfile --offline
+      - run: yarn deps
       - save_cache:
           key: deps-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
             - node_modules
-
-
       - run: yarn lint
-
-
       - run: yarn test
+      - run: yarn lib
+      - run: yarn dist
+      - run: yarn pub
