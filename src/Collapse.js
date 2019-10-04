@@ -109,7 +109,9 @@ export class Collapse extends React.PureComponent {
     const from = this.wrapper.clientHeight;
     const to = isOpened ? this.getTo() : 0;
 
-    if (from !== to) {
+    const subPixelDiscrepency = [WAITING, RESTING].indexOf(this.state.currentState) !== -1 && Math.abs(to - from) === 1;
+
+    if (from !== to && !subPixelDiscrepency) {
       this.setState({currentState: RESIZING, from, to});
       return;
     }
