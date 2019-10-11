@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
+const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const path = require('path');
 
 
@@ -83,13 +83,8 @@ exports.loaders = {
 
 exports.plugins = {
   html: new HtmlWebpackPlugin(),
-  include: assets => new HtmlWebpackIncludeAssetsPlugin({
-    assets,
-    append: false
-  }),
-  loaderOptions: new webpack.LoaderOptionsPlugin({
-    minimize: true
-  }),
+  include: tags => new HtmlWebpackTagsPlugin({tags, append: false}),
+  loaderOptions: new webpack.LoaderOptionsPlugin({minimize: true}),
   emptyPropTypes: new webpack.NormalModuleReplacementPlugin(
     /prop-types/,
     resource => {
