@@ -15,7 +15,7 @@ export class Collapse extends React.Component {
     }),
     onRest: PropTypes.func,
     onWork: PropTypes.func,
-    onRestCheckInterval: PropTypes.number,
+    checkTimeout: PropTypes.number,
     children: PropTypes.node.isRequired
   };
 
@@ -28,7 +28,7 @@ export class Collapse extends React.Component {
     initialStyle: undefined,
     onRest: undefined,
     onWork: undefined,
-    onRestCheckInterval: 50
+    checkTimeout: 50
   };
 
 
@@ -94,7 +94,7 @@ export class Collapse extends React.Component {
       return;
     }
 
-    const {isOpened, onRestCheckInterval} = this.props;
+    const {isOpened, checkTimeout} = this.props;
     const {clientHeight: containerHeight} = this.container;
     const {clientHeight: contentHeight} = this.content;
 
@@ -102,21 +102,15 @@ export class Collapse extends React.Component {
     const isFullyClosed = !isOpened && containerHeight === 0;
 
     if (isFullyOpened || isFullyClosed) {
-      this.onRest({
-        isFullyOpened, isFullyClosed, isOpened, containerHeight, contentHeight
-      });
+      this.onRest({isFullyOpened, isFullyClosed, isOpened, containerHeight, contentHeight});
     } else {
-      this.onWork({
-        isFullyOpened, isFullyClosed, isOpened, containerHeight, contentHeight
-      });
-      this.timeout = setTimeout(() => this.onResize(), onRestCheckInterval);
+      this.onWork({isFullyOpened, isFullyClosed, isOpened, containerHeight, contentHeight});
+      this.timeout = setTimeout(() => this.onResize(), checkTimeout);
     }
   };
 
 
-  onRest = ({
-    isFullyOpened, isFullyClosed, isOpened, containerHeight, contentHeight
-  }) => {
+  onRest = ({isFullyOpened, isFullyClosed, isOpened, containerHeight, contentHeight}) => {
     if (!this.container || !this.content) {
       return;
     }
@@ -130,17 +124,13 @@ export class Collapse extends React.Component {
 
       const {onRest} = this.props;
       if (onRest) {
-        onRest({
-          isFullyOpened, isFullyClosed, isOpened, containerHeight, contentHeight
-        });
+        onRest({isFullyOpened, isFullyClosed, isOpened, containerHeight, contentHeight});
       }
     }
   };
 
 
-  onWork = ({
-    isFullyOpened, isFullyClosed, isOpened, containerHeight, contentHeight
-  }) => {
+  onWork = ({isFullyOpened, isFullyClosed, isOpened, containerHeight, contentHeight}) => {
     if (!this.container || !this.content) {
       return;
     }
@@ -158,9 +148,7 @@ export class Collapse extends React.Component {
 
     const {onWork} = this.props;
     if (onWork) {
-      onWork({
-        isFullyOpened, isFullyClosed, isOpened, containerHeight, contentHeight
-      });
+      onWork({isFullyOpened, isFullyClosed, isOpened, containerHeight, contentHeight});
     }
   };
 
