@@ -16,6 +16,7 @@ module.exports = {
     'react/no-multi-comp': 'off',
     'react/sort-comp': ['error', {
       order: [
+        'static-variables',
         'static-methods',
         'instance-variables',
         'lifecycle',
