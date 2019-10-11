@@ -33,7 +33,12 @@ module.exports = {
 
     'max-classes-per-file': 'off',
     'react/static-property-placement': 'off',
-    'react/jsx-props-no-spreading': 'off'
+    'react/jsx-props-no-spreading': 'off',
 
+    'object-curly-newline': ['error', {
+      multiline: true,
+      consistent: true,
+      minProperties: 0
+    }]
   }
 };

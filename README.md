@@ -8,9 +8,15 @@
 
 Component-wrapper for collapse animation for elements with variable (and dynamic) height
 
-
 ![React Collapse](example/react-collapse.gif)
 
+## Demo
+
+[http://nkbt.github.io/react-collapse](http://nkbt.github.io/react-collapse)
+
+## Codepen demo
+
+[http://codepen.io/nkbt/pen/MarzEg](http://codepen.io/nkbt/pen/MarzEg?editors=101)
 
 ## Installation
 
@@ -20,6 +26,12 @@ Component-wrapper for collapse animation for elements with variable (and dynamic
 npm install --save react-collapse
 ```
 
+### yarn
+
+```sh
+yarn add react-collapse 
+```
+
 ### 1998 Script Tag:
 ```html
 <script src="https://unpkg.com/react/umd/react.production.min.js"></script>
@@ -27,14 +39,6 @@ npm install --save react-collapse
 (Module exposed as `ReactCollapse`)
 ```
 
-
-## Demo
-
-[http://nkbt.github.io/react-collapse](http://nkbt.github.io/react-collapse)
-
-## Codepen demo
-
-[http://codepen.io/nkbt/pen/MarzEg](http://codepen.io/nkbt/pen/MarzEg?editors=101)
 
 ## Usage
 
@@ -60,15 +64,18 @@ import {UnmountClosed} from 'react-collapse';
 </UnmountClosed>
 ```
 
+Example [example/App/AutoUnmount.js](example/App/AutoUnmount.js)
+
+
 ## Options
 
 
-#### `isOpened`: PropTypes.boolean.isRequired
+### `isOpened`: PropTypes.boolean.isRequired
 
 Expands or collapses content.
 
 
-#### `children`: PropTypes.node.isRequired
+### `children`: PropTypes.node.isRequired
 
 One or multiple children with static, variable or dynamic height.
 
@@ -81,60 +88,7 @@ One or multiple children with static, variable or dynamic height.
 </Collapse>
 ```
 
-
-#### `hasNestedCollapse`: PropTypes.bool (default: false)
-
-If Collapse component has more Collapse components inside, it needs `hasNestedCollapse` to be set 
-to avoid delayed animations. See https://github.com/nkbt/react-collapse/issues/76 for tech details.
-
-```js
-<Collapse isOpened={true} hasNestedCollapse={true}>
-  <Collapse isOpened={true}>
-    <div>Nested collapse</div>
-  </Collapse>
-  <Collapse isOpened={true}>
-    <div>Nested collapse</div>
-  </Collapse>
-</Collapse>
-```
-
-
-#### `fixedHeight`: PropTypes.number
-
-If content's height is known ahead it is possible pass optional `fixedHeight` prop with number of pixels.
-
-```js
-<Collapse isOpened={true} fixedHeight={100}>
-  <div>Animated container will always expand to 100px height</div>
-</Collapse>
-```
-
-
-#### `springConfig`: PropTypes.objectOf(PropTypes.number)
-
-Custom config `{stiffness, damping, precision}` passed to the spring function (see https://github.com/chenglou/react-motion#--spring-val-number-config-springhelperconfig--opaqueconfig)
-
-```js
-import {presets} from 'react-motion';
-
-<Collapse isOpened={true} springConfig={presets.wobbly}>
-  <div>Wobbly animated container</div>
-</Collapse>
-```
-
-```js
-<Collapse isOpened={true} springConfig={{stiffness: 100, damping: 20}}>
-  <div>Customly animated container</div>
-</Collapse>
-```
-
-#### `forceInitialAnimation`: PropTypes.boolean
-
-When initially opened, by default collapse content will be opened without animation, instantly. With this option set to `true` you can enforce initial rendering to be smoothly expanded from 0.
-It is used internally in `Unmount` component implementation.
-
-
-#### `theme`: PropTypes.objectOf(PropTypes.string)
+### `theme`: PropTypes.objectOf(PropTypes.string)
 
 It is possible to set `className` for extra `div` elements that ReactCollapse creates.
 
@@ -162,122 +116,138 @@ Which ends up in the following markup:
 </div>
 ```
 
-NOTE: these are not style objects, but class names!
+**IMPORTANT**: these are not style objects, but class names!
 
 
-#### `onRest`: PropTypes.func
+### `onRest`, `onWork`: PropTypes.func
 
-Callback function for animation finished from
-[react-motion](https://github.com/chenglou/react-motion#--onrest---void).
-It can be used to trigger any function after animation is done.
+Callback functions, triggered when animation has completed (`onRest`) or has just started (`onWork`)
+
+Both functions are called with argument:
+```js
+const arg = {
+  isFullyOpened: true || false, // `true` only when Collapse reached final height
+  isFullyClosed: true || false, // `true` only when Collapse is fully closed and height is zero
+  isOpened: true || false, // `true` if Collapse has any non-zero height
+  containerHeight: 123, // current pixel height of Collapse container (changes until reaches `contentHeight`)
+  contentHeight: 123 // determined height of supplied Content 
+}
+```
 
 ```js
-<Collapse onRest={() => console.log(123)}>
+<Collapse onRest={console.log} onWork={console.log}>
   <div>Container text</div>
 </Collapse>
 ```
 
-#### `onMeasure`: PropTypes.func
+Example [example/App/Hooks.js](example/App/Hooks.js)
 
-Callback function for changes in height. Also passes measured width.
-As an [example](https://github.com/nutgaard/react-collapse/blob/master/src/example/App/Hooks.js) it can be used to implement auto-scroll if content expand below the fold.
-
-```js
-<Collapse onMeasure={({height, width}) => this.setState({height, width})}>
-  <div>Container text</div>
-</Collapse>
-```
-
-#### `onRender`: PropTypes.func
-
-Callback function for every re-render while animating.
-
-Passes `current` height, as well as `from`/`to` heights.
-
-**DANGEROUS** use with caution, may have huge performance impact if used improperly. Never do `setState` with it, since it is running while rendering and React will shoot Warning.
- 
-Possible usage: synchronous scrolling of some other component
-```js
-<Collapse onRender={({current, from, to}) => (this.anotherComponent.scrollTop = current)}>
-  <div>Container text</div>
-</Collapse>
-```
-
-#### Pass-through props
-
-All other props are applied to a container that is being resized. So it is possible to pass `style` or `className`, for example.
+### `initialStyle`: PropTypes.shape
 
 ```js
-<Collapse isOpened={true}
-  style={{width: 200, border: '1px solid red'}}
-  className="collapse">
-
-  <div>
-    Animated container has red border, 200px width
-    and has `class="collapse"`
-  </div>
-</Collapse>
+initialStyle: PropTypes.shape({
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  overflow: PropTypes.string
+})
 ```
+
+You may control initial element style, for example to force initial animation from 0 to height by using `initialStyle={{height: '0px', overflow: 'hidden'}}`
+
+**IMPORTANT** Any updates to this prop will be ignored after first render.
+Default value is determined based on initial `isOpened` value:
+```js
+  initialStyle = props.isOpened
+    ? {height: 'auto', overflow: 'initial'}
+    : {height: '0px', overflow: 'hidden'};
+```
+
+Example: [example/App/ForceInitialAnimation.js](example/App/ForceInitialAnimation.js)
+
+### `checkTimeout`: PropTypes.number
+
+Number in `ms`. 
+
+Collapse will check height after thins timeout to determine if animation is completed, the shorter the number - the faster `onRest` will be triggered and the quicker `hight: auto` will be applied. The downside - more calculations.
+Default value is: `50`. 
+
+
+### Pass-through props
+
+**IMPORTANT** Collapse does not support any pass-through props, so any non-supported props will be ignored
+
+Because we need to have control over when `Collapse` component is updated and it is not possible or very hard to achieve when any random props can be passed to the component.
 
 
 ## Behaviour notes
 
-- initially opened Collapse elements will be statically rendered with no animation (see [#19](https://github.com/nkbt/react-collapse/pull/19))
-- it is possible to override `overflow` and `height` styles for Collapse (see [#16](https://github.com/nkbt/react-collapse/pull/16)), and ReactCollapse may behave unexpectedly. Do it only when you definitely know you need it, otherwise, never override `overflow` and `height` styles.
-- Due to the complexity of margins and their potentially collapsible nature, ReactCollapse does not support (vertical) margins on their children. It might lead to the animation "jumping" to its correct height at the end of expanding. To avoid this, use padding instead of margin. (see [#101](https://github.com/nkbt/react-collapse/issues/101))
+- initially opened Collapse elements will be statically rendered with no animation. You can override this behaviour by using `initialStyle` prop
 
-## Migrating from v2 to v3
+- due to the complexity of margins and their potentially collapsible nature, `ReactCollapse` does not support (vertical) margins on their children. It might lead to the animation "jumping" to its correct height at the end of expanding. To avoid this, use padding instead of margin.
+  See [#101](https://github.com/nkbt/react-collapse/issues/101) for more details
 
-1. Use named exports, it is a preferred way
 
-  V2:
-  ```js
-  import Collapse from 'react-collapse';
-  ```
-  
-  V3
-  ```js
-  import {Collapse} from 'react-collapse';
-  ```
-  
-2. Default behavior changed to never unmount collapsed element. To actually unmount use extra provided component `UnmountCollapsed`
+## Migrating from `v4` to `v5`
 
-  V2: 
-  ```js
-  import Collapse from 'react-collapse';
-  
-  <Collapse isOpened={true || false}>
-    <div>Random content</div>
-  </Collapse>
-  ```  
+`v5` was another complete rewrite that happened quite a while ago, it was published as `@nkbt/react-collapse` and tested in real projects for a long time and now fully ready to be used.
 
-  V3: 
-  ```js
-  import {UnmountClosed as Collapse} from 'react-collapse';
-  
-  <Collapse isOpened={true || false}>
-    <div>Random content</div>
-  </Collapse>
-  ```  
+In the most common scenario upgrade is trivial (add CSS transition to collapse element), but if you were using a few deprecated props - there might be some extra work required.
 
-3. `onHeightReady` renamed to `onMeasure` which now takes object of shape `{width, height}`
+Luckily almost every deprecated callback or prop has fully working analogue in `v5`. Unfortunately not all of them could maintain full backward compatibility, so please check this migration guide below.
 
-  V2: 
-  ```js
-  <Collapse onHeightReady={height => console.log(height)}>
-    <div>Random content</div>
-  </Collapse>
-  ```  
+### 1. Change in behaviour
 
-  V3: 
-  ```js
-  <Collapse onMeasure={({height, width}) => console.log(height, width)}>
-    <div>Random content</div>
-  </Collapse>
-  ```  
+New Collapse does not implement animations anymore, it only determines `Content` height and updates `Collapse` wrapper height to match it.
+Only after `Collapse` height reaches `Content` height (animation finished), Collapse's style is updated to have `height: auto; overflow: initial`.
 
-4. Some new props/features: `hasNestedCollapse`, `forceInitialAnimation`, `onRender`, etc
+The implications is that you will need to update your CSS with transition:
+```css
+.ReactCollapse--collapse {
+  transition: height 500ms;
+}
+```
+**IMPORTANT**: without adding css transition there will be no animation and component will open/close instantly.
 
+### 2. New props or updated props
+
+- `onRest`/`onWork` callbacks (see above for full description). Though `onRest` did exist previously, now it is called with arguments containing few operational params and flags.
+
+- `initialStyle` you may control initial element style, for example to force initial animation from 0 to height by using `initialStyle={{height: '0px', overflow: 'hidden'}}`
+    **IMPORTANT** Any updates to this prop will be ignored after first render.
+    Default value is:
+    ```js
+      initialStyle = props.isOpened
+        ? {height: 'auto', overflow: 'initial'}
+        : {height: '0px', overflow: 'hidden'};
+    ```
+
+- `checkTimeout` number in `ms`. Collapse will check height after thins timeout to determine if animation is completed, the shorter the number - the faster `onRest` will be triggered and the quicker `hight: auto` will be applied. The downside - more calculations.
+    Default value is: `50`. 
+
+### 3. Deprecated props (not available in `v5`)
+- ~~Pass-through props~~ - any unknown props passed to `Collapse` component will be ignored
+
+- ~~hasNestedCollapse~~ - no longer necessary, as v5 does not care if there are nested Collapse elements, see [example/App/Nested.js](example/App/Nested.js)
+
+- ~~fixedHeight~~ - no longer necessary, just set whatever height you need for content element and Collapse will work as expected, see [example/App/VariableHeight.js](example/App/VariableHeight.js)
+
+- ~~springConfig~~ - as new Collapse relies on simple CSS transitions (or your own implementation of animation) and does not use react-collapse, springConfig is no longer necessary. You can control control animation with css like
+    ```css
+    .ReactCollapse--collapse {
+      transition: height 500ms;
+    }
+    ```
+
+- ~~forceInitialAnimation~~ - you can use new prop `initialStyle={{height: '0px', overflow: 'hidden'}}` instead, so when new height will be set after component is rendered - it should naturally animate.
+
+- ~~onMeasure~~ - please use `onRest` and `onWork` instead and pick `contentHeight` from argument
+    ```js
+    <Collapse
+      onRest={({contentHeight}) => console.log(contentHeight)}
+      onWork={({contentHeight}) => console.log(contentHeight)}>
+      <div>content</div>
+    </Collapse>
+    ```
+- ~~onRender~~ - since animations are fully controlled by external app (e.g. with CSS) we no draw each frame and do not actually re-render component anymore, so it is impossible to have `onRender` callback
 
 ## Development and testing
 
