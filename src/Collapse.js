@@ -10,7 +10,7 @@ export class Collapse extends React.Component {
     }),
     isOpened: PropTypes.bool.isRequired,
     initialStyle: PropTypes.shape({
-      height: PropTypes.string,
+      height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       overflow: PropTypes.string
     }),
     onRest: PropTypes.func,
