@@ -1,6 +1,6 @@
 {
   "name": "react-collapse",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Component-wrapper for collapse animation for elements with variable (and dynamic) height",
   "main": "lib/index.js",
   "config": {
