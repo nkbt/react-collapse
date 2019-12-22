@@ -153,16 +153,21 @@ export class Collapse extends React.Component {
   };
 
 
+  onRefContainer = container => {
+    this.container = container;
+  };
+
+
+  onRefContent = content => {
+    this.content = content;
+  };
+
+
   render() {
     const {theme, children} = this.props;
     return (
-      <div
-        ref={container => Object.assign(this, {container})}
-        className={theme.collapse}
-        style={this.initialStyle}>
-        <div
-          ref={content => Object.assign(this, {content})}
-          className={theme.content}>
+      <div ref={this.onRefContainer} className={theme.collapse} style={this.initialStyle}>
+        <div ref={this.onRefContent} className={theme.content}>
           {children}
         </div>
       </div>
