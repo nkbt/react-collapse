@@ -2792,6 +2792,14 @@ function (_React$Component) {
       }
     });
 
+    _defineProperty(_assertThisInitialized(_this), "onRefContainer", function (container) {
+      _this.container = container;
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "onRefContent", function (content) {
+      _this.content = content;
+    });
+
     if (props.initialStyle) {
       _this.initialStyle = props.initialStyle;
     } else {
@@ -2850,25 +2858,15 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       var _this$props3 = this.props,
           theme = _this$props3.theme,
           children = _this$props3.children;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        ref: function ref(container) {
-          return Object.assign(_this2, {
-            container: container
-          });
-        },
+        ref: this.onRefContainer,
         className: theme.collapse,
         style: this.initialStyle
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        ref: function ref(content) {
-          return Object.assign(_this2, {
-            content: content
-          });
-        },
+        ref: this.onRefContent,
         className: theme.content
       }, children));
     }
@@ -3088,13 +3086,13 @@ var _require = __webpack_require__(/*! ./Collapse */ "./src/Collapse.js"),
     Collapse = _require.Collapse;
 
 var _require2 = __webpack_require__(/*! ./UnmountClosed */ "./src/UnmountClosed.js"),
-    UnmountClosed = _require2.UnmountClosed;
+    UnmountClosed = _require2.UnmountClosed; // Default export
 
-Object.assign(UnmountClosed, {
-  Collapse: Collapse,
-  UnmountClosed: UnmountClosed
-});
-module.exports = UnmountClosed;
+
+module.exports = UnmountClosed; // Extra "named exports"
+
+UnmountClosed.Collapse = Collapse;
+UnmountClosed.UnmountClosed = UnmountClosed;
 
 /***/ }),
 
