@@ -29,7 +29,7 @@ npm install --save react-collapse
 ### yarn
 
 ```sh
-yarn add react-collapse 
+yarn add react-collapse
 ```
 
 ### 1998 Script Tag:
@@ -118,6 +118,10 @@ Which ends up in the following markup:
 
 **IMPORTANT**: these are not style objects, but class names!
 
+### `accessibilityId`: PropTypes.string
+
+The paradigm of this library is to not make a decision about how you want to toggle the collapse.
+The trade-off here is that accessibility cannot be fully baked in. We provide [2 examples](./example/App/Accessible.js) on how to make an accessible collapse by tying together the control of the collapse and the collapse itself with `props.accessibilityId`.
 
 ### `onRest`, `onWork`: PropTypes.func
 
@@ -130,7 +134,7 @@ const arg = {
   isFullyClosed: true || false, // `true` only when Collapse is fully closed and height is zero
   isOpened: true || false, // `true` if Collapse has any non-zero height
   containerHeight: 123, // current pixel height of Collapse container (changes until reaches `contentHeight`)
-  contentHeight: 123 // determined height of supplied Content 
+  contentHeight: 123 // determined height of supplied Content
 }
 ```
 
@@ -165,10 +169,10 @@ Example: [example/App/ForceInitialAnimation.js](example/App/ForceInitialAnimatio
 
 ### `checkTimeout`: PropTypes.number
 
-Number in `ms`. 
+Number in `ms`.
 
 Collapse will check height after thins timeout to determine if animation is completed, the shorter the number - the faster `onRest` will be triggered and the quicker `hight: auto` will be applied. The downside - more calculations.
-Default value is: `50`. 
+Default value is: `50`.
 
 
 ### Pass-through props
@@ -221,7 +225,7 @@ The implications is that you will need to update your CSS with transition:
     ```
 
 - `checkTimeout` number in `ms`. Collapse will check height after thins timeout to determine if animation is completed, the shorter the number - the faster `onRest` will be triggered and the quicker `hight: auto` will be applied. The downside - more calculations.
-    Default value is: `50`. 
+    Default value is: `50`.
 
 ### 3. Deprecated props (not available in `v5`)
 - ~~Pass-through props~~ - any unknown props passed to `Collapse` component will be ignored
