@@ -42,7 +42,7 @@ yarn add react-collapse
 
 ## Usage
 
-Default behaviour, never unmounts content
+### 1. Content is always mounted (default)
 
 ```js
 import {Collapse} from 'react-collapse';
@@ -53,7 +53,11 @@ import {Collapse} from 'react-collapse';
 </Collapse>
 ```
 
-If you want to unmount collapsed content, use `Unmount` component provided as:
+---
+
+### 2. Content unmounts when collapsed
+
+Use `Unmount` component provided as:
 
 ```js
 import {UnmountClosed} from 'react-collapse';
@@ -66,6 +70,11 @@ import {UnmountClosed} from 'react-collapse';
 
 Example [example/App/AutoUnmount.js](example/App/AutoUnmount.js)
 
+---
+
+### 3. Controlled and accessible
+
+If you want a controlled and accessible implementation, check out this [example](example/App/Accessible.js)
 
 ## Options
 
@@ -118,10 +127,6 @@ Which ends up in the following markup:
 
 **IMPORTANT**: these are not style objects, but class names!
 
-### `accessibilityId`: PropTypes.string
-
-The paradigm of this library is to not make a decision about how you want to toggle the collapse.
-The trade-off here is that accessibility cannot be fully baked in. We provide [2 examples](./example/App/Accessible.js) on how to make an accessible collapse by tying together the control of the collapse and the collapse itself with `props.accessibilityId`.
 
 ### `onRest`, `onWork`: PropTypes.func
 
