@@ -31,10 +31,8 @@ export function Accessible() {
                   onChange={({target: {checked}}) => setState({isCheckboxCollapseOpen: checked})} />
               </label>
             </div>
-            <Collapse
-              isOpened={state.isCheckboxCollapseOpen}
-              accessibilityId={accessibilityIds.checkbox}>
-              <div style={{height}} className="blob" />
+            <Collapse isOpened={state.isCheckboxCollapseOpen}>
+              <div style={{height}} id={accessibilityIds.checkbox} className="blob" />
             </Collapse>
           </div>
         </li>
@@ -52,9 +50,8 @@ export function Accessible() {
               </button>
             </div>
             <Collapse
-              isOpened={state.isButtonCollapseOpen}
-              accessibilityId={accessibilityIds.button}>
-              <div style={{height}} className="blob" />
+              isOpened={state.isButtonCollapseOpen}>
+              <div style={{height}} id={accessibilityIds.button} className="blob" />
             </Collapse>
           </div>
         </li>

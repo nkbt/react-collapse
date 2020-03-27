@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 export class Collapse extends React.Component {
   static propTypes = {
-    accessibilityId: PropTypes.string,
     theme: PropTypes.shape({
       collapse: PropTypes.string,
       content: PropTypes.string
@@ -22,7 +21,6 @@ export class Collapse extends React.Component {
 
 
   static defaultProps = {
-    accessibilityId: '',
     theme: {
       collapse: 'ReactCollapse--collapse',
       content: 'ReactCollapse--content'
@@ -166,14 +164,14 @@ export class Collapse extends React.Component {
 
 
   render() {
-    const {accessibilityId, theme, children, isOpened} = this.props;
+    const {theme, children, isOpened} = this.props;
     return (
       <div
         ref={this.onRefContainer}
         className={theme.collapse}
         style={this.initialStyle}
         aria-hidden={!isOpened}>
-        <div ref={this.onRefContent} className={theme.content} id={accessibilityId}>
+        <div ref={this.onRefContent} className={theme.content}>
           {children}
         </div>
       </div>
