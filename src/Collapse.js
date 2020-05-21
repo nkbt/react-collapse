@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 export class Collapse extends React.Component {
   static propTypes = {
+    className: PropTypes.string,
     theme: PropTypes.shape({
       collapse: PropTypes.string,
       content: PropTypes.string
@@ -164,9 +165,9 @@ export class Collapse extends React.Component {
 
 
   render() {
-    const {theme, children} = this.props;
+    const {theme, children, className} = this.props;
     return (
-      <div ref={this.onRefContainer} className={theme.collapse} style={this.initialStyle}>
+      <div ref={this.onRefContainer} className={className || theme.collapse} style={this.initialStyle}>
         <div ref={this.onRefContent} className={theme.content}>
           {children}
         </div>
