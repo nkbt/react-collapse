@@ -6,6 +6,7 @@ import animate from '@ant-design/css-animation';
 export class Collapse extends React.Component {
   static propTypes = {
     theme: PropTypes.shape({
+      animate: PropTypes.string,
       collapse: PropTypes.string,
       content: PropTypes.string
     }),
@@ -23,6 +24,7 @@ export class Collapse extends React.Component {
 
   static defaultProps = {
     theme: {
+      animate: 'ReactCollapse--collapse--animate',
       collapse: 'ReactCollapse--collapse',
       content: 'ReactCollapse--content'
     },
@@ -92,7 +94,7 @@ export class Collapse extends React.Component {
       return;
     }
 
-    animate(this.container, `collapse`, {
+    animate(this.container, this.props.theme.animate, {
       start: () => {
         this.onResize()
       },
