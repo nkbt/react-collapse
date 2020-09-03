@@ -93,5 +93,8 @@
     "LICENSE",
     "package.json",
     "README.md"
-  ]
+  ],
+  "dependencies": {
+    "@ant-design/css-animation": "^1.7.3"
+  }
 }

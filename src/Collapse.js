@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import animate from '@ant-design/css-animation';
 
 
 export class Collapse extends React.Component {
@@ -52,7 +53,7 @@ export class Collapse extends React.Component {
 
 
   componentDidMount() {
-    this.onResize();
+    this.animateIt();
   }
 
 
@@ -78,12 +79,30 @@ export class Collapse extends React.Component {
 
 
   componentDidUpdate() {
-    this.onResize();
+    this.animateIt();
   }
 
 
   componentWillUnmount() {
     global.clearTimeout(this.timeout);
+  }
+
+  animateIt() {
+    if (!this.container || !this.content) {
+      return;
+    }
+
+    animate(this.container, `collapse`, {
+      start: () => {
+        this.onResize()
+      },
+      active: () => {
+
+      },
+      end: () => {
+        this.onResize()
+      },
+    })
   }
 
 
@@ -105,7 +124,7 @@ export class Collapse extends React.Component {
       this.onRest({isFullyOpened, isFullyClosed, isOpened, containerHeight, contentHeight});
     } else {
       this.onWork({isFullyOpened, isFullyClosed, isOpened, containerHeight, contentHeight});
-      this.timeout = setTimeout(() => this.onResize(), checkTimeout);
+      // this.timeout = setTimeout(() => this.onResize(), checkTimeout);
     }
   };
 
