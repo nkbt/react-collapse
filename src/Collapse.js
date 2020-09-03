@@ -17,7 +17,6 @@ export class Collapse extends React.Component {
     }),
     onRest: PropTypes.func,
     onWork: PropTypes.func,
-    checkTimeout: PropTypes.number,
     children: PropTypes.node.isRequired
   };
 
@@ -31,11 +30,8 @@ export class Collapse extends React.Component {
     initialStyle: undefined,
     onRest: undefined,
     onWork: undefined,
-    checkTimeout: 50
   };
 
-
-  timeout = undefined;
 
   container = undefined;
 
@@ -86,7 +82,6 @@ export class Collapse extends React.Component {
 
 
   componentWillUnmount() {
-    global.clearTimeout(this.timeout);
   }
 
   animateIt() {
@@ -107,13 +102,11 @@ export class Collapse extends React.Component {
 
 
   onResize = () => {
-    global.clearTimeout(this.timeout);
-
     if (!this.container || !this.content) {
       return;
     }
 
-    const {isOpened, checkTimeout} = this.props;
+    const {isOpened} = this.props;
     const {clientHeight: containerHeight} = this.container;
     const {clientHeight: contentHeight} = this.content;
 
@@ -124,7 +117,6 @@ export class Collapse extends React.Component {
       this.onRest({isFullyOpened, isFullyClosed, isOpened, containerHeight, contentHeight});
     } else {
       this.onWork({isFullyOpened, isFullyClosed, isOpened, containerHeight, contentHeight});
-      // this.timeout = setTimeout(() => this.onResize(), checkTimeout);
     }
   };
 
