@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@ant-design/css-animation@^1.7.3":
+  version "1.7.3"
+  resolved "https://registry.npmjs.org/@ant-design/css-animation/-/css-animation-1.7.3.tgz#60a1c970014e86b28f940510d69e503e428f1136"
+  integrity sha512-LrX0OGZtW+W6iLnTAqnTaoIsRelYeuLZWsrmBJFUXDALQphPsN8cE5DCsmoSlL0QYb94BQxINiuS70Ar/8BNgA==
+
 "@babel/cli@^7.0.0":
   version "7.6.4"
   resolved "https://registry.npmjs.org/@babel/cli/-/cli-7.6.4.tgz#9b35a4e15fa7d8f487418aaa8229c8b0bc815f20"
