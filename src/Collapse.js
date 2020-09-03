@@ -29,7 +29,7 @@ export class Collapse extends React.Component {
     },
     initialStyle: undefined,
     onRest: undefined,
-    onWork: undefined,
+    onWork: undefined
   };
 
 
@@ -89,15 +89,17 @@ export class Collapse extends React.Component {
       return;
     }
 
-    animate(this.container, this.props.theme.animate, {
+    const {theme} = this.props;
+
+    animate(this.container, theme.animate, {
       start: () => {
-        this.onResize()
+        this.onResize();
       },
       // Fire transitionEnd event
       end: () => {
-        this.onResize()
-      },
-    })
+        this.onResize();
+      }
+    });
   }
 
 
