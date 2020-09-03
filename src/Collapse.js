@@ -98,9 +98,7 @@ export class Collapse extends React.Component {
       start: () => {
         this.onResize()
       },
-      active: () => {
-
-      },
+      // Fire transitionEnd event
       end: () => {
         this.onResize()
       },
