@@ -164,9 +164,13 @@ export class Collapse extends React.Component {
 
 
   render() {
-    const {theme, children} = this.props;
+    const {theme, children, isOpened} = this.props;
     return (
-      <div ref={this.onRefContainer} className={theme.collapse} style={this.initialStyle}>
+      <div
+        ref={this.onRefContainer}
+        className={theme.collapse}
+        style={this.initialStyle}
+        aria-hidden={!isOpened}>
         <div ref={this.onRefContent} className={theme.content}>
           {children}
         </div>

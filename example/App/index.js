@@ -4,6 +4,7 @@ import {VariableHeight} from './VariableHeight';
 import {InitiallyOpened} from './InitiallyOpened';
 import {Nested} from './Nested';
 import {Hooks} from './Hooks';
+import {Accessible} from './Accessible';
 import {AutoUnmount} from './AutoUnmount';
 import {ForceInitialAnimation} from './ForceInitialAnimation';
 
@@ -49,6 +50,11 @@ export const App = () => (
     <section className="section">
       <h2>Hooks</h2>
       <Hooks />
+    </section>
+
+    <section className="section">
+      <h2>Accessible examples</h2>
+      <Accessible />
     </section>
 
     <section className="section">

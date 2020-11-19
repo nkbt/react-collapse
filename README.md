@@ -29,7 +29,7 @@ npm install --save react-collapse
 ### yarn
 
 ```sh
-yarn add react-collapse 
+yarn add react-collapse
 ```
 
 ### 1998 Script Tag:
@@ -42,7 +42,7 @@ yarn add react-collapse
 
 ## Usage
 
-Default behaviour, never unmounts content
+### 1. Content is always mounted (default)
 
 ```js
 import {Collapse} from 'react-collapse';
@@ -53,7 +53,11 @@ import {Collapse} from 'react-collapse';
 </Collapse>
 ```
 
-If you want to unmount collapsed content, use `Unmount` component provided as:
+---
+
+### 2. Content unmounts when collapsed
+
+Use `Unmount` component provided as:
 
 ```js
 import {UnmountClosed} from 'react-collapse';
@@ -66,6 +70,11 @@ import {UnmountClosed} from 'react-collapse';
 
 Example [example/App/AutoUnmount.js](example/App/AutoUnmount.js)
 
+---
+
+### 3. Controlled and accessible
+
+If you want a controlled and accessible implementation, check out this [example](example/App/Accessible.js)
 
 ## Options
 
@@ -130,7 +139,7 @@ const arg = {
   isFullyClosed: true || false, // `true` only when Collapse is fully closed and height is zero
   isOpened: true || false, // `true` if Collapse has any non-zero height
   containerHeight: 123, // current pixel height of Collapse container (changes until reaches `contentHeight`)
-  contentHeight: 123 // determined height of supplied Content 
+  contentHeight: 123 // determined height of supplied Content
 }
 ```
 
@@ -165,10 +174,10 @@ Example: [example/App/ForceInitialAnimation.js](example/App/ForceInitialAnimatio
 
 ### `checkTimeout`: PropTypes.number
 
-Number in `ms`. 
+Number in `ms`.
 
 Collapse will check height after thins timeout to determine if animation is completed, the shorter the number - the faster `onRest` will be triggered and the quicker `hight: auto` will be applied. The downside - more calculations.
-Default value is: `50`. 
+Default value is: `50`.
 
 
 ### Pass-through props
@@ -221,7 +230,7 @@ The implications is that you will need to update your CSS with transition:
     ```
 
 - `checkTimeout` number in `ms`. Collapse will check height after thins timeout to determine if animation is completed, the shorter the number - the faster `onRest` will be triggered and the quicker `hight: auto` will be applied. The downside - more calculations.
-    Default value is: `50`. 
+    Default value is: `50`.
 
 ### 3. Deprecated props (not available in `v5`)
 - ~~Pass-through props~~ - any unknown props passed to `Collapse` component will be ignored
