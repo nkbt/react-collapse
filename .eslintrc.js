@@ -5,6 +5,7 @@ module.exports = {
     browser: true
   },
   rules: {
+    'operator-assignment': ['error', 'never'],
     'no-multiple-empty-lines': ['error', {max: 2}],
     'arrow-parens': ['error', 'as-needed'],
     'comma-dangle': ['error', 'never'],
