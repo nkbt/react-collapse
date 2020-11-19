@@ -52,7 +52,7 @@
   },
   "homepage": "https://github.com/nkbt/react-collapse",
   "peerDependencies": {
-    "react": "^16.3.0"
+    "react": ">=16.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
