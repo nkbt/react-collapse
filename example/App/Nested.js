@@ -26,7 +26,7 @@ export class Nested extends React.PureComponent {
           </label>
         </div>
 
-        <Collapse isOpened={isOpened} hasNestedCollapse>
+        <Collapse isOpened={isOpened}>
           <VariableHeight className="subCollapse" />
           <VariableHeight className="subCollapse" />
           <VariableHeight className="subCollapse" />
