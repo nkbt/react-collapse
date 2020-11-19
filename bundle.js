@@ -1166,8 +1166,7 @@ var Nested = /*#__PURE__*/function (_React$PureComponent) {
           });
         }
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_src__WEBPACK_IMPORTED_MODULE_1__.Collapse, {
-        isOpened: isOpened,
-        hasNestedCollapse: true
+        isOpened: isOpened
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_VariableHeight__WEBPACK_IMPORTED_MODULE_2__.VariableHeight, {
         className: "subCollapse"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_VariableHeight__WEBPACK_IMPORTED_MODULE_2__.VariableHeight, {
