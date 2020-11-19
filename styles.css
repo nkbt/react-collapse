@@ -107,6 +107,11 @@ body {
   font-family: Menlo, Consolas, Monospaced, monospace;
 }
 
+.accessible ul {
+  list-style: none;
+  padding-inline-start: 0;
+}
+
 .ReactCollapse--collapse {
   max-width: 800px;
   border: 1px solid rgba(3, 169, 244, 0.3);
@@ -117,5 +122,4 @@ body {
 
 .ReactCollapse--content {
 }
-
 
