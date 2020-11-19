@@ -1,0 +1,12 @@
+ignores: [
+  "webpack-dev-server"
+]
+ignore-dirs: [
+  "build",
+  "lib",
+  "pub"
+]
+specials: [
+  "bin",
+  "eslint"
+]

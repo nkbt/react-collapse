@@ -5,8 +5,11 @@ module.exports = {
     browser: true
   },
   rules: {
+    'operator-assignment': ['error', 'never'],
+    'no-multiple-empty-lines': ['error', {max: 2}],
     'arrow-parens': ['error', 'as-needed'],
     'comma-dangle': ['error', 'never'],
+    eqeqeq: ['error', 'always'],
     'object-curly-spacing': ['error', 'never'],
     'no-console': 'off',
     'global-require': 'off',
@@ -22,7 +25,7 @@ module.exports = {
         'lifecycle',
         'everything-else',
         'render'
-      ],
+      ]
     }],
     'react/jsx-filename-extension': ['error', {extensions: ['.js']}],
     'react/jsx-closing-bracket-location': ['error', {

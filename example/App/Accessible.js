@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {Collapse} from '../../src';
 
 export function Accessible() {
@@ -9,10 +9,19 @@ export function Accessible() {
     button: 'accessible-marker-example2'
   };
 
-  const [state, setState] = useState({
-    isCheckboxCollapseOpen: false,
-    isButtonCollapseOpen: false
-  });
+  const [isCheckboxCollapseOpen, setIsCheckboxCollapseOpen] = useState(false);
+  const [isButtonCollapseOpen, setIsButtonCollapseOpen] = useState(false);
+
+  const onChange = useCallback(
+    ({target: {checked}}) => setIsCheckboxCollapseOpen(checked),
+    [setIsCheckboxCollapseOpen]
+  );
+
+  const onClick = useCallback(
+    () => setIsButtonCollapseOpen(!isButtonCollapseOpen),
+    [isButtonCollapseOpen]
+  );
+
 
   return (
     <div className="accessible">
@@ -27,11 +36,11 @@ export function Accessible() {
                   className="input"
                   type="checkbox"
                   aria-controls={accessibilityIds.checkbox}
-                  checked={state.isCheckboxCollapseOpen}
-                  onChange={({target: {checked}}) => setState({isCheckboxCollapseOpen: checked})} />
+                  checked={isCheckboxCollapseOpen}
+                  onChange={onChange} />
               </label>
             </div>
-            <Collapse isOpened={state.isCheckboxCollapseOpen}>
+            <Collapse isOpened={isCheckboxCollapseOpen}>
               <div style={{height}} id={accessibilityIds.checkbox} className="blob" />
             </Collapse>
           </div>
@@ -43,14 +52,14 @@ export function Accessible() {
             <div className="config">
               <button
                 aria-controls={accessibilityIds.button}
-                aria-expanded={state.isButtonCollapseOpen}
-                onClick={() => setState({isButtonCollapseOpen: !state.isButtonCollapseOpen})}
+                aria-expanded={isButtonCollapseOpen}
+                onClick={onClick}
                 type="button">
                 Reveal content
               </button>
             </div>
             <Collapse
-              isOpened={state.isButtonCollapseOpen}>
+              isOpened={isButtonCollapseOpen}>
               <div style={{height}} id={accessibilityIds.button} className="blob" />
             </Collapse>
           </div>
