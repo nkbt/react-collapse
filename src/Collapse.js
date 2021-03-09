@@ -83,12 +83,12 @@ export class Collapse extends React.Component {
 
 
   componentWillUnmount() {
-    global.clearTimeout(this.timeout);
+    clearTimeout(this.timeout);
   }
 
 
   onResize = () => {
-    global.clearTimeout(this.timeout);
+    clearTimeout(this.timeout);
 
     if (!this.container || !this.content) {
       return;
