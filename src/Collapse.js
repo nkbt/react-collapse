@@ -51,7 +51,7 @@ export class Collapse extends React.Component {
         : {height: '0px', overflow: 'hidden'};
     }
     if (props.transition) {
-      this.initialStyle = { ...this.initialStyle, transition: props.transition };
+      this.initialStyle = {...this.initialStyle, transition: props.transition};
     }
   }
 
