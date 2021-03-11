@@ -9,6 +9,7 @@ export class Collapse extends React.Component {
       content: PropTypes.string
     }),
     isOpened: PropTypes.bool.isRequired,
+    transition: PropTypes.string,
     initialStyle: PropTypes.shape({
       height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       overflow: PropTypes.string
@@ -25,6 +26,7 @@ export class Collapse extends React.Component {
       collapse: 'ReactCollapse--collapse',
       content: 'ReactCollapse--content'
     },
+    transition: undefined,
     initialStyle: undefined,
     onRest: undefined,
     onWork: undefined,
@@ -47,6 +49,9 @@ export class Collapse extends React.Component {
       this.initialStyle = props.isOpened
         ? {height: 'auto', overflow: 'initial'}
         : {height: '0px', overflow: 'hidden'};
+    }
+    if (props.transition) {
+      this.initialStyle = { ...this.initialStyle, transition: props.transition };
     }
   }
 

@@ -6,12 +6,14 @@ import {Collapse} from './Collapse';
 export class UnmountClosed extends React.PureComponent {
   static propTypes = {
     isOpened: PropTypes.bool.isRequired,
+    transition: PropTypes.string,
     onWork: PropTypes.func,
     onRest: PropTypes.func
   };
 
   static defaultProps = {
     onWork: undefined,
+    transition: undefined,
     onRest: undefined
   };
 
