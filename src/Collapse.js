@@ -38,6 +38,8 @@ export class Collapse extends React.Component {
 
   content = undefined;
 
+  workStarted = false;
+
 
   constructor(props) {
     super(props);
@@ -118,9 +120,10 @@ export class Collapse extends React.Component {
     const hasOpened = isOpened && this.container.style.height === `${contentHeight}px`;
     const hasClosed = !isOpened && this.container.style.height === '0px';
 
-    if (hasOpened || hasClosed) {
+    if (hasOpened || hasClosed || this.workStarted) {
       this.container.style.overflow = isOpened ? 'initial' : 'hidden';
       this.container.style.height = isOpened ? 'auto' : '0px';
+      this.workStarted = false;
 
       const {onRest} = this.props;
       if (onRest) {
@@ -145,6 +148,7 @@ export class Collapse extends React.Component {
 
     this.container.style.overflow = 'hidden';
     this.container.style.height = isOpened ? `${contentHeight}px` : '0px';
+    this.workStarted = true;
 
     const {onWork} = this.props;
     if (onWork) {
