@@ -95,11 +95,11 @@ export class Collapse extends React.Component {
     }
 
     const {isOpened, checkTimeout} = this.props;
-    const {clientHeight: containerHeight} = this.container;
-    const {clientHeight: contentHeight} = this.content;
+    const containerHeight = Math.floor(this.container.clientHeight);
+    const contentHeight = Math.floor(this.content.clientHeight);
 
-    const isFullyOpened = isOpened && contentHeight === containerHeight;
-    const isFullyClosed = !isOpened && containerHeight === 0;
+    const isFullyOpened = isOpened && Math.abs(contentHeight - containerHeight) <= 1;
+    const isFullyClosed = !isOpened && Math.abs(containerHeight) <= 1;
 
     if (isFullyOpened || isFullyClosed) {
       this.onRest({isFullyOpened, isFullyClosed, isOpened, containerHeight, contentHeight});
