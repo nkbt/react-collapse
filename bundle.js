@@ -1570,7 +1570,7 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default().render( /*#__PURE__*/react__WEB
 /*! namespace exports */
 /*! export Collapse [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_require__.r, __webpack_exports__, __webpack_require__.g, __webpack_require__.d, __webpack_require__.* */
+/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1627,7 +1627,7 @@ var Collapse = /*#__PURE__*/function (_React$Component) {
     _defineProperty(_assertThisInitialized(_this), "content", undefined);
 
     _defineProperty(_assertThisInitialized(_this), "onResize", function () {
-      __webpack_require__.g.clearTimeout(_this.timeout);
+      clearTimeout(_this.timeout);
 
       if (!_this.container || !_this.content) {
         return;
@@ -1636,10 +1636,10 @@ var Collapse = /*#__PURE__*/function (_React$Component) {
       var _this$props = _this.props,
           isOpened = _this$props.isOpened,
           checkTimeout = _this$props.checkTimeout;
-      var containerHeight = _this.container.clientHeight;
-      var contentHeight = _this.content.clientHeight;
-      var isFullyOpened = isOpened && contentHeight === containerHeight;
-      var isFullyClosed = !isOpened && containerHeight === 0;
+      var containerHeight = Math.floor(_this.container.clientHeight);
+      var contentHeight = Math.floor(_this.content.clientHeight);
+      var isFullyOpened = isOpened && Math.abs(contentHeight - containerHeight) <= 1;
+      var isFullyClosed = !isOpened && Math.abs(containerHeight) <= 1;
 
       if (isFullyOpened || isFullyClosed) {
         _this.onRest({
@@ -1790,7 +1790,7 @@ var Collapse = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      __webpack_require__.g.clearTimeout(this.timeout);
+      clearTimeout(this.timeout);
     }
   }, {
     key: "render",
@@ -3304,18 +3304,6 @@ module.exports = ReactDOM;
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/global */
-/******/ 	(() => {
-/******/ 		__webpack_require__.g = (function() {
-/******/ 			if (typeof globalThis === 'object') return globalThis;
-/******/ 			try {
-/******/ 				return this || new Function('return this')();
-/******/ 			} catch (e) {
-/******/ 				if (typeof window === 'object') return window;
-/******/ 			}
-/******/ 		})();
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
