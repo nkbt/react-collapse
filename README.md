@@ -42,7 +42,17 @@ yarn add react-collapse
 
 ## Usage
 
-### 1. Content is always mounted (default)
+### 1. Add a CSS transition
+
+```css
+.ReactCollapse--collapse {
+  transition: height 500ms;
+}
+```
+
+**IMPORTANT**: Without adding a CSS transition there will be no animation and component will open/close instantly.
+
+### 2. Content is always mounted (default)
 
 ```js
 import {Collapse} from 'react-collapse';
@@ -55,7 +65,7 @@ import {Collapse} from 'react-collapse';
 
 ---
 
-### 2. Content unmounts when collapsed
+### 3. Content unmounts when collapsed
 
 Use `Unmount` component provided as:
 
@@ -72,7 +82,7 @@ Example [example/App/AutoUnmount.js](example/App/AutoUnmount.js)
 
 ---
 
-### 3. Controlled and accessible
+### 4. Controlled and accessible
 
 If you want a controlled and accessible implementation, check out this [example](example/App/Accessible.js)
 
@@ -214,7 +224,7 @@ The implications is that you will need to update your CSS with transition:
   transition: height 500ms;
 }
 ```
-**IMPORTANT**: without adding css transition there will be no animation and component will open/close instantly.
+**IMPORTANT**: Without adding a CSS transition there will be no animation and component will open/close instantly.
 
 ### 2. New props or updated props
 
