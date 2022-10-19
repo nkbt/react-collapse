@@ -186,7 +186,7 @@ Example: [example/App/ForceInitialAnimation.js](example/App/ForceInitialAnimatio
 
 Number in `ms`.
 
-Collapse will check height after thins timeout to determine if animation is completed, the shorter the number - the faster `onRest` will be triggered and the quicker `hight: auto` will be applied. The downside - more calculations.
+Collapse will check height after thins timeout to determine if animation is completed, the shorter the number - the faster `onRest` will be triggered and the quicker `height: auto` will be applied. The downside - more calculations.
 Default value is: `50`.
 
 
@@ -239,7 +239,7 @@ The implications is that you will need to update your CSS with transition:
         : {height: '0px', overflow: 'hidden'};
     ```
 
-- `checkTimeout` number in `ms`. Collapse will check height after thins timeout to determine if animation is completed, the shorter the number - the faster `onRest` will be triggered and the quicker `hight: auto` will be applied. The downside - more calculations.
+- `checkTimeout` number in `ms`. Collapse will check height after thins timeout to determine if animation is completed, the shorter the number - the faster `onRest` will be triggered and the quicker `height: auto` will be applied. The downside - more calculations.
     Default value is: `50`.
 
 ### 3. Deprecated props (not available in `v5`)
