@@ -64,19 +64,6 @@ export class Collapse extends React.Component {
       || Object.keys(theme).some(c => theme[c] !== nextProps.theme[c]);
   }
 
-
-  getSnapshotBeforeUpdate() {
-    if (!this.container || !this.content) {
-      return null;
-    }
-    if (this.container.style.height === 'auto') {
-      const {clientHeight: contentHeight} = this.content;
-      this.container.style.height = `${contentHeight}px`;
-    }
-    return null;
-  }
-
-
   componentDidUpdate() {
     this.onResize();
   }
@@ -92,6 +79,11 @@ export class Collapse extends React.Component {
 
     if (!this.container || !this.content) {
       return;
+    }
+
+    if (this.container.style.height === 'auto') {
+      const {clientHeight: contentHeight} = this.content;
+      this.container.style.height = `${contentHeight}px`;
     }
 
     const {isOpened, checkTimeout} = this.props;
